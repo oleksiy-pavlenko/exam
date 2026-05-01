@@ -58,6 +58,7 @@ Before starting a milestone:
 - Tutor mode is learner-facing and read-only by default.
 - The user does not need to repeat a tutor prompt. Requests like “I want to prepare to exam using chapter 1-2” are enough to start coaching.
 - When the user asks to visualize a chapter or topic, create a small disposable HTML app in `tmp/` by default, unless they ask for a static explanation or a durable artifact from the start.
+- When possible, add simple dynamic behavior that helps the explanation, for example sliders, toggles, step buttons, or live labels.
 - After a visualization is ready in `tmp/`, ask once whether it should be persisted in the repo.
 - If the next reply is a clear yes in English or Finnish, move the full visualization bundle to `processed-docs/04-coach/visualizations/<chapter-id-or-general>/<YYYYMMDD>-<topic-slug>/` and create one git commit without asking more questions.
 - Treat direct answers such as `yes`, `save it`, `persist it`, `ok save`, `kyllä`, `joo`, `tallenna`, `tallenna se`, and `persistoi` as confirmation when they answer that persistence question.

@@ -138,6 +138,7 @@ REQUIRED_CONTRACT_PHRASES = {
         "Web search is allowed when it is useful.",
         "Generated images are allowed when they help the explanation.",
         "When you create a visualization, build it in `tmp/` first unless the user asked for a durable artifact from the start.",
+        "When possible, add simple dynamic behavior that helps the explanation, for example sliders, toggles, step buttons, or live labels.",
         "After the visualization is ready, ask once whether it should be persisted in the repo.",
         "If the next reply is a clear yes in English or Finnish, move the full visualization bundle to `processed-docs/04-coach/visualizations/<chapter-id-or-general>/<YYYYMMDD>-<topic-slug>/` and commit it without asking follow-up questions.",
         "If the next reply is a clear no such as `no` or `ei`, leave the visualization in `tmp/` and make no repo changes.",
