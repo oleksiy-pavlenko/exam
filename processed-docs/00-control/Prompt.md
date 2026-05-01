@@ -6,7 +6,7 @@ Use this file as the binding run spec. `Plan.md` owns milestone status. `Impleme
 - Build a Finnish math exam knowledgebase from scanned textbook pages.
 - Keep raw scans, page transcripts, derived concept notes, exercise patterns, visual assets, and structured coach data in stable repo paths.
 - Prepare the material for Codex-driven coach sessions that can explain, assign practice, verify answers, and show dynamic visual explanations.
-- Process the current first scan batch as `BOOK01` chapter `CH01`.
+- Process the active scan batch named in `Plan.md`. The current active batch is provisional `BOOK01` chapter `CH02`.
 - Keep the repo ready for long-running chapter-by-chapter AI processing and fresh coach sessions.
 
 ## Non-goals
@@ -17,7 +17,7 @@ Use this file as the binding run spec. `Plan.md` owns milestone status. `Impleme
 - Do not design for a separate standalone app in this repo.
 
 ## Autonomous window
-- Active window: `CH01-COACH` backfill (closed)
+- Active window: `CH02` second scan batch
 - Future chapter windows use `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.
 - Current milestone is controlled only by `Plan.md`.
 - Continue until every milestone in the active window is completed or a stop rule fires.
@@ -36,12 +36,13 @@ Use this file as the binding run spec. `Plan.md` owns milestone status. `Impleme
 ## Source and scope boundaries
 - The first source is provisional `BOOK01` until the book title page, ISBN, or cover is uploaded.
 - The first chapter is provisional `CH01` until chapter metadata is confirmed.
+- The current second scan batch is provisional `BOOK01/CH02` until page transcription confirms printed page numbers and section boundaries.
 - Current raw scan paths are recorded in `source-inventory.md`.
 - Later uploaded chapters must get their own chapter directory and four-milestone window.
 
 ## Run deliverables
-- Page transcript files under `processed-docs/01-pages/BOOK01/CH01/`.
-- Reviewed normalized page images, figure crops, and asset manifests under `processed-docs/assets/pages/BOOK01/CH01/`.
+- Page transcript files under `processed-docs/01-pages/BOOKxx/CHxx/`.
+- Reviewed normalized page images, figure crops, and asset manifests under `processed-docs/assets/pages/BOOKxx/CHxx/`.
 - Derived study notes under `processed-docs/02-concepts/`.
 - Exercise and solved-pattern notes under `processed-docs/03-exercises/`.
 - Coach startup prompts, chapter catalogs, and coach manifests under `processed-docs/04-coach/` when the `CHxx-COACH` milestone runs.

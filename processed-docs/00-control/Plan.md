@@ -5,13 +5,13 @@ This file is the only milestone-status source of truth for the current long run.
 ## Execution State
 - Progress source of truth: this file
 - Status vocabulary: `Completed`, `Current`, `Pending`, `Blocked`
-- Active window: `PREP3` mode system (closed)
-- Current milestone: `Closed`
-- Next milestone: `Closed`
-- Hot-path milestone specs: `PREP1`, `PREP2`, `PREP3`, `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, `CHxx-COACH`
-- Completed preparation milestones: `PREP1`, `PREP2`, `PREP3`
+- Active window: `CH02` second scan batch
+- Current milestone: `CH02-PAGES`
+- Next milestone: `CH02-ASSETS`
+- Hot-path milestone specs: `PREP1`, `PREP2`, `PREP3`, `PREP4`, `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, `CHxx-COACH`
+- Completed preparation milestones: `PREP1`, `PREP2`, `PREP3`, `PREP4`
 - Completed content milestones: `CH01-PAGES`, `CH01-NOTES`, `CH01-COACH`
-- Remaining milestones in the active window: none
+- Remaining milestones in the active window: `CH02-PAGES`, `CH02-ASSETS`, `CH02-NOTES`, `CH02-COACH`
 
 ## Validation command catalog
 - `WORKTREE-CLEAN`: `git status --short`
@@ -23,6 +23,8 @@ This file is the only milestone-status source of truth for the current long run.
 - `CH01-COACH-CHECK`: `rg -n "\"chapter_id\"|\"concept_id\"|\"template_id\"" processed-docs/04-coach`
 - `CH01-SCAN-CHECK`: `find unprocessed-docs/books/BOOK01/chapter-01/scans -maxdepth 1 -type f`
 - `CH01-PAGE-CHECK`: `rg -n "BOOK01-CH01-P00[1-4]|L001|Source image|Status" processed-docs/01-pages/BOOK01/CH01`
+- `CH02-SCAN-CHECK`: `find unprocessed-docs/books/BOOK01/chapter-02/scans -maxdepth 1 -type f`
+- `CH02-PAGE-CHECK`: `rg -n "BOOK01-CH02-P0[0-3][0-9]|L001|Source image|Status" processed-docs/01-pages/BOOK01/CH02`
 
 ## Review topology
 - The root thread is the root orchestrator only. It owns milestone selection, worker coordination, and final integration across the active window.
@@ -43,6 +45,7 @@ This file is the only milestone-status source of truth for the current long run.
 - Fresh learner-facing coach sessions start from `processed-docs/04-coach/Start-Coach-Session.md`.
 - Ordinary mode switches update `processed-docs/00-control/Mode.md` and use dedicated mode commits. They do not reopen chapter milestones by themselves.
 - Record newly discovered work in `Documentation.md`. Do not silently widen the current milestone.
+- The current `CH02` window was opened from a 30-image imported scan batch. Page transcription must confirm exact printed page numbers and section boundaries before derived notes are written.
 
 ## Future milestone pattern
 - `CHxx-PAGES`: import scans, create page transcripts, stable line IDs, and one normalized page image per source page.
@@ -127,6 +130,30 @@ This file is the only milestone-status source of truth for the current long run.
 - Handoff:
   - `PREP3` is complete. Future ordinary mode switches should use dedicated mode commits without reopening `Plan.md` milestones.
 
+### PREP4 - Import second scan batch and open CH02 window
+- Status: `Completed (2026-05-01)`
+- Goal:
+  - Import the new book image drop as a stable raw source batch and prepare the next extraction milestones.
+- Scope:
+  - Copy the 30 new JPEG scans into `unprocessed-docs/books/BOOK01/chapter-02/scans/`.
+  - Strip phone metadata from the tracked scan copies before commit.
+  - Record all source paths and original filenames in `source-inventory.md`.
+  - Open the standard `CH02-PAGES`, `CH02-ASSETS`, `CH02-NOTES`, and `CH02-COACH` window.
+  - Do not transcribe pages, create visual crops, write derived notes, or create coach data in this prep milestone.
+- Acceptance:
+  - All 30 tracked scan copies exist with stable scan IDs `BOOK01-CH02-S001` through `BOOK01-CH02-S030`.
+  - `source-inventory.md` maps those scans to page IDs `BOOK01-CH02-P001` through `BOOK01-CH02-P030`.
+  - `Plan.md` sets `CH02-PAGES` as the current milestone and `CH02-ASSETS` as the next milestone.
+  - `python3 scripts/validate_kb.py` passes.
+- Validation:
+  - `git status --short`
+  - `python3 scripts/validate_kb.py`
+  - `find unprocessed-docs/books/BOOK01/chapter-02/scans -maxdepth 1 -type f`
+- Commit:
+  - Commit message pattern: `docs(chunk): PREP4 import-second-scan-batch`
+- Handoff:
+  - `PREP4` is complete. Start content extraction at `CH02-PAGES`.
+
 ### CH01-PAGES - Transcribe first chapter scan batch
 - Status: `Completed (2026-05-01)`
 - Goal:
@@ -197,3 +224,93 @@ This file is the only milestone-status source of truth for the current long run.
   - Commit message pattern: `docs(chunk): CH01-COACH backfill-first-coach-manifest`
 - Handoff:
   - `CH01-COACH` is complete. The current backfill window is closed.
+
+### CH02-PAGES - Transcribe second scan batch
+- Status: `Current`
+- Goal:
+  - Create reviewed Finnish page transcript files for the 30 imported `BOOK01/CH02` scans.
+- Scope:
+  - Create one page transcript per scan under `processed-docs/01-pages/BOOK01/CH02/`.
+  - Add one normalized readability image per page under `processed-docs/assets/pages/BOOK01/CH02/`.
+  - Preserve formulas, examples, exercise numbers, decimal commas, units, printed page numbers, and figure labels.
+  - Confirm whether `BOOK01/CH02` should stay one provisional chapter or be split later by visible section boundaries.
+  - Mark uncertain text as `EPÄSELVÄ`.
+  - Do not create derived concept notes, exercise notes, figure crops, or coach manifests in this milestone.
+- Acceptance:
+  - Page IDs `BOOK01-CH02-P001` through `BOOK01-CH02-P030` exist.
+  - Each page file has stable line IDs and cites its source image.
+  - Each page file links to an existing normalized page image.
+  - Important formulas and diagrams are represented in the page file.
+- Validation:
+  - `git status --short`
+  - `python3 scripts/validate_kb.py`
+  - `rg -n "BOOK01-CH02-P0[0-3][0-9]|L001|Source image|Status" processed-docs/01-pages/BOOK01/CH02`
+- Commit:
+  - Commit message pattern: `docs(chunk): CH02-PAGES transcribe-second-scan-batch`
+- Handoff:
+  - `CH02-PAGES` is complete. Continue directly to `CH02-ASSETS`.
+
+### CH02-ASSETS - Build second batch visual assets
+- Status: `Pending`
+- Goal:
+  - Create reviewed visual assets for the `BOOK01/CH02` transcript layer.
+- Scope:
+  - Create figure, table, photo, and visual exercise crops under `processed-docs/assets/pages/BOOK01/CH02/crops/`.
+  - Create `processed-docs/assets/pages/BOOK01/CH02/assets.json`.
+  - Link every visual asset to source page IDs and line IDs.
+  - Record a clear no-crop reason in page notes only when a visible figure does not need a separate crop.
+- Acceptance:
+  - Every `BOOK01/CH02` page has a normalized image.
+  - Important figures and visual exercises have manifest-covered assets or clear no-crop reasons.
+  - `python3 scripts/validate_kb.py` passes.
+- Validation:
+  - `git status --short`
+  - `python3 scripts/validate_kb.py`
+- Commit:
+  - Commit message pattern: `docs(chunk): CH02-ASSETS build-second-batch-visual-assets`
+- Handoff:
+  - `CH02-ASSETS` is complete. Continue directly to `CH02-NOTES`.
+
+### CH02-NOTES - Build second batch exam notes
+- Status: `Pending`
+- Goal:
+  - Create Finnish concept and exercise notes from the reviewed `BOOK01/CH02` page and asset layers.
+- Scope:
+  - Add concise concept notes for formulas, methods, examples, and common mistakes.
+  - Add exercise-pattern notes for visible exercises and solved examples.
+  - Cite source page IDs, line IDs, and relevant visual asset IDs.
+  - Update note indexes.
+- Acceptance:
+  - Notes are useful for exam preparation and cite the transcript layer.
+  - Notes name relevant visual asset IDs when source lines overlap manifest-covered assets.
+  - Known scan gaps or unclear parts are recorded instead of guessed.
+- Validation:
+  - `git status --short`
+  - `python3 scripts/validate_kb.py`
+  - `rg -n "EPÄSELVÄ|TODO|BLOCKED" processed-docs/01-pages processed-docs/02-concepts processed-docs/03-exercises`
+- Commit:
+  - Commit message pattern: `docs(chunk): CH02-NOTES build-second-batch-exam-notes`
+- Handoff:
+  - `CH02-NOTES` is complete. Continue directly to `CH02-COACH`.
+
+### CH02-COACH - Build second batch coach data
+- Status: `Pending`
+- Goal:
+  - Create structured coach data for `BOOK01/CH02`.
+- Scope:
+  - Add or update the coach catalog entry for `BOOK01/CH02`.
+  - Create `processed-docs/04-coach/BOOK01/CH02/coach.json`.
+  - Cover the reviewed concepts, examples, exercise patterns, known gaps, and visual hooks.
+  - Cite source line IDs and visual asset IDs where relevant.
+- Acceptance:
+  - A fresh Codex coach session can discover `BOOK01/CH02` from the catalog.
+  - Coach data has explanation, assignment, answer expectation, LLM evaluation, hint, and visual hook coverage where the source supports it.
+  - `Plan.md` closes the active window when this milestone is done.
+- Validation:
+  - `git status --short`
+  - `python3 scripts/validate_kb.py`
+  - `rg -n "\"chapter_id\"|\"concept_id\"|\"template_id\"" processed-docs/04-coach`
+- Commit:
+  - Commit message pattern: `docs(chunk): CH02-COACH build-second-batch-coach-manifest`
+- Handoff:
+  - `CH02-COACH` is complete. Set both `Current milestone` and `Next milestone` to `Closed`.

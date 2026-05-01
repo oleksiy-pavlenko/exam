@@ -19,8 +19,9 @@ python3 scripts/validate_kb.py
 ```
 
 Current handoff:
-- `processed-docs/00-control/Mode.md` is the current-mode source of truth. The default committed mode is `tutor`.
+- `processed-docs/00-control/Mode.md` is the current-mode source of truth. The committed mode is `extraction`.
 - `processed-docs/00-control/Plan.md` is the live milestone-state gate.
 - `processed-docs/00-control/Documentation.md` is the durable handoff and audit log.
 - First scan batch is imported as provisional `BOOK01/CH01`.
+- Second scan batch is imported as provisional `BOOK01/CH02`.
 - Current visual assets are indexed at `processed-docs/assets/pages/BOOK01/CH01/index.md`.

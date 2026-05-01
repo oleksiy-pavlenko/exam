@@ -5,16 +5,17 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 ## Current state snapshot
 - Last updated: 2026-05-01
 - Progress source of truth: `processed-docs/00-control/Plan.md`
-- Active window: `PREP3` mode system (closed)
-- Current milestone from Plan.md: `Closed`
-- Next milestone from Plan.md: `Closed`
+- Active window: `CH02` second scan batch
+- Current milestone from Plan.md: `CH02-PAGES`
+- Next milestone from Plan.md: `CH02-ASSETS`
 - Validation command: `python3 scripts/validate_kb.py`
 - Worktree check: `git status --short`
 - Current mode source of truth: `processed-docs/00-control/Mode.md`
 - Current committed mode: `extraction`
 - Current provisional book ID: `BOOK01`
-- Current provisional chapter ID: `CH01`
+- Current provisional chapter ID: `CH02`
 - Current CH01 visual asset manifest: `processed-docs/assets/pages/BOOK01/CH01/assets.json`
+- Current CH02 raw scan path: `unprocessed-docs/books/BOOK01/chapter-02/scans/`
 - Current coach data status: startup prompt, coach catalog, and CH01 coach manifest are built
 
 ## Control-doc roles
@@ -34,6 +35,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - `PREP2` pivoted the repo from future-app wording to Codex-only coach sessions and opened a `CH01-COACH` backfill.
 - `CH01-COACH` created the first coach catalog entry and the first usable chapter coach manifest for fresh Codex sessions.
 - `PREP3` added persisted `tutor` and `extraction` modes with `Mode.md` as the startup source of truth.
+- `PREP4` imported the second 30-image scan batch as provisional `BOOK01/CH02` and opened the `CH02` extraction window.
 - Future chapter windows still require visual asset and coach data milestones.
 
 ## Audit log
@@ -119,13 +121,22 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 
 ### 2026-05-01 - Mode switch: extraction
 - Switched `processed-docs/00-control/Mode.md` from `tutor` to `extraction` after the user requested extraction work.
-- The image drop in `copy-from-here-and-delete/` is the next source-prep input and must be imported before milestone work starts.
+- The image drop in `copy-from-here-and-delete/` was the source-prep input for the next import step.
+
+### 2026-05-01 - PREP4 completed: import second scan batch and open CH02 window
+- Imported 30 new JPEG scans into `unprocessed-docs/books/BOOK01/chapter-02/scans/` with stable scan IDs `BOOK01-CH02-S001` through `BOOK01-CH02-S030`.
+- Stripped phone metadata from the tracked scan copies before commit so GPS EXIF data is not persisted.
+- Recorded original filenames and source paths in `source-inventory.md`.
+- Treated the batch as provisional `BOOK01/CH02` because the visible material continues after the current processed pages and includes later numbered geometry sections. Page transcription must confirm exact printed page numbers and section boundaries.
+- Opened the standard `CH02-PAGES`, `CH02-ASSETS`, `CH02-NOTES`, and `CH02-COACH` milestone window in `Plan.md`.
+- Next milestone: `CH02-PAGES`.
 
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
 - Control docs may use simple English for clear long-run coordination.
 - The first book is `BOOK01` until title page, cover, or ISBN metadata is uploaded.
 - The first chapter is `CH01` until better chapter metadata is confirmed.
+- `BOOK01-CH02` is the provisional ID for the second uploaded 30-image scan batch. It may contain more than one visible textbook section, so the page milestone must record section boundaries before derived notes are written.
 - Raw scans stay unchanged after import. Rotated or cropped versions are generated assets.
 - All subagents use clean-context `GPT-5.5` `xhigh`; `fork_context` is not used for milestone workers or review workers.
 - Edge-only neighboring page content in a scan is not complete source coverage. Use only the fully transcribed page lines as evidence for derived notes.
@@ -150,6 +161,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Decide whether later large chapters should use one milestone per chapter or one milestone per page range.
 - Add missing source coverage for exercises 18-25 if later scans include those pages.
 - Add later extracted chapters to `processed-docs/04-coach/catalog.json` as they reach `CHxx-COACH`.
+- During `CH02-PAGES`, decide whether the 30-image batch should stay one coach chapter or be split after transcription.
 
 ## Fresh-session handoff
 - Read `processed-docs/00-control/Mode.md` first.
@@ -157,11 +169,13 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - If the current mode is `extraction`, start from `processed-docs/00-control/Start-Long-Run.md`.
 - Start extraction runs from `processed-docs/00-control/Plan.md` and `processed-docs/00-control/Start-Long-Run.md`.
 - Start learner-facing coach sessions from `processed-docs/04-coach/Start-Coach-Session.md`.
-- Current milestone is `Closed`.
-- Next milestone is `Closed`.
-- The committed default mode is `tutor`.
-- The `PREP3` mode-system window is closed.
-- Future chapter windows should use the four-step pattern: pages, assets, notes, coach data.
+- Current milestone is `CH02-PAGES`.
+- Next milestone is `CH02-ASSETS`.
+- The committed mode is `extraction`.
+- The `PREP4` source-prep work is complete.
+- The active `CH02` window uses the four-step pattern: pages, assets, notes, coach data.
+- `CH02-PAGES` must start from the 30 scans in `unprocessed-docs/books/BOOK01/chapter-02/scans/`.
+- `CH02` page line IDs and visual asset IDs do not exist yet; create them in `CH02-PAGES` and `CH02-ASSETS` before derived notes.
 - Cite page line IDs from `processed-docs/01-pages/BOOK01/CH01/` if later work extends the notes.
 - Cite visual asset IDs from `processed-docs/assets/pages/BOOK01/CH01/assets.json` when later work needs images.
 - Use `processed-docs/04-coach/catalog.json` to find ready coach chapters and known coverage gaps.

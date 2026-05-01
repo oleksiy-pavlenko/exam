@@ -32,6 +32,7 @@ Current content:
 - [Exercise notes](03-exercises/index.md)
 - [Coach data](04-coach/index.md)
 - [Current visual assets](assets/pages/BOOK01/CH01/index.md)
+- Current raw scan batch: `unprocessed-docs/books/BOOK01/chapter-02/scans/`
 
 Conventions:
 - Raw scans are source evidence.
