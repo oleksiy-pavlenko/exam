@@ -6,12 +6,12 @@ This file is the only milestone-status source of truth for the current long run.
 - Progress source of truth: this file
 - Status vocabulary: `Completed`, `Current`, `Pending`, `Blocked`
 - Active window: `CH02` second scan batch
-- Current milestone: `CH02-PAGES`
-- Next milestone: `CH02-ASSETS`
+- Current milestone: `CH02-ASSETS`
+- Next milestone: `CH02-NOTES`
 - Hot-path milestone specs: `PREP1`, `PREP2`, `PREP3`, `PREP4`, `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, `CHxx-COACH`
 - Completed preparation milestones: `PREP1`, `PREP2`, `PREP3`, `PREP4`
-- Completed content milestones: `CH01-PAGES`, `CH01-NOTES`, `CH01-COACH`
-- Remaining milestones in the active window: `CH02-PAGES`, `CH02-ASSETS`, `CH02-NOTES`, `CH02-COACH`
+- Completed content milestones: `CH01-PAGES`, `CH01-NOTES`, `CH01-COACH`, `CH02-PAGES`
+- Remaining milestones in the active window: `CH02-ASSETS`, `CH02-NOTES`, `CH02-COACH`
 
 ## Validation command catalog
 - `WORKTREE-CLEAN`: `git status --short`
@@ -227,7 +227,7 @@ This file is the only milestone-status source of truth for the current long run.
   - `CH01-COACH` is complete. The current backfill window is closed.
 
 ### CH02-PAGES - Transcribe second scan batch
-- Status: `Current`
+- Status: `Completed (2026-05-01)`
 - Goal:
   - Create reviewed Finnish page transcript files for the 30 imported `BOOK01/CH02` scans.
 - Scope:
@@ -252,7 +252,7 @@ This file is the only milestone-status source of truth for the current long run.
   - `CH02-PAGES` is complete. Continue directly to `CH02-ASSETS`.
 
 ### CH02-ASSETS - Build second batch visual assets
-- Status: `Pending`
+- Status: `Current`
 - Goal:
   - Create reviewed visual assets for the `BOOK01/CH02` transcript layer.
 - Scope:

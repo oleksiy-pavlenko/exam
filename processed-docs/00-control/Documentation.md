@@ -6,8 +6,8 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Last updated: 2026-05-01
 - Progress source of truth: `processed-docs/00-control/Plan.md`
 - Active window: `CH02` second scan batch
-- Current milestone from Plan.md: `CH02-PAGES`
-- Next milestone from Plan.md: `CH02-ASSETS`
+- Current milestone from Plan.md: `CH02-ASSETS`
+- Next milestone from Plan.md: `CH02-NOTES`
 - Validation command: `python3 scripts/validate_kb.py`
 - Worktree check: `git status --short`
 - Current mode source of truth: `processed-docs/00-control/Mode.md`
@@ -139,6 +139,19 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Made independent read-only review workers optional. Use one only when the user asks, validation or self-review is uncertain, or the milestone is high risk.
 - Kept the worker safety rule: every milestone worker and optional review worker uses clean-context `GPT-5.5` `xhigh`, and `fork_context` is not used.
 
+### 2026-05-01 - CH02-PAGES completed: transcribe second scan batch
+- Created Finnish page transcript files for `BOOK01-CH02-P001` through `BOOK01-CH02-P030`.
+- Added normalized readability assets for all 30 CH02 scans under `processed-docs/assets/pages/BOOK01/CH02/`.
+- Updated `source-inventory.md` so the CH02 scan rows no longer show transcript work as pending.
+- Recorded visible section boundaries across the batch: luku 2 monikulmiot, luku 3 ympyrä, luku 4 ympyrän kulmat, luku 5 kaaren pituus, luku 7 ympyrän pinta-ala, luku 8 sektorin pinta-ala, luku 9 ympyrälaskut, luku 11 Pythagoraan lause, luku 12 hypotenuusan ratkaiseminen, luku 13 kateetin ratkaiseminen, luku 14 suorakulmaisen kolmion piiri ja pinta-ala, luku 15 Pythagoraan harjoittelu ja myöhempi tasakylkisiin tai tasasivuisiin kolmioihin siirtyvä harjoitusjakso.
+- Marked genuinely unclear printed page numbers or partial neighboring content as `EPÄSELVÄ` instead of guessing.
+- Ran `python3 scripts/validate_kb.py`; it passed after page-note figure bullets were marked as temporary `no-crop` placeholders for the later asset milestone.
+- Ran the CH02 page check from `Plan.md`; it passed.
+- Ran self-review against `Review.md`; no `P0` or `P1` self-review findings remained.
+- Requested one optional independent read-only spot-check because the milestone was high risk.
+- The spot-check found one `P1` printed-page-number issue on `BOOK01-CH02-P014` and one `P2` wording issue on `BOOK01-CH02-P011`; both were fixed before the milestone close.
+- Next milestone: `CH02-ASSETS`.
+
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
 - Control docs may use simple English for clear long-run coordination.
@@ -161,6 +174,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Fresh learner-facing sessions should start from `processed-docs/04-coach/Start-Coach-Session.md` and then read `processed-docs/04-coach/catalog.json`.
 - Every reviewed visual asset must cite source page IDs and line IDs.
 - Derived concept and exercise notes must name relevant visual asset IDs when their source line citations overlap manifest-covered visual assets.
+- Keep `BOOK01-CH02` as the provisional source-batch ID for provenance, but split later durable notes and coach material by visible section boundaries instead of treating the whole 30-image batch as one teaching unit.
 
 ## Blockers
 - No current blocker.
@@ -170,7 +184,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Decide whether later large chapters should use one milestone per chapter or one milestone per page range.
 - Add missing source coverage for exercises 18-25 if later scans include those pages.
 - Add later extracted chapters to `processed-docs/04-coach/catalog.json` as they reach `CHxx-COACH`.
-- During `CH02-PAGES`, decide whether the 30-image batch should stay one coach chapter or be split after transcription.
+- During `CH02-ASSETS` and `CH02-NOTES`, keep the current `CH02` provenance IDs but prepare the later note and coach structure to split by visible section boundaries.
 
 ## Fresh-session handoff
 - Read `processed-docs/00-control/Mode.md` first.
@@ -178,13 +192,13 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - If the current mode is `extraction`, start from `processed-docs/00-control/Start-Long-Run.md`.
 - Start extraction runs from `processed-docs/00-control/Plan.md` and `processed-docs/00-control/Start-Long-Run.md`.
 - Start learner-facing coach sessions from `processed-docs/04-coach/Start-Coach-Session.md`.
-- Current milestone is `CH02-PAGES`.
-- Next milestone is `CH02-ASSETS`.
+- Current milestone is `CH02-ASSETS`.
+- Next milestone is `CH02-NOTES`.
 - The committed mode is `extraction`.
 - The `PREP4` source-prep work is complete.
 - The active `CH02` window uses the four-step pattern: pages, assets, notes, coach data.
-- `CH02-PAGES` must start from the 30 scans in `unprocessed-docs/books/BOOK01/chapter-02/scans/`.
-- `CH02` page line IDs and visual asset IDs do not exist yet; create them in `CH02-PAGES` and `CH02-ASSETS` before derived notes.
+- `CH02-PAGES` is complete. Use the 30 page transcripts in `processed-docs/01-pages/BOOK01/CH02/` and the 30 normalized page images in `processed-docs/assets/pages/BOOK01/CH02/`.
+- `CH02` page line IDs now exist. Create CH02 visual asset IDs in `CH02-ASSETS` before derived notes.
 - Cite page line IDs from `processed-docs/01-pages/BOOK01/CH01/` if later work extends the notes.
 - Cite visual asset IDs from `processed-docs/assets/pages/BOOK01/CH01/assets.json` when later work needs images.
 - Use `processed-docs/04-coach/catalog.json` to find ready coach chapters and known coverage gaps.
