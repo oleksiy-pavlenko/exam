@@ -6,7 +6,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Last updated: 2026-05-01
 - Progress source of truth: `processed-docs/00-control/Plan.md`
 - Active window: `CH02` second scan batch
-- Current milestone from Plan.md: `CH02-COACH`
+- Current milestone from Plan.md: `Closed`
 - Next milestone from Plan.md: `Closed`
 - Validation command: `python3 scripts/validate_kb.py`
 - Worktree check: `git status --short`
@@ -16,7 +16,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Current provisional chapter ID: `CH02`
 - Current CH01 visual asset manifest: `processed-docs/assets/pages/BOOK01/CH01/assets.json`
 - Current CH02 raw scan path: `unprocessed-docs/books/BOOK01/chapter-02/scans/`
-- Current coach data status: startup prompt, coach catalog, and CH01 coach manifest are built
+- Current coach data status: startup prompt, coach catalog, CH01 coach manifest, and CH02 coach manifest are built
 
 ## Control-doc roles
 - `Prompt.md`: binding run spec after `Plan.md` names a milestone
@@ -174,6 +174,17 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Requested one optional independent read-only spot-check because the notes compress many lesson units; it returned no material `P0`, `P1`, or `P2` findings in the sampled note files.
 - Next milestone: `CH02-COACH`.
 
+### 2026-05-01 - CH02-COACH completed: build second batch coach manifest
+- Added `processed-docs/04-coach/BOOK01/CH02/coach.json` with five lesson-unit concepts and twelve assignment templates for the visible CH02 material.
+- Added a `BOOK01-CH02` entry to `processed-docs/04-coach/catalog.json` with `ready_with_gaps` status.
+- Updated `processed-docs/04-coach/index.md` so fresh sessions can discover the CH02 coach manifest directly.
+- Kept the coach manifest structured by visible lesson units even though the provenance batch stays `BOOK01-CH02`.
+- Recorded the known CH02 gaps: several uncertain printed page numbers, one partly unseen late-section title, and the current broad first-pass crop strategy.
+- Ran `python3 scripts/validate_kb.py`; it passed.
+- Ran the CH02 coach check from `Plan.md`; it passed.
+- Ran self-review against `Review.md`; no `P0` or `P1` self-review findings remained.
+- The active CH02 window is now closed in `Plan.md`.
+
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
 - Control docs may use simple English for clear long-run coordination.
@@ -199,6 +210,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Keep `BOOK01-CH02` as the provisional source-batch ID for provenance, but split later durable notes and coach material by visible section boundaries instead of treating the whole 30-image batch as one teaching unit.
 - The first CH02 asset pass uses one page-level visual cluster crop per page. Later notes or coach work may tighten individual crops when a page needs a more focused visual target.
 - The durable CH02 study layer should follow visible lesson units, not the provisional `CH02` source-batch boundary.
+- The CH02 coach manifest should preserve the provisional source-batch provenance while exposing visible lesson units as separate concepts and assignments.
 
 ## Blockers
 - No current blocker.
@@ -218,13 +230,14 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - If the current mode is `extraction`, start from `processed-docs/00-control/Start-Long-Run.md`.
 - Start extraction runs from `processed-docs/00-control/Plan.md` and `processed-docs/00-control/Start-Long-Run.md`.
 - Start learner-facing coach sessions from `processed-docs/04-coach/Start-Coach-Session.md`.
-- Current milestone is `CH02-COACH`.
+- Current milestone is `Closed`.
 - Next milestone is `Closed`.
 - The committed mode is `extraction`.
 - The `PREP4` source-prep work is complete.
 - The active `CH02` window uses the four-step pattern: pages, assets, notes, coach data.
-- `CH02-PAGES`, `CH02-ASSETS`, and `CH02-NOTES` are complete. Use the 30 page transcripts in `processed-docs/01-pages/BOOK01/CH02/`, the CH02 note files in `processed-docs/02-concepts/` and `processed-docs/03-exercises/`, and the CH02 manifest at `processed-docs/assets/pages/BOOK01/CH02/assets.json`.
-- `CH02` page line IDs and first-pass visual asset IDs now exist. Use them in `CH02-COACH`.
+- The active `CH02` window is closed. Use `Plan.md` as the milestone proof and this file as the handoff.
+- `CH02-PAGES`, `CH02-ASSETS`, `CH02-NOTES`, and `CH02-COACH` are complete. The current durable CH02 layer now includes page transcripts, asset manifest, note files, coach catalog entry, and coach manifest.
+- `CH02` page line IDs and first-pass visual asset IDs now exist across the note and coach layers.
 - Cite page line IDs from `processed-docs/01-pages/BOOK01/CH01/` if later work extends the notes.
 - Cite visual asset IDs from `processed-docs/assets/pages/BOOK01/CH01/assets.json` when later work needs images.
 - Use `processed-docs/04-coach/catalog.json` to find ready coach chapters and known coverage gaps.

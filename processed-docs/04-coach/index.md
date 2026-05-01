@@ -6,6 +6,7 @@ Start here:
 - [Start coach session](Start-Coach-Session.md)
 - [Coach catalog](catalog.json)
 - [BOOK01 CH01 coach manifest](BOOK01/CH01/coach.json)
+- [BOOK01 CH02 coach manifest](BOOK01/CH02/coach.json)
 
 Rules:
 - Coach manifests should be structured JSON, not free-form lesson prose.
@@ -14,6 +15,7 @@ Rules:
 
 Current status:
 - `BOOK01/CH01` coach manifest is built and listed in the coach catalog.
-- The current coach layer covers pages `BOOK01-CH01-P001` through `BOOK01-CH01-P004`.
+- `BOOK01/CH02` coach manifest is built and listed in the coach catalog.
+- The current coach layer covers pages `BOOK01-CH01-P001` through `BOOK01-CH01-P004` and the current `BOOK01/CH02` batch.
 - Known gap: exercises 18-25 are still outside current source coverage.
 - Future chapter windows must include a `CHxx-COACH` milestone after notes and visual assets are reviewed.

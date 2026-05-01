@@ -22,6 +22,56 @@
         "Tehtävät 18-25 eivät kuulu nykyiseen lähdekattavuuteen, koska niitä vastaavat sivut eivät ole vielä repo:ssa kokonaan.",
         "Sivun reunan osittainen naapurisisältö ei ole täyttä lähdekatetta eikä sitä saa käyttää coach-vastauksen lähteenä."
       ]
+    },
+    {
+      "chapter_id": "BOOK01-CH02",
+      "status": "ready_with_gaps",
+      "coach_manifest_path": "processed-docs/04-coach/BOOK01/CH02/coach.json",
+      "asset_manifest_path": "processed-docs/assets/pages/BOOK01/CH02/assets.json",
+      "source_page_ids": [
+        "BOOK01-CH02-P001",
+        "BOOK01-CH02-P002",
+        "BOOK01-CH02-P003",
+        "BOOK01-CH02-P004",
+        "BOOK01-CH02-P005",
+        "BOOK01-CH02-P006",
+        "BOOK01-CH02-P007",
+        "BOOK01-CH02-P008",
+        "BOOK01-CH02-P009",
+        "BOOK01-CH02-P010",
+        "BOOK01-CH02-P011",
+        "BOOK01-CH02-P012",
+        "BOOK01-CH02-P013",
+        "BOOK01-CH02-P014",
+        "BOOK01-CH02-P015",
+        "BOOK01-CH02-P016",
+        "BOOK01-CH02-P017",
+        "BOOK01-CH02-P018",
+        "BOOK01-CH02-P019",
+        "BOOK01-CH02-P020",
+        "BOOK01-CH02-P021",
+        "BOOK01-CH02-P022",
+        "BOOK01-CH02-P023",
+        "BOOK01-CH02-P024",
+        "BOOK01-CH02-P025",
+        "BOOK01-CH02-P026",
+        "BOOK01-CH02-P027",
+        "BOOK01-CH02-P028",
+        "BOOK01-CH02-P029",
+        "BOOK01-CH02-P030"
+      ],
+      "concept_ids": [
+        "monikulmioiden-pinta-alat",
+        "ympyran-keha-ja-kulmat",
+        "kaari-pinta-ala-ja-ympyralaskut",
+        "pythagoraan-lause-ja-sivun-ratkaisu",
+        "kolmion-piiri-pinta-ala-ja-korkeus"
+      ],
+      "known_gaps_fi": [
+        "Sivuilla BOOK01-CH02-P002, P009, P010, P017, P018 ja P020 näkyy sivunumeroihin liittyvää EPÄSELVÄ-epävarmuutta, eikä coach saa keksiä puuttuvia painettuja numeroita.",
+        "Sivulla BOOK01-CH02-P029 uusi myöhäinen lukuotsikko ei näy kokonaan, joten coach käyttää näkyvää tehtäväaihetta eikä keksi otsikkoa.",
+        "Nykyiset CH02 crop-assetit ovat ensimmäisen passin sivutason visuaalisia klustereita. Tarvittaessa myöhempi työ voi tehdä tarkempia rajauksia."
+      ]
     }
   ]
 }

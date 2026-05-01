@@ -1,0 +1,563 @@
+{
+  "manifest_version": 1,
+  "book_id": "BOOK01",
+  "chapter_id": "BOOK01-CH02",
+  "language": "fi",
+  "coverage_notes_fi": [
+    "Tämä coach-manifesti kattaa CH02-batchin näkyvät monikulmio-, ympyrä- ja Pythagoras-aiheet yhdestä provisiorisesta lähde-erästä.",
+    "CH02 sisältää monta näkyvää oppituntiyksikköä. Coach käyttää yhtä provisiorista chapter_id:tä, mutta käsitteet on eroteltu näkyvien jaksojen mukaan.",
+    "Joidenkin aukeamien sivunumerot tai myöhäisen kolmiojakson uusi otsikko ovat merkitty sivutranskripteissä EPÄSELVÄ, eikä coach saa keksiä puuttuvia painettuja tietoja."
+  ],
+  "concepts": [
+    {
+      "concept_id": "monikulmioiden-pinta-alat",
+      "title_fi": "Puolisuunnikkaan ja monikulmion pinta-alat",
+      "source_refs": [
+        "BOOK01-CH02-P001:L002-L009",
+        "BOOK01-CH02-P002:L001-L010"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P001-F001",
+        "BOOK01-CH02-P002-F001"
+      ],
+      "coach_goal_fi": "Oppija osaa käyttää puolisuunnikkaan kaavaa ja jakaa monikulmion perusmuotoihin pinta-alan laskemiseksi.",
+      "explanation_steps_fi": [
+        "Tunnista, onko kuvio puolisuunnikas vai pitääkö se jakaa osiin.",
+        "Jos kuvio on puolisuunnikas, nimeä yhdensuuntaiset sivut a ja b sekä korkeus h.",
+        "Laske puolisuunnikkaan pinta-ala kaavalla A = ((a + b) / 2) * h.",
+        "Jos kuvio on monikulmio, jaa se suorakulmioihin, kolmioihin tai puolisuunnikkaisiin.",
+        "Laske osapinta-alat erikseen ja summaa ne lopuksi."
+      ],
+      "common_mistakes_fi": [
+        "Vinoa sivua käytetään korkeutena.",
+        "Monikulmiota ei jaeta riittävän yksinkertaisiin osiin.",
+        "Osapinta-alojen summa unohtuu tai jokin osa lasketaan kahdesti."
+      ],
+      "visual_demo_steps_fi": [
+        "Näytä, miten kaksi samanlaista puolisuunnikasta muodostaa suunnikkaan.",
+        "Korosta a, b ja h oikeista kohdista kuvassa.",
+        "Näytä viisikulmion jako suorakulmioon ja puolisuunnikkaaseen askel askeleelta."
+      ],
+      "related_assignment_ids": [
+        "puolisuunnikkaan-pinta-ala",
+        "monikulmion-jakaminen"
+      ]
+    },
+    {
+      "concept_id": "ympyran-keha-ja-kulmat",
+      "title_fi": "Ympyrän kehä, kaari ja kulmat",
+      "source_refs": [
+        "BOOK01-CH02-P003:L002-L010",
+        "BOOK01-CH02-P004:L001-L009",
+        "BOOK01-CH02-P006:L004-L008",
+        "BOOK01-CH02-P007:L001-L008"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P003-F001",
+        "BOOK01-CH02-P004-F001",
+        "BOOK01-CH02-P006-F001",
+        "BOOK01-CH02-P007-F001"
+      ],
+      "coach_goal_fi": "Oppija osaa käyttää kaavoja p = πd ja p = 2πr sekä päätellä keskus- ja kehäkulman välisen suhteen.",
+      "explanation_steps_fi": [
+        "Tunnista ensin, kysytäänkö kehän pituutta vai kulmaa.",
+        "Käytä kehän pituudessa halkaisijaa tai sädettä sen mukaan, mikä on annettu.",
+        "Tarkista kulmatehtävässä, vastaavatko kulmat samaa kaarta.",
+        "Muista, että samaa kaarta vastaava keskuskulma on kaksi kertaa kehäkulma.",
+        "Muista myös, että halkaisijaa vastaava kehäkulma on 90 astetta."
+      ],
+      "common_mistakes_fi": [
+        "Säde ja halkaisija sekoitetaan.",
+        "Kehäkulma oletetaan yhtä suureksi kuin keskuskulma.",
+        "Kahta eri kaarta verrataan kuin ne olisivat sama kaari."
+      ],
+      "visual_demo_steps_fi": [
+        "Korosta säde, halkaisija ja jänne samasta ympyräkuvasta.",
+        "Laske yksi kehän pituus ensin d:n avulla ja sitten r:n avulla.",
+        "Näytä samassa kuvassa keskuskulma, kehäkulma ja niiden yhteys samaan kaareen."
+      ],
+      "related_assignment_ids": [
+        "ympyran-keha",
+        "keskus-ja-kehakulma"
+      ]
+    },
+    {
+      "concept_id": "kaari-pinta-ala-ja-ympyralaskut",
+      "title_fi": "Kaaren pituus, ympyrän pinta-ala, sektorin pinta-ala ja ympyrälaskut",
+      "source_refs": [
+        "BOOK01-CH02-P008:L004-L008",
+        "BOOK01-CH02-P009:L001-L006",
+        "BOOK01-CH02-P011:L001-L007",
+        "BOOK01-CH02-P014:L001-L007",
+        "BOOK01-CH02-P015:L001-L005",
+        "BOOK01-CH02-P016:L001-L005"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P008-F001",
+        "BOOK01-CH02-P009-F001",
+        "BOOK01-CH02-P011-F001",
+        "BOOK01-CH02-P014-F001",
+        "BOOK01-CH02-P015-F001",
+        "BOOK01-CH02-P016-F001"
+      ],
+      "coach_goal_fi": "Oppija osaa ratkaista kaaren pituuden, ympyrän ja sektorin pinta-alan sekä yhdistää niitä samaan tehtävään.",
+      "explanation_steps_fi": [
+        "Päätä ensin, kysytäänkö pituutta vai pinta-alaa.",
+        "Kaaren pituudessa käytä osuutta täydestä kehästä.",
+        "Ympyrän pinta-alassa käytä kaavaa A = πr^2.",
+        "Sektorin pinta-alassa käytä osuutta täydestä pinta-alasta.",
+        "Yhdistelmäkuviossa laske osat erikseen ja yhdistä tulokset järkevästi."
+      ],
+      "common_mistakes_fi": [
+        "Kaaren pituuden kaavaan sijoitetaan pinta-ala.",
+        "Sektorin pinta-ala lasketaan kehän pituuden kaavalla.",
+        "Yhdistelmäkuviossa väärä osa vähennetään tai lisätään."
+      ],
+      "visual_demo_steps_fi": [
+        "Näytä, miten 120 asteen kaari on yksi kolmasosa koko kehästä.",
+        "Näytä, miten ympyräsektoreista muodostuu lähes suunnikas pinta-alan johdossa.",
+        "Ratkaise yksi yhdistelmäkuvio vaiheittain korostamalla laskettavat osat eri väreillä."
+      ],
+      "related_assignment_ids": [
+        "kaaren-pituus",
+        "ympyran-pinta-ala",
+        "sektorin-pinta-ala",
+        "yhdistetty-ympyralasku"
+      ]
+    },
+    {
+      "concept_id": "pythagoraan-lause-ja-sivun-ratkaisu",
+      "title_fi": "Pythagoraan lause, hypotenuusa ja kateetti",
+      "source_refs": [
+        "BOOK01-CH02-P020:L001-L007",
+        "BOOK01-CH02-P021:L001-L006",
+        "BOOK01-CH02-P022:L001-L006",
+        "BOOK01-CH02-P023:L001-L004",
+        "BOOK01-CH02-P024:L001-L006",
+        "BOOK01-CH02-P027:L001-L006",
+        "BOOK01-CH02-P028:L001-L004"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P020-F001",
+        "BOOK01-CH02-P021-F001",
+        "BOOK01-CH02-P022-F001",
+        "BOOK01-CH02-P023-F001",
+        "BOOK01-CH02-P024-F001",
+        "BOOK01-CH02-P027-F001",
+        "BOOK01-CH02-P028-F001"
+      ],
+      "coach_goal_fi": "Oppija osaa nimetä suorakulmaisen kolmion osat ja ratkaista puuttuvan hypotenuusan tai kateetin Pythagoraan lauseella.",
+      "explanation_steps_fi": [
+        "Tunnista suorakulmainen kolmio ja nimeä kateetit sekä hypotenuusa.",
+        "Kirjoita Pythagoraan lause muodossa a^2 + b^2 = c^2.",
+        "Jos etsit hypotenuusaa, laske kateettien neliöiden summa.",
+        "Jos etsit kateettia, vähennä tunnetun kateetin neliö hypotenuusan neliöstä.",
+        "Ota neliöjuuri vasta lopuksi ja tarkista, että vastaus on positiivinen pituus."
+      ],
+      "common_mistakes_fi": [
+        "Hypotenuusaksi valitaan väärä sivu.",
+        "Kateettia ratkaistaessa vähennysvaihe unohtuu.",
+        "Neliöjuuri unohtuu viimeisestä vaiheesta."
+      ],
+      "visual_demo_steps_fi": [
+        "Korosta suorakulma ja nimeä sen vastainen sivu hypotenuusaksi.",
+        "Ratkaise yksi hypotenuusaesimerkki ja yksi kateettiesimerkki rinnakkain.",
+        "Näytä tasakylkisen kolmion tapauksessa, miten korkeus puolittaa kannan ennen lausetta."
+      ],
+      "related_assignment_ids": [
+        "suorakulmaisuuden-tarkistus",
+        "hypotenuusan-ratkaiseminen",
+        "kateetin-ratkaiseminen"
+      ]
+    },
+    {
+      "concept_id": "kolmion-piiri-pinta-ala-ja-korkeus",
+      "title_fi": "Suorakulmaisen, tasakylkisen ja myöhäisen kolmiojakson sovellukset",
+      "source_refs": [
+        "BOOK01-CH02-P025:L001-L007",
+        "BOOK01-CH02-P026:L001-L005",
+        "BOOK01-CH02-P029:L001-L005",
+        "BOOK01-CH02-P030:L001-L012"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P025-F001",
+        "BOOK01-CH02-P026-F001",
+        "BOOK01-CH02-P029-F001",
+        "BOOK01-CH02-P030-F001"
+      ],
+      "coach_goal_fi": "Oppija osaa ratkaista kolmion piirin, pinta-alan tai korkeuden myös silloin, kun puuttuva sivu pitää päätellä ensin.",
+      "explanation_steps_fi": [
+        "Päätä, kysytäänkö piiriä, pinta-alaa vai korkeutta.",
+        "Ratkaise tarvittaessa puuttuva sivu Pythagoraan lauseella ennen varsinaista tavoitetta.",
+        "Jos tehtävä on tasakylkinen, puolita kanta korkeutta varten.",
+        "Laske piiri sivujen summana tai pinta-ala kannan ja korkeuden avulla.",
+        "Tarkista lopuksi, että käyttämäsi korkeus kuuluu juuri siihen kantaan, jonka valitsit."
+      ],
+      "common_mistakes_fi": [
+        "Piiriä tai pinta-alaa lasketaan ennen puuttuvan sivun ratkaisemista.",
+        "Tasakylkisessä kolmiossa kantaa ei puolita.",
+        "Korkeus otetaan väärästä kohdasta kuvaa."
+      ],
+      "visual_demo_steps_fi": [
+        "Näytä suorakulmaisen kolmion esimerkissä ensin puuttuva sivu ja vasta sitten piiri tai pinta-ala.",
+        "Korosta tasakylkisen kolmion puolikas apukolmioksi.",
+        "Ratkaise yksi loppupään sovelluskuvio vaiheittain kuvasta lukien."
+      ],
+      "related_assignment_ids": [
+        "suorakulmaisen-kolmion-piiri-pinta-ala",
+        "tasakylkisen-kolmion-korkeus"
+      ]
+    }
+  ],
+  "assignment_templates": [
+    {
+      "template_id": "puolisuunnikkaan-pinta-ala",
+      "title_fi": "Puolisuunnikkaan pinta-ala",
+      "concept_ids": [
+        "monikulmioiden-pinta-alat"
+      ],
+      "source_refs": [
+        "BOOK01-CH02-P001:L004-L006"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P001-F001"
+      ],
+      "prompt_shape_fi": "Anna puolisuunnikkaan yhdensuuntaiset sivut ja korkeus. Pyydetään laskemaan pinta-ala.",
+      "answer_expectation_fi": "Vastauksessa pitää näkyä oikea pinta-ala ja yksikkö.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos a ja b on yhdistetty keskiarvoksi ja kerrottu korkeudella. Korjaa, jos oppija käyttää vain yhtä yhdensuuntaisista sivuista.",
+      "hint_steps_fi": [
+        "Nimeä yhdensuuntaiset sivut a ja b.",
+        "Laske niiden keskiarvo.",
+        "Kerro keskiarvo korkeudella h."
+      ],
+      "variation_notes_fi": [
+        "Vaihtele yksiköitä ja lukujen järjestystä.",
+        "Voit käyttää sekä pieniä että käytännön kokoisia mittoja."
+      ]
+    },
+    {
+      "template_id": "monikulmion-jakaminen",
+      "title_fi": "Monikulmion jakaminen osiin",
+      "concept_ids": [
+        "monikulmioiden-pinta-alat"
+      ],
+      "source_refs": [
+        "BOOK01-CH02-P001:L007-L009",
+        "BOOK01-CH02-P002:L003-L010"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P001-F001",
+        "BOOK01-CH02-P002-F001"
+      ],
+      "prompt_shape_fi": "Anna monikulmion kuvaus tai kuva, joka voidaan jakaa suorakulmioihin, kolmioihin tai puolisuunnikkaisiin. Pyydetään laskemaan pinta-ala osissa.",
+      "answer_expectation_fi": "Odotettu vastaus näyttää osiin jaon tai vähintään osapinta-alojen summan oikein.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos jako perusmuotoihin on järkevä ja osapinta-alat on yhdistetty oikein. Jos vastaus on väärin, osoita mikä osa jäi pois tai laskettiin kahdesti.",
+      "hint_steps_fi": [
+        "Piirrä kuvioon jakoviivat.",
+        "Laske jokaisen osan pinta-ala erikseen.",
+        "Summaa osapinta-alat lopuksi."
+      ],
+      "variation_notes_fi": [
+        "Käytä joskus ruudukkoa ja joskus annettuja mittoja.",
+        "Voit tehdä yhdestä tehtävästä useita erilaisia jakotapoja."
+      ]
+    },
+    {
+      "template_id": "ympyran-keha",
+      "title_fi": "Ympyrän kehän pituus",
+      "concept_ids": [
+        "ympyran-keha-ja-kulmat"
+      ],
+      "source_refs": [
+        "BOOK01-CH02-P003:L004-L007",
+        "BOOK01-CH02-P004:L003-L005"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P003-F001",
+        "BOOK01-CH02-P004-F001"
+      ],
+      "prompt_shape_fi": "Anna ympyrän säde tai halkaisija ja pyydetään laskemaan kehän pituus tai ratkaisemaan säde kehän pituudesta.",
+      "answer_expectation_fi": "Vastaus sisältää oikean kaavan, lukuarvon ja yksikön.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos oppija käyttää p = πd tai p = 2πr oikein. Jos säde ja halkaisija sekoittuvat, korjaa se suoraan.",
+      "hint_steps_fi": [
+        "Päätä, onko annettu säde vai halkaisija.",
+        "Valitse sopiva kaava.",
+        "Laske ja lisää yksikkö loppuun."
+      ],
+      "variation_notes_fi": [
+        "Käytä sekä pyöristettäviä että tarkkoja lukuja.",
+        "Vaihda tehtävän suunta välillä niin, että kehän pituus on annettu ja säde pitää ratkaista."
+      ]
+    },
+    {
+      "template_id": "keskus-ja-kehakulma",
+      "title_fi": "Keskus- ja kehäkulman suhde",
+      "concept_ids": [
+        "ympyran-keha-ja-kulmat"
+      ],
+      "source_refs": [
+        "BOOK01-CH02-P006:L005-L007",
+        "BOOK01-CH02-P007:L003-L008"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P006-F001",
+        "BOOK01-CH02-P007-F001"
+      ],
+      "prompt_shape_fi": "Anna ympyräkuvio, jossa on samaa kaarta vastaava keskus- tai kehäkulma. Pyydetään ratkaisemaan puuttuva kulma.",
+      "answer_expectation_fi": "Odotettu vastaus sisältää puuttuvan kulman ja lyhyen perustelun saman kaaren avulla.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos samaa kaarta vastaava keskuskulma ja kehäkulma on yhdistetty oikein. Jos oppija tekee kulmista yhtä suuret ilman perustetta, korjaa suhde 2:1.",
+      "hint_steps_fi": [
+        "Etsi, mitä kaarta kulmat vastaavat.",
+        "Tarkista, kumpi kulma on keskuskulma ja kumpi kehäkulma.",
+        "Käytä sääntöä keskuskulma = 2 * kehäkulma."
+      ],
+      "variation_notes_fi": [
+        "Käytä joskus myös halkaisijaa vastaavaa 90 asteen tilannetta.",
+        "Voit piilottaa joko keskus- tai kehäkulman."
+      ]
+    },
+    {
+      "template_id": "kaaren-pituus",
+      "title_fi": "Kaaren pituus",
+      "concept_ids": [
+        "kaari-pinta-ala-ja-ympyralaskut"
+      ],
+      "source_refs": [
+        "BOOK01-CH02-P008:L005-L008",
+        "BOOK01-CH02-P009:L001-L006"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P008-F001",
+        "BOOK01-CH02-P009-F001"
+      ],
+      "prompt_shape_fi": "Anna ympyrän säde tai halkaisija sekä keskuskulma. Pyydetään laskemaan kaaren pituus tai ratkaisemaan keskuskulma kaaren pituudesta.",
+      "answer_expectation_fi": "Vastauksessa pitää näkyä osuus täydestä kehästä ja oikea pituus.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos oppija käyttää kulman osuutta 360 asteesta oikein ja laskee koko kehän oikeasta suureesta.",
+      "hint_steps_fi": [
+        "Laske ensin koko ympyrän kehän pituus.",
+        "Laske, mikä osuus 360 asteesta keskuskulma on.",
+        "Kerro tai jaa tämän osuuden mukaan."
+      ],
+      "variation_notes_fi": [
+        "Vaihda välillä annetuksi säde ja välillä halkaisija.",
+        "Käytä myös tilanteita, joissa kaaren pituudesta ratkaistaan keskuskulma."
+      ]
+    },
+    {
+      "template_id": "ympyran-pinta-ala",
+      "title_fi": "Ympyrän pinta-ala",
+      "concept_ids": [
+        "kaari-pinta-ala-ja-ympyralaskut"
+      ],
+      "source_refs": [
+        "BOOK01-CH02-P011:L001-L007",
+        "BOOK01-CH02-P012:L001-L007"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P011-F001",
+        "BOOK01-CH02-P012-F001"
+      ],
+      "prompt_shape_fi": "Anna ympyrän säde tai halkaisija ja pyydetään laskemaan pinta-ala tai ratkaisemaan säde tunnetusta pinta-alasta.",
+      "answer_expectation_fi": "Vastauksessa pitää näkyä kaava A = πr^2, oikea sijoitus ja neliöyksikkö.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos säde on käytetty oikein ja yksikkö on neliöyksikkö. Jos oppija käyttää halkaisijaa suoraan r:n paikalla, korjaa säde ensin.",
+      "hint_steps_fi": [
+        "Tarkista, onko annettu säde vai halkaisija.",
+        "Laske tarvittaessa säde halkaisijasta.",
+        "Sijoita arvo kaavaan A = πr^2."
+      ],
+      "variation_notes_fi": [
+        "Käytä välillä suoria ympyröitä ja välillä puoliympyröitä tai käytännön esineitä.",
+        "Voit pyytää ratkaisemaan myös säteen, kun pinta-ala on annettu."
+      ]
+    },
+    {
+      "template_id": "sektorin-pinta-ala",
+      "title_fi": "Sektorin pinta-ala",
+      "concept_ids": [
+        "kaari-pinta-ala-ja-ympyralaskut"
+      ],
+      "source_refs": [
+        "BOOK01-CH02-P014:L002-L006",
+        "BOOK01-CH02-P015:L001-L002"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P014-F001",
+        "BOOK01-CH02-P015-F001"
+      ],
+      "prompt_shape_fi": "Anna ympyrän säde ja sektorin keskuskulma tai koko ympyrän pinta-ala ja pyydetään laskemaan sektorin pinta-ala.",
+      "answer_expectation_fi": "Odotettu vastaus näyttää sektorin osuuden koko ympyrästä sekä oikean pinta-alan.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos kulman osuus 360 asteesta on käytetty oikein. Jos oppija sekoittaa sektorin pinta-alan kaaren pituuteen, osoita ero selvästi.",
+      "hint_steps_fi": [
+        "Laske ensin koko ympyrän pinta-ala tai käytä annettua arvoa.",
+        "Laske keskuskulman osuus täydestä kulmasta.",
+        "Kerro koko pinta-ala tällä osuudella."
+      ],
+      "variation_notes_fi": [
+        "Käytä sekä annettua ympyrän pinta-alaa että annettua sädettä.",
+        "Vaihtele keskuskulmia yksinkertaisista monimutkaisempiin."
+      ]
+    },
+    {
+      "template_id": "yhdistetty-ympyralasku",
+      "title_fi": "Yhdistetty ympyrälasku",
+      "concept_ids": [
+        "kaari-pinta-ala-ja-ympyralaskut"
+      ],
+      "source_refs": [
+        "BOOK01-CH02-P015:L003-L005",
+        "BOOK01-CH02-P016:L001-L005"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P015-F001",
+        "BOOK01-CH02-P016-F001"
+      ],
+      "prompt_shape_fi": "Anna yhdistelmäkuvio, jossa on suoria sivuja, puoliympyröitä, kaaria tai sektoreita. Pyydetään laskemaan pinta-ala, ympärysmitta tai molemmat.",
+      "answer_expectation_fi": "Hyvä vastaus pilkkoo kuvion osiin ennen laskua ja nimeää, mitä kaavaa missäkin kohdassa käytetään.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos osat on erotettu oikein ja yhteenlasku tai vähennys on tehty oikeassa järjestyksessä. Jos oppija käyttää yhtä kaavaa koko kuviolle, ohjaa takaisin osiin jakamiseen.",
+      "hint_steps_fi": [
+        "Piirrä kuvioon osat, jotka tunnet.",
+        "Päätä jokaiselle osalle oma kaava.",
+        "Laske osat erikseen ja yhdistä tulokset lopuksi."
+      ],
+      "variation_notes_fi": [
+        "Kysy välillä vain pinta-alaa ja välillä vain ympärysmittaa.",
+        "Voit käyttää väritettyä aluetta, jolloin osa kuvasta vähennetään toisesta."
+      ]
+    },
+    {
+      "template_id": "suorakulmaisuuden-tarkistus",
+      "title_fi": "Suorakulmaisuuden tarkistus",
+      "concept_ids": [
+        "pythagoraan-lause-ja-sivun-ratkaisu"
+      ],
+      "source_refs": [
+        "BOOK01-CH02-P020:L006-L007",
+        "BOOK01-CH02-P021:L004-L006"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P020-F001",
+        "BOOK01-CH02-P021-F001"
+      ],
+      "prompt_shape_fi": "Anna kolmion kolme sivunpituutta ja pyydetään päättelemään, onko kolmio suorakulmainen.",
+      "answer_expectation_fi": "Vastauksessa pitää näkyä sijoitus Pythagoraan lauseeseen sekä päätelmä tosi tai epätosi.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos oppija valitsee pisimmän sivun hypotenuusaksi ja vertailee neliöiden summaa oikein. Jos sivut sijoitetaan väärin, korjaa ensin hypotenuusan valinta.",
+      "hint_steps_fi": [
+        "Valitse pisin sivu hypotenuusaksi.",
+        "Laske kahden muun sivun neliöiden summa.",
+        "Vertaile sitä pisimmän sivun neliöön."
+      ],
+      "variation_notes_fi": [
+        "Käytä sekä selvästi oikeita että lähes oikeita sivukolmikoita.",
+        "Voit antaa tehtävän myös sanallisena käytännön tilanteena."
+      ]
+    },
+    {
+      "template_id": "hypotenuusan-ratkaiseminen",
+      "title_fi": "Hypotenuusan ratkaiseminen",
+      "concept_ids": [
+        "pythagoraan-lause-ja-sivun-ratkaisu"
+      ],
+      "source_refs": [
+        "BOOK01-CH02-P022:L001-L006",
+        "BOOK01-CH02-P023:L001-L004"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P022-F001",
+        "BOOK01-CH02-P023-F001"
+      ],
+      "prompt_shape_fi": "Anna suorakulmaisen kolmion kateetit tai käytännön tilanne, jossa kateetit tunnetaan. Pyydetään ratkaisemaan hypotenuusa.",
+      "answer_expectation_fi": "Odotettu vastaus näyttää kateettien neliöiden summan, neliöjuuren ja lopullisen pituuden.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos oppija laskee ensin neliöt ja summan oikein ja ottaa lopuksi neliöjuuren. Jos neliöjuuri unohtuu, ohjaa viimeiseen vaiheeseen.",
+      "hint_steps_fi": [
+        "Kirjoita kaava a^2 + b^2 = c^2.",
+        "Sijoita tunnetut kateetit paikoilleen.",
+        "Laske c ottamalla lopuksi neliöjuuri."
+      ],
+      "variation_notes_fi": [
+        "Käytä välillä kokonaislukuja ja välillä desimaaleja.",
+        "Voit vaihtaa pelkän kolmion käytännön kuvaan, kuten lävistäjään tai reittiin."
+      ]
+    },
+    {
+      "template_id": "kateetin-ratkaiseminen",
+      "title_fi": "Kateetin ratkaiseminen",
+      "concept_ids": [
+        "pythagoraan-lause-ja-sivun-ratkaisu"
+      ],
+      "source_refs": [
+        "BOOK01-CH02-P024:L001-L006"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P024-F001"
+      ],
+      "prompt_shape_fi": "Anna suorakulmaisen kolmion hypotenuusa ja toinen kateetti. Pyydetään ratkaisemaan puuttuva kateetti.",
+      "answer_expectation_fi": "Vastaus näyttää vähennysvaiheen c^2 - b^2, neliöjuuren ja lopullisen pituuden.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos oppija vähentää tunnetun kateetin neliön hypotenuusan neliöstä ja ottaa lopuksi neliöjuuren. Jos oppija summasi neliöt, korjaa kaavan suunta.",
+      "hint_steps_fi": [
+        "Kirjoita muoto x^2 + b^2 = c^2.",
+        "Siirrä tunnetun kateetin neliö toiselle puolelle vähennyksenä.",
+        "Ota neliöjuuri lopuksi."
+      ],
+      "variation_notes_fi": [
+        "Käytä sekä pieniä että käytännön mittaisia lukuja.",
+        "Voit antaa tehtävän myös rakennelman tai tikasongelman muodossa."
+      ]
+    },
+    {
+      "template_id": "suorakulmaisen-kolmion-piiri-pinta-ala",
+      "title_fi": "Suorakulmaisen kolmion piiri tai pinta-ala",
+      "concept_ids": [
+        "kolmion-piiri-pinta-ala-ja-korkeus"
+      ],
+      "source_refs": [
+        "BOOK01-CH02-P025:L001-L006",
+        "BOOK01-CH02-P026:L001-L005"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P025-F001",
+        "BOOK01-CH02-P026-F001"
+      ],
+      "prompt_shape_fi": "Anna suorakulmaisen kolmion sivut tai osittaiset mitat ja pyydetään laskemaan piiri, pinta-ala tai molemmat.",
+      "answer_expectation_fi": "Odotettu vastaus ratkaisee mahdollisen puuttuvan sivun ensin ja antaa pyydetyn suureen oikeassa yksikössä.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos puuttuva sivu ratkaistaan ennen piiriä tai pinta-alaa. Jos oppija menee suoraan loppukaavaan puutteellisilla tiedoilla, ohjaa sivun ratkaisuun ensin.",
+      "hint_steps_fi": [
+        "Tarkista, puuttuuko jokin sivu.",
+        "Ratkaise puuttuva sivu Pythagoraan lauseella.",
+        "Laske vasta sitten piiri tai pinta-ala."
+      ],
+      "variation_notes_fi": [
+        "Vaihda kysyttävä suure piirin ja pinta-alan välillä.",
+        "Käytä myös sanallisia käytännön tilanteita."
+      ]
+    },
+    {
+      "template_id": "tasakylkisen-kolmion-korkeus",
+      "title_fi": "Tasakylkisen kolmion korkeus ja pinta-ala",
+      "concept_ids": [
+        "kolmion-piiri-pinta-ala-ja-korkeus"
+      ],
+      "source_refs": [
+        "BOOK01-CH02-P027:L005-L006",
+        "BOOK01-CH02-P029:L001-L005",
+        "BOOK01-CH02-P030:L008-L012"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH02-P027-F001",
+        "BOOK01-CH02-P029-F001",
+        "BOOK01-CH02-P030-F001"
+      ],
+      "prompt_shape_fi": "Anna tasakylkisen tai vastaavan kolmion kyljet ja kanta tai muu kuvio, jossa korkeus pitää ratkaista epäsuorasti. Pyydetään laskemaan korkeus, pinta-ala tai molemmat.",
+      "answer_expectation_fi": "Hyvä vastaus puolittaa kannan, ratkaisee korkeuden Pythagoraan lauseella ja käyttää sitten oikeaa pinta-alakaavaa.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos oppija tekee apukolmion oikein. Jos kantaa ei puolita, osoita heti missä vaiheessa apukolmio muodostetaan.",
+      "hint_steps_fi": [
+        "Piirrä korkeusjana tasakylkisen kolmion huipusta kannalle.",
+        "Puolita kanta kahteen yhtä suureen osaan.",
+        "Ratkaise korkeus Pythagoraan lauseella ja laske sitten pinta-ala."
+      ],
+      "variation_notes_fi": [
+        "Voit käyttää tavallista tasakylkistä kolmiota tai käytännön kuvaa, kuten kotaa tai viiriä.",
+        "Kysy välillä vain korkeutta ja välillä myös pinta-alaa."
+      ]
+    }
+  ]
+}
