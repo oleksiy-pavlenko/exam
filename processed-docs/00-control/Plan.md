@@ -5,13 +5,13 @@ This file is the only milestone-status source of truth for the current long run.
 ## Execution State
 - Progress source of truth: this file
 - Status vocabulary: `Completed`, `Current`, `Pending`, `Blocked`
-- Active window: `CH01-PAGES` through `CH01-NOTES` (open)
-- Current milestone: `CH01-NOTES`
+- Active window: `CH01-PAGES` through `CH01-NOTES` (closed)
+- Current milestone: `Closed`
 - Next milestone: `Closed`
 - Hot-path milestone specs: `PREP1`, `CH01-PAGES`, `CH01-NOTES`
 - Completed preparation milestones: `PREP1`
-- Completed content milestones: `CH01-PAGES`
-- Remaining milestones in the active window: `CH01-NOTES`
+- Completed content milestones: `CH01-PAGES`, `CH01-NOTES`
+- Remaining milestones in the active window: none
 
 ## Validation command catalog
 - `WORKTREE-CLEAN`: `git status --short`
@@ -91,7 +91,7 @@ This file is the only milestone-status source of truth for the current long run.
   - `CH01-PAGES` is complete. Build concept and exercise notes from the page transcript layer in `CH01-NOTES`.
 
 ### CH01-NOTES - Build first chapter exam notes
-- Status: `Current`
+- Status: `Completed (2026-05-01)`
 - Goal:
   - Create Finnish exam notes from the `CH01-PAGES` transcript layer.
 - Scope:
@@ -112,4 +112,4 @@ This file is the only milestone-status source of truth for the current long run.
 - Commit:
   - Commit message pattern: `docs(chunk): CH01-NOTES build-first-chapter-exam-notes`
 - Handoff:
-  - This is the last milestone in the active window. After validation and review pass, update the note indexes and control docs, commit once, and set both `Current milestone` and `Next milestone` to `Closed`.
+  - `CH01-NOTES` is complete. The active window is closed. The root orchestrator should run the independent review and create the single milestone commit.

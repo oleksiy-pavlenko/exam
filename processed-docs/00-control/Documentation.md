@@ -5,8 +5,8 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 ## Current state snapshot
 - Last updated: 2026-05-01
 - Progress source of truth: `processed-docs/00-control/Plan.md`
-- Active window: `CH01-PAGES` through `CH01-NOTES`
-- Current milestone from Plan.md: `CH01-NOTES`
+- Active window: `CH01-PAGES` through `CH01-NOTES` (closed)
+- Current milestone from Plan.md: `Closed`
 - Next milestone from Plan.md: `Closed`
 - Validation command: `python3 scripts/validate_kb.py`
 - Worktree check: `git status --short`
@@ -25,6 +25,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - `PREP1` initialized the long-run control stack on 2026-05-01.
 - The first scan batch was imported as provisional `BOOK01/CH01`.
 - `CH01-PAGES` created reviewed page transcripts for the first four `BOOK01/CH01` scans.
+- `CH01-NOTES` created Finnish concept and exercise notes for the current transcript layer and closed the active window.
 
 ## Audit log
 
@@ -60,6 +61,18 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Extended `scripts/validate_kb.py` with startup-contract checks so the stronger prompt and hard-stop rules do not drift silently.
 - The next fresh session should start at `CH01-NOTES`, complete that milestone, and close the current active window.
 
+### 2026-05-01 - CH01-NOTES completed: build first chapter exam notes
+- Created Finnish concept notes for `BOOK01/CH01` unit conversions, perimeter and area formulas, and equation-based side solving.
+- Created Finnish exercise notes for solved examples 1-6 and visible exercise patterns 1-17 and 26-46.
+- Updated `processed-docs/02-concepts/index.md` and `processed-docs/03-exercises/index.md`.
+- Checked `BOOK01-CH01-P004:L039` against the normalized page image while aligning exercise patterns; it is task 44 and the line ID stays stable.
+- Every derived note cites `BOOK01/CH01` page IDs and line IDs from the transcript layer.
+- Recorded that exercises 18-25 are not covered by the current transcript layer because the current scans do not give full source coverage for them.
+- Ran `python3 scripts/validate_kb.py`; it passed.
+- Ran the unclear-text check from `Plan.md`; it returned no hits.
+- Ran self-review against `Review.md`; no `P0` or `P1` self-review findings remained.
+- Active window is closed in `Plan.md`. The root orchestrator should run independent review and make the single milestone commit.
+
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
 - Control docs may use simple English for clear long-run coordination.
@@ -68,6 +81,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Raw scans stay unchanged after import. Rotated or cropped versions are generated assets.
 - All subagents use clean-context `GPT-5.5` `xhigh`; `fork_context` is not used for milestone workers or review workers.
 - Edge-only neighboring page content in a scan is not complete source coverage. Use only the fully transcribed page lines as evidence for derived notes.
+- Exercises 18-25 are not treated as covered by the current transcript layer.
 
 ## Blockers
 - No current blocker.
@@ -75,14 +89,14 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 ## Backlog
 - Add book title, publisher, ISBN, edition, and exact chapter name after metadata pages are uploaded.
 - Decide whether later large chapters should use one milestone per chapter or one milestone per page range.
+- Add missing source coverage for exercises 18-25 if later scans include those pages.
 
 ## Fresh-session handoff
 - Start from `processed-docs/00-control/Plan.md`.
-- Current milestone is `CH01-NOTES`.
-- First run `git status --short` and `python3 scripts/validate_kb.py`.
-- Continue until the active window is closed. Do not stop at the end of `CH01-NOTES` only to report progress.
-- Then create concept and exercise notes from `BOOK01-CH01-P001` through `BOOK01-CH01-P004`.
-- Update `processed-docs/02-concepts/index.md`, `processed-docs/03-exercises/index.md`, `Plan.md`, and `Documentation.md` as part of the milestone.
-- Run the unclear-text check from `Plan.md`, commit once, and set both `Current milestone` and `Next milestone` to `Closed`.
-- Cite page line IDs from `processed-docs/01-pages/BOOK01/CH01/`.
+- Current milestone is `Closed`.
+- Next milestone is `Closed`.
+- The active window `CH01-PAGES` through `CH01-NOTES` is closed.
+- The root orchestrator should run independent review for `CH01-NOTES` and create the single milestone commit if review passes.
+- Future work should open a new prep or chapter milestone instead of restarting this window.
+- Cite page line IDs from `processed-docs/01-pages/BOOK01/CH01/` if later work extends the notes.
 - Do not treat edge-only neighboring page content as complete source coverage.
