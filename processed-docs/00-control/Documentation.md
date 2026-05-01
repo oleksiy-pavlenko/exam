@@ -11,7 +11,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Validation command: `python3 scripts/validate_kb.py`
 - Worktree check: `git status --short`
 - Current mode source of truth: `processed-docs/00-control/Mode.md`
-- Current committed mode: `extraction`
+- Current committed mode: `tutor`
 - Current provisional book ID: `BOOK01`
 - Current provisional chapter ID: `CH02`
 - Current CH01 visual asset manifest: `processed-docs/assets/pages/BOOK01/CH01/assets.json`
@@ -184,6 +184,11 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Ran the CH02 coach check from `Plan.md`; it passed.
 - Ran self-review against `Review.md`; no `P0` or `P1` self-review findings remained.
 - The active CH02 window is now closed in `Plan.md`.
+
+### 2026-05-01 - Mode switch: tutor
+- Switched `processed-docs/00-control/Mode.md` from `extraction` to `tutor` after the user requested learner-facing work.
+- The extraction window in `Plan.md` stays closed.
+- Fresh sessions should now continue with `processed-docs/04-coach/Start-Coach-Session.md`.
 
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
