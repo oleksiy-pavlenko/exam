@@ -1,0 +1,13 @@
+.DS_Store
+**/.DS_Store
+__pycache__/
+*.pyc
+.cache/
+.pytest_cache/
+tmp/
+tmp-*/
+.local/
+*.ocr.json
+*.ocr.txt
+*.log
+
