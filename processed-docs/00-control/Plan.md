@@ -6,12 +6,12 @@ This file is the only milestone-status source of truth for the current long run.
 - Progress source of truth: this file
 - Status vocabulary: `Completed`, `Current`, `Pending`, `Blocked`
 - Active window: `CH02` second scan batch
-- Current milestone: `CH02-NOTES`
-- Next milestone: `CH02-COACH`
+- Current milestone: `CH02-COACH`
+- Next milestone: `Closed`
 - Hot-path milestone specs: `PREP1`, `PREP2`, `PREP3`, `PREP4`, `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, `CHxx-COACH`
 - Completed preparation milestones: `PREP1`, `PREP2`, `PREP3`, `PREP4`
-- Completed content milestones: `CH01-PAGES`, `CH01-NOTES`, `CH01-COACH`, `CH02-PAGES`, `CH02-ASSETS`
-- Remaining milestones in the active window: `CH02-NOTES`, `CH02-COACH`
+- Completed content milestones: `CH01-PAGES`, `CH01-NOTES`, `CH01-COACH`, `CH02-PAGES`, `CH02-ASSETS`, `CH02-NOTES`
+- Remaining milestones in the active window: `CH02-COACH`
 
 ## Validation command catalog
 - `WORKTREE-CLEAN`: `git status --short`
@@ -273,7 +273,7 @@ This file is the only milestone-status source of truth for the current long run.
   - `CH02-ASSETS` is complete. Continue directly to `CH02-NOTES`.
 
 ### CH02-NOTES - Build second batch exam notes
-- Status: `Current`
+- Status: `Completed (2026-05-01)`
 - Goal:
   - Create Finnish concept and exercise notes from the reviewed `BOOK01/CH02` page and asset layers.
 - Scope:
@@ -295,7 +295,7 @@ This file is the only milestone-status source of truth for the current long run.
   - `CH02-NOTES` is complete. Continue directly to `CH02-COACH`.
 
 ### CH02-COACH - Build second batch coach data
-- Status: `Pending`
+- Status: `Current`
 - Goal:
   - Create structured coach data for `BOOK01/CH02`.
 - Scope:
