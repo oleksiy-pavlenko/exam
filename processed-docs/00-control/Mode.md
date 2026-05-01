@@ -3,7 +3,7 @@
 This file is the only current-mode source of truth for fresh Codex sessions in this repo.
 
 ## Current mode
-- Current mode: `extraction`
+- Current mode: `tutor`
 
 ## Startup rules
 - Every fresh session reads this file first.
