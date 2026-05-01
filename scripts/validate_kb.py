@@ -136,7 +136,8 @@ PAGE_ID_RE = re.compile(r"`(BOOK\d+-CH\d+-P\d{3})`")
 SOURCE_IMAGE_RE = re.compile(r"`(unprocessed-docs/books/[^`]+\.jpg)`")
 LINE_ID_RE = re.compile(r"`L\d{3}`")
 READABILITY_ASSET_RE = re.compile(r"Readability asset:\s+(?:!?\[[^\]]*\]\(([^)]+)\)|`([^`]+)`)")
-SOURCE_LINE_REF_RE = re.compile(r"BOOK\d+-CH\d+-P\d{3}:L\d{3}(?:-L\d{3})?")
+SOURCE_LINE_REF_DETAIL_RE = re.compile(r"(BOOK\d+-CH\d+-P\d{3}):L(\d{3})(?:-L(\d{3}))?")
+ASSET_ID_RE = re.compile(r"BOOK\d+-CH\d+-P\d{3}-(?:PAGE|F\d{3})")
 ASSET_LINE_REF_RE = re.compile(r"^L\d{3}(?:-L\d{3})?$")
 ALLOWED_ASSET_TYPES = {
     "page_normalized",
@@ -308,6 +309,27 @@ def spans_overlap(left: tuple[int, int], right: tuple[int, int]) -> bool:
     return left[0] <= right[1] and right[0] <= left[1]
 
 
+def asset_line_spans(asset: dict[str, object]) -> list[tuple[int, int]]:
+    spans: list[tuple[int, int]] = []
+    for line_ref in asset.get("source_line_ids", []):
+        if isinstance(line_ref, str):
+            span = line_span(line_ref)
+            if span is not None:
+                spans.append(span)
+    return spans
+
+
+def source_line_refs(text: str) -> list[tuple[str, tuple[int, int]]]:
+    refs: list[tuple[str, tuple[int, int]]] = []
+    for match in SOURCE_LINE_REF_DETAIL_RE.finditer(text):
+        page_id = match.group(1)
+        start = int(match.group(2))
+        end = int(match.group(3) or match.group(2))
+        if start <= end:
+            refs.append((page_id, (start, end)))
+    return refs
+
+
 def manifest_paths() -> list[Path]:
     assets_root = ROOT / "processed-docs" / "assets" / "pages"
     return sorted(assets_root.rglob("assets.json")) if assets_root.exists() else []
@@ -458,15 +480,47 @@ def check_page_figure_asset_coverage(errors: list[str], assets_by_page: dict[str
                 add_error(errors, f"{relative}: figure lines L{figure_span[0]:03d}-L{figure_span[1]:03d} have no manifest-covered crop")
 
 
-def check_derived_note_citations(errors: list[str]) -> None:
+def check_derived_note_citations(errors: list[str], assets_by_page: dict[str, list[dict[str, object]]]) -> None:
+    all_asset_ids: set[str] = set()
+    visual_assets_by_page: dict[str, list[dict[str, object]]] = {}
+    for page_id, assets in assets_by_page.items():
+        for asset in assets:
+            asset_id = asset.get("asset_id")
+            if isinstance(asset_id, str):
+                all_asset_ids.add(asset_id)
+            if asset.get("asset_type") != "page_normalized":
+                visual_assets_by_page.setdefault(page_id, []).append(asset)
+
     for root in [ROOT / "processed-docs" / "02-concepts", ROOT / "processed-docs" / "03-exercises"]:
         for path in markdown_files(root):
             relative = path.relative_to(ROOT).as_posix()
             if path.name == "index.md":
                 continue
             text = read_text(path)
-            if not SOURCE_LINE_REF_RE.search(text):
+            refs = source_line_refs(text)
+            if not refs:
                 add_error(errors, f"{relative}: missing source page line citations")
+                continue
+            mentioned_asset_ids = set(ASSET_ID_RE.findall(text))
+            for asset_id in sorted(mentioned_asset_ids - all_asset_ids):
+                add_error(errors, f"{relative}: unknown visual asset ID {asset_id}")
+            required_asset_ids: set[str] = set()
+            for page_id, source_span in refs:
+                for asset in visual_assets_by_page.get(page_id, []):
+                    asset_id = asset.get("asset_id")
+                    if not isinstance(asset_id, str):
+                        continue
+                    if any(spans_overlap(source_span, asset_span) for asset_span in asset_line_spans(asset)):
+                        required_asset_ids.add(asset_id)
+            if required_asset_ids:
+                visual_body = section_body(text, "Visuaaliset aineistot")
+                visual_asset_ids = set(ASSET_ID_RE.findall(visual_body))
+                if not visual_body:
+                    add_error(errors, f"{relative}: missing section ## Visuaaliset aineistot")
+                    continue
+                missing = sorted(required_asset_ids - visual_asset_ids)
+                if missing:
+                    add_error(errors, f"{relative}: missing relevant visual asset IDs {missing}")
 
 
 def check_subagent_specs(errors: list[str]) -> None:
@@ -524,7 +578,7 @@ def main() -> int:
     check_chapter_asset_manifests(errors)
     assets_by_page = load_asset_manifests(errors)
     check_page_figure_asset_coverage(errors, assets_by_page)
-    check_derived_note_citations(errors)
+    check_derived_note_citations(errors, assets_by_page)
     check_subagent_specs(errors)
     check_required_contract_phrases(errors)
     check_readme_handoff(errors)

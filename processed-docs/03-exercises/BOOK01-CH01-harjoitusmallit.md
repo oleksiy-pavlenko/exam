@@ -34,6 +34,27 @@
 - Jos tehtävä pyytää pinta-alaa, valitse ensin oikea kaava: suorakulmio ja suunnikas käyttävät kaavaa A = a * h, kolmio käyttää kaavaa A = (a * h) / 2. Lähteet: `BOOK01-CH01-P001:L023-L027` ja `BOOK01-CH01-P002:L011-L013`.
 - Jos tehtävässä kysytään tuntematonta sivua pinta-alasta, kirjoita kaava yhtälöksi ja tee sama laskutoimitus molemmille puolille. Lähteet: `BOOK01-CH01-P002:L026-L043`, `BOOK01-CH01-P004:L001-L003`, `BOOK01-CH01-P004:L013-L016` ja `BOOK01-CH01-P004:L036-L040`.
 
+## Visuaaliset aineistot
+- `BOOK01-CH01-P001-F003`: suorakulmion ja suunnikkaan kaavakuvat koetyön mallia varten.
+- `BOOK01-CH01-P001-F004`: esimerkin 2 suorakulmio piirin ja pinta-alan malliin.
+- `BOOK01-CH01-P002-F004`: esimerkin 5 suorakulmio yhtälömalliin.
+- `BOOK01-CH01-P002-F005`: esimerkin 6 kolmio yhtälömalliin.
+- `BOOK01-CH01-P003-F001`: tehtävän 3 suorakulmio ja suunnikas.
+- `BOOK01-CH01-P003-F002`: tehtävän 6 koripallokenttä.
+- `BOOK01-CH01-P003-F003`: tehtävän 7 suunnikkaat.
+- `BOOK01-CH01-P003-F004`: tehtävän 8 mitattava suunnikas.
+- `BOOK01-CH01-P003-F005`: tehtävän 14 suunnikas.
+- `BOOK01-CH01-P003-F006`: tehtävän 17 suunnikas.
+- `BOOK01-CH01-P004-F001`: tehtävän 26 kolmiot.
+- `BOOK01-CH01-P004-F002`: tehtävän 27 tasasivuinen kolmio.
+- `BOOK01-CH01-P004-F009`: tehtävän 29 liikennemerkki.
+- `BOOK01-CH01-P004-F003`: tehtävän 31 suorakulmio ja suunnikas.
+- `BOOK01-CH01-P004-F004`: tehtävän 34 korvakoru.
+- `BOOK01-CH01-P004-F005`: tehtävän 36 väritetty kolmio.
+- `BOOK01-CH01-P004-F006`: tehtävän 38 suunnikas.
+- `BOOK01-CH01-P004-F007`: tehtävän 42 kolmio.
+- `BOOK01-CH01-P004-F008`: tehtävän 43 suorakulmiot.
+
 ## Rajaus
 - Tehtäviä 18-25 ei käsitellä tässä muistiinpanossa, koska nykyinen sivutranskriptikerros näyttää tehtävät 1-17 ja 26-46 mutta ei anna täyttä lähdekatetta tehtäville 18-25. Lähteet: `BOOK01-CH01-P003:L005-L042` ja `BOOK01-CH01-P004:L001-L042`.
 - Oikean reunan osittainen naapurisisältö ei ole täyttä lähdekatetta eikä sitä käytetä harjoitusmallien lähteenä. Lähde: `BOOK01-CH01-P003:L042`.

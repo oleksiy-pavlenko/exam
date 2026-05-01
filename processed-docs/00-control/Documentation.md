@@ -82,6 +82,11 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Updated the control docs so future chapters produce normalized page images, figure crops, visual exercise assets, and coach data instead of Markdown-only notes.
 - Added validator coverage for chapter asset manifests, normalized image links, figure asset coverage, and derived-note source citations.
 
+### 2026-05-01 - Process correction: require derived-note visual links
+- Added `## Visuaaliset aineistot` sections to current CH01 concept and exercise notes.
+- Linked current derived notes to the CH01 visual asset IDs that match their cited source lines.
+- Tightened `scripts/validate_kb.py` so a derived note fails validation when it cites source lines with manifest-covered visual assets but does not name the relevant asset IDs.
+
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
 - Control docs may use simple English for clear long-run coordination.
@@ -94,6 +99,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Future chapter windows use `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.
 - The app-facing layer is structured manifests. Do not make a future app scrape free-form Markdown as its main data source.
 - Every reviewed visual asset must cite source page IDs and line IDs.
+- Derived concept and exercise notes must name relevant visual asset IDs when their source line citations overlap manifest-covered visual assets.
 
 ## Blockers
 - No current blocker.

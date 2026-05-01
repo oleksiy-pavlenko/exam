@@ -27,6 +27,13 @@
 - Esimerkissä 4 kolmion pinta-alassa käytetään kantaa 5,6 cm ja korkeutta 4,3 cm. Lähde: `BOOK01-CH01-P002:L015-L022`.
 - Esimerkissä 4 pinta-ala on (5,6 cm * 4,3 cm) / 2 = 12,04 cm^2, ja vastaus pyöristetään muotoon 12 cm^2. Lähde: `BOOK01-CH01-P002:L020-L024`.
 
+## Visuaaliset aineistot
+- `BOOK01-CH01-P001-F003`: suorakulmion ja suunnikkaan kaavakuvat kannalle ja korkeudelle.
+- `BOOK01-CH01-P001-F004`: esimerkin 2 suorakulmio piirin ja pinta-alan laskuun.
+- `BOOK01-CH01-P002-F001`: esimerkin 3 suunnikas, jossa korkeus on kohtisuorassa kantaan.
+- `BOOK01-CH01-P002-F002`: kolmion kaavakuva kannalle ja korkeudelle.
+- `BOOK01-CH01-P002-F003`: esimerkin 4 kolmio, jossa korkeus osuu kannan jatkeelle.
+
 ## Yleiset virheet
 - Älä käytä suunnikkaan vinoa sivua korkeutena, koska kaava käyttää kantaa ja kohtisuoraa korkeutta. Lähde: `BOOK01-CH01-P001:L025-L028` ja `BOOK01-CH01-P002:L001-L008`.
 - Älä unohda jakaa kolmion tuloa kahdella, koska kolmion kaava on A = (a * h) / 2. Lähde: `BOOK01-CH01-P002:L011-L013`.

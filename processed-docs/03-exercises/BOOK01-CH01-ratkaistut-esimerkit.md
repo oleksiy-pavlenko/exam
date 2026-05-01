@@ -39,3 +39,14 @@
 - Kirjan ratkaisu sijoittaa luvut kaavaan A = (a * h) / 2 ja saa yhtälön 152 = (a * 12,8) / 2. Lähde: `BOOK01-CH01-P002:L037-L038`.
 - Kirjan ratkaisu kertoo yhtälön kahdella, jakaa luvulla 12,8 ja saa a = 304 / 12,8 = 23,75 ≈ 23,8 cm. Lähde: `BOOK01-CH01-P002:L039-L043`.
 - Opiskelutapa: kolmion tuntematonta sivua ratkaistaessa huomioi ensin kaavan jakaja 2. Lähde: `BOOK01-CH01-P002:L037-L043`.
+
+## Visuaaliset aineistot
+- `BOOK01-CH01-P001-F001`: esimerkin 1 pituusyksikkötaulukko.
+- `BOOK01-CH01-P001-F002`: esimerkin 1 pinta-alayksikkötaulukko.
+- `BOOK01-CH01-P001-F003`: suorakulmion ja suunnikkaan kaavakuvat.
+- `BOOK01-CH01-P001-F004`: esimerkin 2 suorakulmio.
+- `BOOK01-CH01-P002-F001`: esimerkin 3 suunnikas.
+- `BOOK01-CH01-P002-F002`: kolmion kaavakuva.
+- `BOOK01-CH01-P002-F003`: esimerkin 4 kolmio.
+- `BOOK01-CH01-P002-F004`: esimerkin 5 suorakulmio.
+- `BOOK01-CH01-P002-F005`: esimerkin 6 kolmio.

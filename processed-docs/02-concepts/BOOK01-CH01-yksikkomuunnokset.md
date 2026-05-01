@@ -23,6 +23,10 @@
 - Esimerkissä 1 pinta-ala 0,75 cm^2 muutetaan neliömillimetreiksi kertomalla yhdellä pinta-ala-askeleella: 0,75 cm^2 = 75 mm^2. Lähde: `BOOK01-CH01-P001:L015` ja `BOOK01-CH01-P001:L019`.
 - Esimerkissä 1 pinta-ala 45 800 m^2 muutetaan hehtaareiksi välivaiheen a kautta: 45 800 m^2 = 458 a = 4,58 ha. Lähde: `BOOK01-CH01-P001:L016` ja `BOOK01-CH01-P001:L020`.
 
+## Visuaaliset aineistot
+- `BOOK01-CH01-P001-F001`: pituusyksikkötaulukko, jossa näkyvät askeleet kerro 10 ja jaa 10.
+- `BOOK01-CH01-P001-F002`: pinta-alayksikkötaulukko, jossa näkyvät askeleet kerro 100 ja jaa 100.
+
 ## Yleiset virheet
 - Älä käytä pinta-alassa pituuden kerrointa 10, koska pinta-alan vierekkäisten yksiköiden suhdeluku on 100. Lähde: `BOOK01-CH01-P001:L004-L009`.
 - Älä muuta kahta eri pituusyksikköä pinta-alalaskussa suoraan kertomalla, ennen kuin pituudet ovat samassa yksikössä. Lähde: `BOOK01-CH01-P002:L003-L008`.
