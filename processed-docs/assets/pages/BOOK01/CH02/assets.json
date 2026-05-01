@@ -1,0 +1,1089 @@
+{
+  "manifest_version": 1,
+  "book_id": "BOOK01",
+  "chapter_id": "BOOK01-CH02",
+  "language": "fi",
+  "source_policy": "All paths point to repo-local evidence or generated assets. Raw scans stay unchanged.",
+  "assets": [
+    {
+      "asset_id": "BOOK01-CH02-P001-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P001-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P001",
+      "source_line_ids": [
+        "L001-L012"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P001.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P001-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P001-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P001",
+      "source_line_ids": [
+        "L003-L009"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P001; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P002-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P002-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P002",
+      "source_line_ids": [
+        "L001-L010"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P002.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P002-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P002-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P002",
+      "source_line_ids": [
+        "L003-L010"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P002; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P003-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P003-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P003",
+      "source_line_ids": [
+        "L001-L010"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P003.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P003-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P003-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P003",
+      "source_line_ids": [
+        "L002-L010"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P003; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P004-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P004-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P004",
+      "source_line_ids": [
+        "L001-L009"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P004.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P004-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P004-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P004",
+      "source_line_ids": [
+        "L005-L008"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P004; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P005-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P005-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P005",
+      "source_line_ids": [
+        "L001-L007"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P005.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P005-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P005-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P005",
+      "source_line_ids": [
+        "L003-L006"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P005; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P006-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P006-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P006",
+      "source_line_ids": [
+        "L001-L008"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P006.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P006-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P006-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P006",
+      "source_line_ids": [
+        "L002-L008"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P006; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P007-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P007-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P007",
+      "source_line_ids": [
+        "L001-L008"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P007.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P007-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P007-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P007",
+      "source_line_ids": [
+        "L003-L008"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P007; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P008-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P008-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P008",
+      "source_line_ids": [
+        "L001-L008"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P008.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P008-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P008-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P008",
+      "source_line_ids": [
+        "L002-L008"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P008; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P009-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P009-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P009",
+      "source_line_ids": [
+        "L001-L006"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P009.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P009-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P009-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P009",
+      "source_line_ids": [
+        "L004-L005"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P009; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P010-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P010-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P010",
+      "source_line_ids": [
+        "L001-L007"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P010.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P010-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P010-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P010",
+      "source_line_ids": [
+        "L002-L005"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P010; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P011-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P011-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P011",
+      "source_line_ids": [
+        "L001-L007"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P011.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P011-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P011-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P011",
+      "source_line_ids": [
+        "L002-L005"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P011; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P012-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P012-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P012",
+      "source_line_ids": [
+        "L001-L007"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P012.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P012-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P012-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P012",
+      "source_line_ids": [
+        "L005-L006"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P012; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P013-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P013-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P013",
+      "source_line_ids": [
+        "L001-L006"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P013.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P013-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P013-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P013",
+      "source_line_ids": [
+        "L003-L006"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P013; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P014-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P014-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P014",
+      "source_line_ids": [
+        "L001-L007"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P014.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P014-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P014-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P014",
+      "source_line_ids": [
+        "L002-L006"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P014; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P015-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P015-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P015",
+      "source_line_ids": [
+        "L001-L005"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P015.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P015-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P015-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P015",
+      "source_line_ids": [
+        "L002-L005"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P015; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P016-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P016-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P016",
+      "source_line_ids": [
+        "L001-L005"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P016.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P016-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P016-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P016",
+      "source_line_ids": [
+        "L002-L005"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P016; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P017-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P017-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P017",
+      "source_line_ids": [
+        "L001-L005"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P017.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P017-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P017-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P017",
+      "source_line_ids": [
+        "L002-L003"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P017; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P018-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P018-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P018",
+      "source_line_ids": [
+        "L001-L005"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P018.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P018-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P018-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P018",
+      "source_line_ids": [
+        "L002-L004"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P018; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P019-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P019-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P019",
+      "source_line_ids": [
+        "L001-L005"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P019.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P019-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P019-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P019",
+      "source_line_ids": [
+        "L004-L005"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P019; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P020-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P020-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P020",
+      "source_line_ids": [
+        "L001-L007"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P020.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P020-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P020-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P020",
+      "source_line_ids": [
+        "L002-L007"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P020; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P021-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P021-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P021",
+      "source_line_ids": [
+        "L001-L006"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P021.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P021-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P021-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P021",
+      "source_line_ids": [
+        "L004-L006"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P021; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P022-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P022-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P022",
+      "source_line_ids": [
+        "L001-L006"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P022.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P022-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P022-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P022",
+      "source_line_ids": [
+        "L003-L006"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P022; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P023-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P023-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P023",
+      "source_line_ids": [
+        "L001-L005"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P023.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P023-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P023-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P023",
+      "source_line_ids": [
+        "L003-L005"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P023; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P024-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P024-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P024",
+      "source_line_ids": [
+        "L001-L006"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P024.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P024-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P024-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P024",
+      "source_line_ids": [
+        "L003-L006"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P024; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P025-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P025-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P025",
+      "source_line_ids": [
+        "L001-L007"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P025.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P025-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P025-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P025",
+      "source_line_ids": [
+        "L003-L007"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P025; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P026-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P026-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P026",
+      "source_line_ids": [
+        "L001-L005"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P026.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P026-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P026-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P026",
+      "source_line_ids": [
+        "L003-L005"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P026; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P027-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P027-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P027",
+      "source_line_ids": [
+        "L001-L006"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P027.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P027-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P027-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P027",
+      "source_line_ids": [
+        "L002-L006"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P027; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P028-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P028-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P028",
+      "source_line_ids": [
+        "L001-L007"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P028.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P028-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P028-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P028",
+      "source_line_ids": [
+        "L002-L007"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P028; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P029-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P029-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P029",
+      "source_line_ids": [
+        "L001-L005"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P029.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P029-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P029-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P029",
+      "source_line_ids": [
+        "L003-L005"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P029; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P030-PAGE",
+      "asset_type": "page_normalized",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/BOOK01-CH02-P030-normalized.jpg",
+      "source_page_id": "BOOK01-CH02-P030",
+      "source_line_ids": [
+        "L001-L012"
+      ],
+      "description_fi": "Normalisoitu koko sivun kuva sivulta BOOK01-CH02-P030.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "source_review"
+      ]
+    },
+    {
+      "asset_id": "BOOK01-CH02-P030-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOK01/CH02/crops/BOOK01-CH02-P030-F001-visual-cluster.jpg",
+      "source_page_id": "BOOK01-CH02-P030",
+      "source_line_ids": [
+        "L003-L012"
+      ],
+      "description_fi": "Visuaalinen pääklusteri sivulta BOOK01-CH02-P030; sisältää sivun keskeiset kuvat tai tehtäväkuviot.",
+      "related_concepts": [
+        "CH02"
+      ],
+      "related_exercises": [],
+      "uses": [
+        "explanation",
+        "assignment",
+        "verification"
+      ]
+    }
+  ]
+}
