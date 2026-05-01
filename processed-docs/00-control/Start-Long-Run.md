@@ -16,8 +16,9 @@ Notes:
 - The worktree must be clean before the run starts.
 - `Plan.md` is the milestone-state gate. Older milestone text elsewhere does not override it.
 - `Documentation.md` is the durable handoff and audit log.
-- Milestone workers and review workers must use clean-context `GPT-5.5` `xhigh`.
-- Do not use `fork_context` for milestone workers or review workers.
+- Milestone workers must use clean-context `GPT-5.5` `xhigh`.
+- Review workers are optional. If used, they must be read-only clean-context `GPT-5.5` `xhigh`.
+- Do not use `fork_context` for milestone workers or optional review workers.
 - If `Plan.md` shows `Closed` for both `Current milestone` and `Next milestone`, do not restart this window.
 - Future chapter windows use `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.
 - If preflight fails, repair the control stack before milestone work.
@@ -37,7 +38,7 @@ Treat `processed-docs/00-control/Plan.md` as the milestone-state gate and only m
 
 Act as the root orchestrator only. If `Plan.md` shows `Closed` for both `Current milestone` and `Next milestone`, do not restart the window. Review `Documentation.md` and stop until a later prep milestone reopens work. If one active-window milestone is `Blocked`, review `Documentation.md`, keep the blocker handoff, then read `AGENTS.md`, `processed-docs/00-control/Prompt.md`, `processed-docs/00-control/Implement.md`, `processed-docs/00-control/Review.md`, and `processed-docs/00-control/source-inventory.md` before you continue. If `Plan.md` names a milestone instead, read those same files and start there.
 
-For each milestone, use one fresh clean-context `GPT-5.5` `xhigh` worker, require that worker to reread the mandatory docs, implement only the current milestone, run the exact milestone validation, run self-review, run one clean-context read-only `GPT-5.5` `xhigh` review worker before commit when processed content changed, do not use `fork_context`, fix blocking findings, update `Plan.md` and `Documentation.md`, commit exactly once, and continue until the active window is `Closed`.
+For each milestone, use one fresh clean-context `GPT-5.5` `xhigh` worker when delegation is useful, require that worker to reread the mandatory docs, implement only the current milestone, run the exact milestone validation, run self-review, use an independent read-only `GPT-5.5` `xhigh` review worker only when the user asks, validation or self-review is uncertain, or the milestone is high risk, do not use `fork_context`, fix blocking findings, update `Plan.md` and `Documentation.md`, commit exactly once, and continue until the active window is `Closed`.
 
 Follow `Prompt.md` for source boundaries and `Implement.md` for stop rules.
 For future chapter windows, do not skip the asset or coach milestones: fresh Codex coach sessions need structured visual manifests and coach data, not Markdown-only notes.

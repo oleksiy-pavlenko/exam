@@ -12,8 +12,8 @@ Use this file as the review contract for every milestone.
 2. Run `python3 scripts/validate_kb.py`.
 3. Run any milestone-specific checks from `Plan.md`.
 4. Run the self-review checklist below.
-5. Run independent read-only review when processed content changed.
-6. Fix every `P0` and `P1` finding.
+5. Run independent read-only review only when the user asks, validation or self-review is uncertain, or the milestone is high risk.
+6. Fix every `P0` and `P1` finding from self-review or any optional independent review.
 7. Rerun validation.
 8. Update `Plan.md` and `Documentation.md`. If this was the last active-window milestone, set both `Current milestone` and `Next milestone` to `Closed`.
 9. Commit once.
@@ -34,8 +34,9 @@ Use this file as the review contract for every milestone.
 - If this was the last active-window milestone, `Plan.md` closes the window cleanly.
 
 ## Review worker contract
-- Review workers are read-only clean-context `GPT-5.5` `xhigh` workers.
-- Do not use `fork_context` for review workers.
+- Review workers are optional. Use one only when the user asks, validation or self-review is uncertain, or the milestone is high risk.
+- Optional review workers are read-only clean-context `GPT-5.5` `xhigh` workers.
+- Do not use `fork_context` for optional review workers.
 - They must read repo files directly.
 - They must not rely on chat history.
 - They return findings first, ordered by severity.

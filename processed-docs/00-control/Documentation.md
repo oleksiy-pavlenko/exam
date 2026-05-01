@@ -36,6 +36,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - `CH01-COACH` created the first coach catalog entry and the first usable chapter coach manifest for fresh Codex sessions.
 - `PREP3` added persisted `tutor` and `extraction` modes with `Mode.md` as the startup source of truth.
 - `PREP4` imported the second 30-image scan batch as provisional `BOOK01/CH02` and opened the `CH02` extraction window.
+- The next long run no longer requires a separate review subagent for every processed-content milestone. Self-review stays mandatory; independent review workers are optional.
 - Future chapter windows still require visual asset and coach data milestones.
 
 ## Audit log
@@ -49,9 +50,10 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Next milestone: `CH01-PAGES`.
 
 ### 2026-05-01 - Process correction: pin subagent specifications
-- Clarified that all milestone workers and review workers must use clean-context `GPT-5.5` `xhigh`.
+- Clarified the worker safety rule for milestone workers and review workers: clean-context `GPT-5.5` `xhigh`.
 - Clarified that `fork_context` must not be used for milestone workers or review workers.
 - Added validator checks so subagent model and context requirements do not drift silently.
+- Later process correction made review workers optional, but kept the same safety rule for any review worker that is used.
 
 ### 2026-05-01 - CH01-PAGES completed: transcribe first chapter scan batch
 - Created Finnish page transcript files for `BOOK01-CH01-P001` through `BOOK01-CH01-P004`.
@@ -131,6 +133,12 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Opened the standard `CH02-PAGES`, `CH02-ASSETS`, `CH02-NOTES`, and `CH02-COACH` milestone window in `Plan.md`.
 - Next milestone: `CH02-PAGES`.
 
+### 2026-05-01 - Process correction: make the next long run lighter
+- Removed the mandatory independent review subagent gate from the extraction runbook.
+- Kept self-review mandatory for every milestone.
+- Made independent read-only review workers optional. Use one only when the user asks, validation or self-review is uncertain, or the milestone is high risk.
+- Kept the worker safety rule: every milestone worker and optional review worker uses clean-context `GPT-5.5` `xhigh`, and `fork_context` is not used.
+
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
 - Control docs may use simple English for clear long-run coordination.
@@ -138,7 +146,8 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - The first chapter is `CH01` until better chapter metadata is confirmed.
 - `BOOK01-CH02` is the provisional ID for the second uploaded 30-image scan batch. It may contain more than one visible textbook section, so the page milestone must record section boundaries before derived notes are written.
 - Raw scans stay unchanged after import. Rotated or cropped versions are generated assets.
-- All subagents use clean-context `GPT-5.5` `xhigh`; `fork_context` is not used for milestone workers or review workers.
+- All milestone workers and optional review workers use clean-context `GPT-5.5` `xhigh`; `fork_context` is not used for them.
+- Independent review subagents are optional, not mandatory. Self-review remains mandatory for every milestone.
 - Edge-only neighboring page content in a scan is not complete source coverage. Use only the fully transcribed page lines as evidence for derived notes.
 - Exercises 18-25 are not treated as covered by the current transcript layer.
 - Future chapter windows use `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.

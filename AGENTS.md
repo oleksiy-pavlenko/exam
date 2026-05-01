@@ -44,14 +44,15 @@ Repository rules:
 - Keep raw scans unchanged once imported. Use generated assets for rotation, cropping, and cleanup.
 - Mark unclear text as `EPÄSELVÄ` in page notes instead of guessing.
 - Work one verified milestone at a time.
-- Finish each verified milestone with validation, review, updated control docs, and one commit.
+- Finish each verified milestone with validation, self-review, updated control docs, and one commit.
 - Future chapter windows use four milestones by default: `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.
 
 Before starting a milestone:
 - Run `git status --short` and stop if the worktree is dirty.
 - Run `python3 scripts/validate_kb.py` and repair structural failures before content work.
 - Check `processed-docs/00-control/Plan.md` for the current milestone and next milestone.
-- If subagents are used, every milestone worker and review worker must use clean-context `GPT-5.5` `xhigh`. Do not use `fork_context`.
+- If subagents are used, every milestone worker and optional review worker must use clean-context `GPT-5.5` `xhigh`. Do not use `fork_context`.
+- Review subagents are optional. Use one only when the user asks, validation or self-review is uncertain, or the milestone is high risk.
 
 ## Tutor mode
 - Tutor mode is learner-facing and read-only by default.

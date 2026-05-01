@@ -32,14 +32,15 @@ Use this file as the execution runbook. `Prompt.md` is the binding run spec. `Pl
 ## Agent Topology
 - The root thread is the root orchestrator only. It owns milestone selection, final integration, and continuation across the active window.
 - Use one fresh clean-context `GPT-5.5` `xhigh` milestone worker per milestone when delegation is useful.
-- Review workers must be read-only clean-context `GPT-5.5` `xhigh` workers.
-- Do not use `fork_context` for any milestone worker or review worker.
-- Review workers must read repo state directly from files, not from chat memory.
-- Give reviewers the milestone ID, touched files, acceptance target, and control-doc paths.
+- Review workers are optional. Use one only when the user asks, validation or self-review is uncertain, or the milestone is high risk.
+- Optional review workers must be read-only clean-context `GPT-5.5` `xhigh` workers.
+- Do not use `fork_context` for any milestone worker or optional review worker.
+- Optional review workers must read repo state directly from files, not from chat memory.
+- Give optional reviewers the milestone ID, touched files, acceptance target, and control-doc paths.
 
 ## Hard Stop Gate
 - The root orchestrator must never send a final handoff while `Plan.md` still shows any active-window milestone as `Current`, `Pending`, or `Blocked`.
-- Stop only if the active window is `Closed`, a real blocker is recorded, validation cannot be repaired, review cannot be satisfied, or the user redirects the work.
+- Stop only if the active window is `Closed`, a real blocker is recorded, validation cannot be repaired, a blocking self-review or requested review finding cannot be satisfied, or the user redirects the work.
 - If `Plan.md` says `Closed`, do not restart old milestones unless a later prep milestone reopens work.
 
 ## Root Orchestrator Loop
@@ -52,7 +53,7 @@ Use this file as the execution runbook. `Prompt.md` is the binding run spec. `Pl
 7. Keep edits inside the milestone scope.
 8. Run validation and milestone-specific checks.
 9. Run self-review from `Review.md`.
-10. Run independent review when processed content changed.
+10. Run independent review only when the user asks, validation or self-review is uncertain, or the milestone is high risk.
 11. Fix blocking findings.
 12. Update `Documentation.md` and `Plan.md`.
 13. Commit once with the milestone message from `Plan.md`.
@@ -67,7 +68,7 @@ Use this file as the execution runbook. `Prompt.md` is the binding run spec. `Pl
 6. Update the asset manifests, note indexes, coach indexes, and control docs required by the milestone.
 7. Run validation and milestone-specific checks.
 8. Run self-review from `Review.md`.
-9. Run one independent read-only clean-context `GPT-5.5` `xhigh` review when processed content changed.
+9. Run one independent read-only clean-context `GPT-5.5` `xhigh` review only when the user asks, validation or self-review is uncertain, or the milestone is high risk.
 10. Fix every `P0` and `P1` finding inside the same milestone.
 11. Update `Documentation.md` and `Plan.md`. If the milestone closes the active window, set both `Current milestone` and `Next milestone` to `Closed`.
 12. Commit once with the milestone message from `Plan.md`.
@@ -97,10 +98,10 @@ Use this file as the execution runbook. `Prompt.md` is the binding run spec. `Pl
 
 ## Review Gate Rule
 - Self-review is mandatory for every milestone.
-- Independent review is mandatory when page transcripts, concept notes, exercise notes, or figure assets changed.
-- Treat `P0` and `P1` findings as blocking.
+- Independent review is optional. Use it only when the user asks, validation or self-review is uncertain, or the milestone is high risk.
+- Treat `P0` and `P1` findings from self-review or any optional independent review as blocking.
 - Fix blocking findings inside the same milestone.
-- For the last active-window milestone, review also checks that `Plan.md` and `Documentation.md` close the window cleanly.
+- For the last active-window milestone, self-review also checks that `Plan.md` and `Documentation.md` close the window cleanly.
 - Record non-blocking follow-up in `Documentation.md`.
 
 ## Resume Rule
@@ -111,7 +112,7 @@ Use this file as the execution runbook. `Prompt.md` is the binding run spec. `Pl
 - If the tree is dirty, treat the uncommitted changes as the current milestone and finish or repair that milestone.
 
 ## Stop Rule
-- Stop only if the active window is closed, a real blocker is recorded, validation cannot be repaired, review cannot be satisfied, or the user redirects the work.
+- Stop only if the active window is closed, a real blocker is recorded, validation cannot be repaired, a blocking self-review or requested review finding cannot be satisfied, or the user redirects the work.
 - Do not stop at a milestone boundary only to report progress while another active-window milestone remains.
 - Leave `Documentation.md` useful for the next session.
 
