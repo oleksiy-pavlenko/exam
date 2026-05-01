@@ -6,8 +6,8 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Last updated: 2026-05-01
 - Progress source of truth: `processed-docs/00-control/Plan.md`
 - Active window: `CH01-PAGES` through `CH01-NOTES`
-- Current milestone from Plan.md: `CH01-PAGES`
-- Next milestone from Plan.md: `CH01-NOTES`
+- Current milestone from Plan.md: `CH01-NOTES`
+- Next milestone from Plan.md: `Closed`
 - Validation command: `python3 scripts/validate_kb.py`
 - Worktree check: `git status --short`
 - Current provisional book ID: `BOOK01`
@@ -24,7 +24,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 ## Historical summary
 - `PREP1` initialized the long-run control stack on 2026-05-01.
 - The first scan batch was imported as provisional `BOOK01/CH01`.
-- Content extraction has not started yet.
+- `CH01-PAGES` created reviewed page transcripts for the first four `BOOK01/CH01` scans.
 
 ## Audit log
 
@@ -41,6 +41,18 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Clarified that `fork_context` must not be used for milestone workers or review workers.
 - Added validator checks so subagent model and context requirements do not drift silently.
 
+### 2026-05-01 - CH01-PAGES completed: transcribe first chapter scan batch
+- Created Finnish page transcript files for `BOOK01-CH01-P001` through `BOOK01-CH01-P004`.
+- Added normalized readability assets for all four scans under `processed-docs/assets/pages/BOOK01/CH01/`.
+- Updated `processed-docs/01-pages/BOOK01/CH01/index.md` and `source-inventory.md`.
+- Preserved visible formulas, examples, exercise numbers, units, decimal commas, and main figure labels.
+- Recorded line IDs for later concept and exercise notes.
+- Ran `python3 scripts/validate_kb.py`; it passed.
+- Ran the milestone page check from `Plan.md`; it passed.
+- Ran self-review and independent read-only review. No `P0` or `P1` findings remained.
+- Independent review noted one `P2`: edge-only neighboring page content must not be treated as full source coverage in later notes. The page wording was clarified.
+- Next milestone: `CH01-NOTES`.
+
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
 - Control docs may use simple English for clear long-run coordination.
@@ -48,6 +60,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - The first chapter is `CH01` until better chapter metadata is confirmed.
 - Raw scans stay unchanged after import. Rotated or cropped versions are generated assets.
 - All subagents use clean-context `GPT-5.5` `xhigh`; `fork_context` is not used for milestone workers or review workers.
+- Edge-only neighboring page content in a scan is not complete source coverage. Use only the fully transcribed page lines as evidence for derived notes.
 
 ## Blockers
 - No current blocker.
@@ -55,10 +68,11 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 ## Backlog
 - Add book title, publisher, ISBN, edition, and exact chapter name after metadata pages are uploaded.
 - Decide whether later large chapters should use one milestone per chapter or one milestone per page range.
-- Add normalized rotated page assets during `CH01-PAGES` if the source photos are hard to read.
 
 ## Fresh-session handoff
 - Start from `processed-docs/00-control/Plan.md`.
-- Current milestone is `CH01-PAGES`.
+- Current milestone is `CH01-NOTES`.
 - First run `git status --short` and `python3 scripts/validate_kb.py`.
-- Then create page transcripts for `BOOK01-CH01-P001` through `BOOK01-CH01-P004`.
+- Then create concept and exercise notes from `BOOK01-CH01-P001` through `BOOK01-CH01-P004`.
+- Cite page line IDs from `processed-docs/01-pages/BOOK01/CH01/`.
+- Do not treat edge-only neighboring page content as complete source coverage.

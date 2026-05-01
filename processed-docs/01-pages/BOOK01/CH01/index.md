@@ -1,13 +1,18 @@
 # BOOK01 CH01 Page Transcripts
 
-Status: pending transcription.
+Status: page transcripts completed for the first scan batch.
 
 Source scans:
-- `BOOK01-CH01-P001` -> `unprocessed-docs/books/BOOK01/chapter-01/scans/BOOK01-CH01-S001.jpg`
-- `BOOK01-CH01-P002` -> `unprocessed-docs/books/BOOK01/chapter-01/scans/BOOK01-CH01-S002.jpg`
-- `BOOK01-CH01-P003` -> `unprocessed-docs/books/BOOK01/chapter-01/scans/BOOK01-CH01-S003.jpg`
-- `BOOK01-CH01-P004` -> `unprocessed-docs/books/BOOK01/chapter-01/scans/BOOK01-CH01-S004.jpg`
+- [BOOK01-CH01-P001](BOOK01-CH01-P001.md) -> `unprocessed-docs/books/BOOK01/chapter-01/scans/BOOK01-CH01-S001.jpg`
+- [BOOK01-CH01-P002](BOOK01-CH01-P002.md) -> `unprocessed-docs/books/BOOK01/chapter-01/scans/BOOK01-CH01-S002.jpg`
+- [BOOK01-CH01-P003](BOOK01-CH01-P003.md) -> `unprocessed-docs/books/BOOK01/chapter-01/scans/BOOK01-CH01-S003.jpg`
+- [BOOK01-CH01-P004](BOOK01-CH01-P004.md) -> `unprocessed-docs/books/BOOK01/chapter-01/scans/BOOK01-CH01-S004.jpg`
+
+Generated readability assets:
+- [BOOK01-CH01-P001-normalized.jpg](../../../assets/pages/BOOK01/CH01/BOOK01-CH01-P001-normalized.jpg)
+- [BOOK01-CH01-P002-normalized.jpg](../../../assets/pages/BOOK01/CH01/BOOK01-CH01-P002-normalized.jpg)
+- [BOOK01-CH01-P003-normalized.jpg](../../../assets/pages/BOOK01/CH01/BOOK01-CH01-P003-normalized.jpg)
+- [BOOK01-CH01-P004-normalized.jpg](../../../assets/pages/BOOK01/CH01/BOOK01-CH01-P004-normalized.jpg)
 
 Next milestone:
-- Create page transcript files for `BOOK01-CH01-P001` through `BOOK01-CH01-P004`.
-
+- Build concept and exercise notes from these transcript files in `CH01-NOTES`.

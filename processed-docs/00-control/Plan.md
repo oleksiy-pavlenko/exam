@@ -6,11 +6,12 @@ This file is the only milestone-status source of truth for the current long run.
 - Progress source of truth: this file
 - Status vocabulary: `Completed`, `Current`, `Pending`, `Blocked`
 - Active window: `CH01-PAGES` through `CH01-NOTES` (open)
-- Current milestone: `CH01-PAGES`
-- Next milestone: `CH01-NOTES`
+- Current milestone: `CH01-NOTES`
+- Next milestone: `Closed`
 - Hot-path milestone specs: `PREP1`, `CH01-PAGES`, `CH01-NOTES`
 - Completed preparation milestones: `PREP1`
-- Remaining milestones in the active window: `CH01-PAGES`, `CH01-NOTES`
+- Completed content milestones: `CH01-PAGES`
+- Remaining milestones in the active window: `CH01-NOTES`
 
 ## Validation command catalog
 - `WORKTREE-CLEAN`: `git status --short`
@@ -65,7 +66,7 @@ This file is the only milestone-status source of truth for the current long run.
   - `PREP1` is complete. Start content extraction at `CH01-PAGES`.
 
 ### CH01-PAGES - Transcribe first chapter scan batch
-- Status: `Current`
+- Status: `Completed (2026-05-01)`
 - Goal:
   - Create reviewed Finnish page transcript files for the four current `BOOK01/CH01` scans.
 - Scope:
@@ -85,10 +86,10 @@ This file is the only milestone-status source of truth for the current long run.
 - Commit:
   - Commit message pattern: `docs(chunk): CH01-PAGES transcribe-first-scan-batch`
 - Handoff:
-  - Move `CH01-NOTES` to `Current` after validation and review pass.
+  - `CH01-PAGES` is complete. Build concept and exercise notes from the page transcript layer in `CH01-NOTES`.
 
 ### CH01-NOTES - Build first chapter exam notes
-- Status: `Pending`
+- Status: `Current`
 - Goal:
   - Create Finnish exam notes from the `CH01-PAGES` transcript layer.
 - Scope:
