@@ -21,8 +21,9 @@ This file is the only milestone-status source of truth for the current long run.
 
 ## Review topology
 - The root thread owns milestone selection, validation, and final integration.
-- Use one milestone worker per chapter slice when delegation is useful.
-- Use one independent read-only review before committing a milestone when the milestone created or changed processed content.
+- Use one clean-context `GPT-5.5` `xhigh` milestone worker per chapter slice when delegation is useful.
+- Use one clean-context `GPT-5.5` `xhigh` independent read-only review before committing a milestone when the milestone created or changed processed content.
+- Do not use `fork_context` for milestone workers or review workers.
 - The review must focus on source citations, line IDs, Finnish wording, formulas, diagrams, broken links, and scope drift.
 
 ## Decision rules

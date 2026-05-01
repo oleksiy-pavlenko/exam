@@ -29,7 +29,8 @@ Use this file as the review contract for every milestone.
 - `Plan.md` and `Documentation.md` tell the next session what to do.
 
 ## Review worker contract
-- Review workers are read-only.
+- Review workers are read-only clean-context `GPT-5.5` `xhigh` workers.
+- Do not use `fork_context` for review workers.
 - They must read repo files directly.
 - They must not rely on chat history.
 - They return findings first, ordered by severity.
@@ -47,4 +48,3 @@ Use this file as the review contract for every milestone.
 - State the acceptance focus.
 - Point to `Plan.md`, `Review.md`, and `Documentation.md`.
 - Ask for only real issues that matter for correctness, citations, links, scope, or milestone acceptance.
-

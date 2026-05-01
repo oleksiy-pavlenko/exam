@@ -36,12 +36,18 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Left page transcription and study-note creation for later milestones.
 - Next milestone: `CH01-PAGES`.
 
+### 2026-05-01 - Process correction: pin subagent specifications
+- Clarified that all milestone workers and review workers must use clean-context `GPT-5.5` `xhigh`.
+- Clarified that `fork_context` must not be used for milestone workers or review workers.
+- Added validator checks so subagent model and context requirements do not drift silently.
+
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
 - Control docs may use simple English for clear long-run coordination.
 - The first book is `BOOK01` until title page, cover, or ISBN metadata is uploaded.
 - The first chapter is `CH01` until better chapter metadata is confirmed.
 - Raw scans stay unchanged after import. Rotated or cropped versions are generated assets.
+- All subagents use clean-context `GPT-5.5` `xhigh`; `fork_context` is not used for milestone workers or review workers.
 
 ## Blockers
 - No current blocker.

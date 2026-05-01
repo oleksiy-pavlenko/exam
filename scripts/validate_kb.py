@@ -82,6 +82,22 @@ SECTION_REQUIREMENTS = {
     ],
 }
 
+SUBAGENT_SPEC_FILES = [
+    "AGENTS.md",
+    "processed-docs/00-control/Plan.md",
+    "processed-docs/00-control/Implement.md",
+    "processed-docs/00-control/Review.md",
+    "processed-docs/00-control/Start-Long-Run.md",
+    "processed-docs/00-control/Documentation.md",
+]
+
+SUBAGENT_SPEC_TERMS = [
+    "GPT-5.5",
+    "xhigh",
+    "clean-context",
+    "fork_context",
+]
+
 PAGE_REQUIRED_SECTIONS = [
     "Source",
     "Lines",
@@ -203,6 +219,17 @@ def check_plan_state(errors: list[str]) -> None:
                 add_error(errors, f"Plan.md: invalid milestone status `{status}`")
 
 
+def check_subagent_specs(errors: list[str]) -> None:
+    for relative in SUBAGENT_SPEC_FILES:
+        path = ROOT / relative
+        if not path.exists():
+            continue
+        text = read_text(path)
+        for term in SUBAGENT_SPEC_TERMS:
+            if term not in text:
+                add_error(errors, f"{relative}: missing subagent spec term `{term}`")
+
+
 def check_git_ignored_noise(errors: list[str]) -> None:
     completed = subprocess.run(
         ["git", "status", "--short"],
@@ -224,6 +251,7 @@ def main() -> int:
     check_page_files(errors)
     check_markdown_links(errors)
     check_plan_state(errors)
+    check_subagent_specs(errors)
     check_git_ignored_noise(errors)
     if errors:
         for error in errors:

@@ -37,6 +37,7 @@ Before starting a milestone:
 - Run `git status --short` and stop if the worktree is dirty.
 - Run `python3 scripts/validate_kb.py` and repair structural failures before content work.
 - Check `processed-docs/00-control/Plan.md` for the current milestone and next milestone.
+- If subagents are used, every milestone worker and review worker must use clean-context `GPT-5.5` `xhigh`. Do not use `fork_context`.
 
 Working style:
 - Simplicity first.
@@ -46,4 +47,3 @@ Working style:
 - Use simple English in control docs so non-native speakers can understand easily.
 - Use Finnish for processed math content.
 - Avoid multiple `return` statements inside one function.
-

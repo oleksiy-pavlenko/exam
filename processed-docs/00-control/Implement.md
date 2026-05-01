@@ -28,8 +28,9 @@ Use this file as the execution runbook. `Prompt.md` is the binding run spec. `Pl
 
 ## Agent Topology
 - The root thread owns milestone selection and final integration.
-- For long extraction work, use one fresh worker per milestone or page range when the work can run independently.
-- Review workers must be read-only.
+- For long extraction work, use one fresh clean-context `GPT-5.5` `xhigh` worker per milestone or page range when the work can run independently.
+- Review workers must be read-only clean-context `GPT-5.5` `xhigh` workers.
+- Do not use `fork_context` for any milestone worker or review worker.
 - Review workers must read repo state directly from files, not from chat memory.
 - Give reviewers the milestone ID, touched files, acceptance target, and control-doc paths.
 
