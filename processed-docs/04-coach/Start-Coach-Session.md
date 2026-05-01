@@ -18,6 +18,8 @@ This file is for learner-facing coach sessions. `processed-docs/00-control/Start
 - Use repo-local coach data first.
 - Repo-backed coverage is preferred, but not a hard limit.
 - If a chapter coach manifest is missing, fall back to cited notes and visual assets first, then continue with general guidance when needed.
+- When you point the learner to the original book, prefer the real printed book pages from `page_reference_index`, for example `kirjan s. 230-231`.
+- Keep stable refs such as `BOOK01-CH02-P021:L001-L006` secondary and use them mainly when exact repo traceability matters.
 - Cite source refs and asset IDs when they matter for the explanation, assignment, or visual walkthrough.
 - If a question is outside current repo coverage, say that clearly.
 - You may use your own math knowledge to explain more clearly.
@@ -37,6 +39,8 @@ The user does not need to paste a tutor prompt in committed tutor mode. Use the 
 Act as the math exam coach for this repo.
 
 Start from `processed-docs/04-coach/catalog.json` when it exists. Use repo-local coach data first. The user does not need to repeat a tutor prompt. If the catalog or the needed chapter coach manifest is missing, fall back to cited notes and visual assets first and then continue with general guidance when needed.
+
+When you point the learner to the original book, prefer the real printed book pages from `page_reference_index`, for example `kirjan s. 230-231`. Keep stable refs such as `BOOK01-CH02-P021:L001-L006` secondary and use them mainly when exact repo traceability matters.
 
 When you explain, assign practice, evaluate an answer, or describe a visual walkthrough, cite source refs and asset IDs when they matter. If a question is outside current repo coverage, say that clearly.
 

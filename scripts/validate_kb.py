@@ -165,6 +165,10 @@ SOURCE_LINE_REF_DETAIL_RE = re.compile(r"(BOOK\d+-CH\d+-P\d{3}):L(\d{3})(?:-L(\d
 ASSET_ID_RE = re.compile(r"BOOK\d+-CH\d+-P\d{3}-(?:PAGE|F\d{3})")
 ASSET_LINE_REF_RE = re.compile(r"^L\d{3}(?:-L\d{3})?$")
 SOURCE_REF_FULL_RE = re.compile(r"(BOOK\d+-CH\d+-P\d{3}):L(\d{3})(?:-L(\d{3}))?$")
+BOOK_PAGES_RE = re.compile(r"^- Book pages: `([^`]+)`", re.MULTILINE)
+BOOK_PAGE_BASIS_RE = re.compile(r"^- Book page basis: `([^`]+)`", re.MULTILINE)
+PRINTED_PAGES_VISIBLE_RE = re.compile(r"^- Printed pages visible: .+", re.MULTILINE)
+BOOK_PAGE_VALUE_RE = re.compile(r"^\d+(?:-\d+)?$")
 MODE_RE = re.compile(r"^- Current mode: `([^`]+)`", re.MULTILINE)
 ALLOWED_ASSET_TYPES = {
     "page_normalized",
@@ -184,6 +188,11 @@ COACH_CATALOG_STATUSES = {
     "draft",
     "ready",
     "ready_with_gaps",
+}
+ALLOWED_PAGE_REFERENCE_BASES = {
+    "visible",
+    "mixed",
+    "inferred_from_order",
 }
 ALLOWED_MODES = {
     "tutor",
@@ -255,6 +264,17 @@ def check_page_files(errors: list[str]) -> None:
             add_error(errors, f"{relative}: missing source image path")
         if not LINE_ID_RE.search(text):
             add_error(errors, f"{relative}: missing line IDs")
+        book_pages, page_basis = canonical_page_reference(text)
+        if book_pages is None:
+            add_error(errors, f"{relative}: missing canonical Book pages metadata")
+        elif parse_book_page_value(book_pages) is None:
+            add_error(errors, f"{relative}: invalid Book pages value {book_pages}")
+        if page_basis is None:
+            add_error(errors, f"{relative}: missing Book page basis metadata")
+        elif page_basis not in ALLOWED_PAGE_REFERENCE_BASES:
+            add_error(errors, f"{relative}: invalid Book page basis {page_basis}")
+        if not PRINTED_PAGES_VISIBLE_RE.search(text):
+            add_error(errors, f"{relative}: missing Printed pages visible metadata")
         readability_match = READABILITY_ASSET_RE.search(text)
         if not readability_match:
             add_error(errors, f"{relative}: missing readability asset")
@@ -339,6 +359,52 @@ def section_body(text: str, section: str) -> str:
             end = matches[index + 1].start() if index + 1 < len(matches) else len(text)
             body = text[start:end].strip()
     return body
+
+
+def canonical_page_reference(text: str) -> tuple[str | None, str | None]:
+    book_pages = None
+    basis = None
+    book_pages_match = BOOK_PAGES_RE.search(text)
+    basis_match = BOOK_PAGE_BASIS_RE.search(text)
+    if book_pages_match is not None:
+        book_pages = book_pages_match.group(1)
+    if basis_match is not None:
+        basis = basis_match.group(1)
+    return book_pages, basis
+
+
+def parse_book_page_value(value: str) -> list[int] | None:
+    numbers = None
+    if BOOK_PAGE_VALUE_RE.fullmatch(value):
+        parts = [int(part) for part in value.split("-")]
+        if len(parts) == 1:
+            numbers = [parts[0]]
+        elif parts[0] <= parts[1]:
+            numbers = list(range(parts[0], parts[1] + 1))
+    return numbers
+
+
+def summarize_book_pages(numbers: list[int]) -> list[str]:
+    ranges: list[str] = []
+    ordered = sorted(set(numbers))
+    if ordered:
+        start = ordered[0]
+        end = ordered[0]
+        for number in ordered[1:]:
+            if number == end + 1:
+                end = number
+            else:
+                if start == end:
+                    ranges.append(str(start))
+                else:
+                    ranges.append(f"{start}-{end}")
+                start = number
+                end = number
+        if start == end:
+            ranges.append(str(start))
+        else:
+            ranges.append(f"{start}-{end}")
+    return ranges
 
 
 def line_span(line_ref: str) -> tuple[int, int] | None:
@@ -677,6 +743,7 @@ def load_coach_catalog(errors: list[str]) -> dict[str, dict[str, object]]:
                     "coach_manifest_path",
                     "asset_manifest_path",
                     "source_page_ids",
+                    "printed_page_ranges",
                     "concept_ids",
                     "known_gaps_fi",
                 }
@@ -693,6 +760,7 @@ def load_coach_catalog(errors: list[str]) -> dict[str, dict[str, object]]:
                     coach_manifest_path = entry["coach_manifest_path"]
                     asset_manifest_path = entry["asset_manifest_path"]
                     source_page_ids = entry["source_page_ids"]
+                    printed_page_ranges = entry["printed_page_ranges"]
                     concept_ids = entry["concept_ids"]
                     known_gaps_fi = entry["known_gaps_fi"]
                     if not isinstance(chapter_id, str) or not chapter_id:
@@ -720,6 +788,14 @@ def load_coach_catalog(errors: list[str]) -> dict[str, dict[str, object]]:
                         for page_id in source_page_ids:
                             if isinstance(page_id, str) and not page_path_for_id(page_id).exists():
                                 add_error(errors, f"{relative}: {chapter_id} references missing source page {page_id}")
+                    check_string_list(errors, relative, f"{chapter_id} printed_page_ranges", printed_page_ranges, allow_empty=False)
+                    if isinstance(printed_page_ranges, list):
+                        for printed_page_range in printed_page_ranges:
+                            if isinstance(printed_page_range, str) and parse_book_page_value(printed_page_range) is None:
+                                add_error(
+                                    errors,
+                                    f"{relative}: {chapter_id} has invalid printed_page_ranges value {printed_page_range}",
+                                )
                     check_string_list(errors, relative, f"{chapter_id} concept_ids", concept_ids, allow_empty=False)
                     check_string_list(errors, relative, f"{chapter_id} known_gaps_fi", known_gaps_fi, allow_empty=True)
                     entries_by_chapter.setdefault(chapter_id, entry)
@@ -739,8 +815,14 @@ def load_coach_manifests(
         "chapter_id",
         "language",
         "coverage_notes_fi",
+        "page_reference_index",
         "concepts",
         "assignment_templates",
+    }
+    required_page_reference_fields = {
+        "page_id",
+        "book_pages",
+        "basis",
     }
     required_concept_fields = {
         "concept_id",
@@ -777,6 +859,7 @@ def load_coach_manifests(
             add_error(errors, f"{relative}: missing top-level fields {missing}")
             continue
         chapter_id = manifest["chapter_id"]
+        page_reference_index = manifest["page_reference_index"]
         concepts = manifest["concepts"]
         assignment_templates = manifest["assignment_templates"]
         if manifest.get("manifest_version") != 1:
@@ -790,6 +873,53 @@ def load_coach_manifests(
             add_error(errors, f"{relative}: duplicate coach manifest for {chapter_id}")
             continue
         check_string_list(errors, relative, "coverage_notes_fi", manifest["coverage_notes_fi"], allow_empty=False)
+        page_reference_ids: list[str] = []
+        page_reference_numbers: list[int] = []
+        seen_page_reference_ids: set[str] = set()
+        if not isinstance(page_reference_index, list) or not page_reference_index:
+            add_error(errors, f"{relative}: page_reference_index must be a non-empty list")
+        else:
+            for page_reference in page_reference_index:
+                if not isinstance(page_reference, dict):
+                    add_error(errors, f"{relative}: page_reference_index entry must be an object")
+                    continue
+                missing_page_reference_fields = sorted(required_page_reference_fields - set(page_reference))
+                if missing_page_reference_fields:
+                    add_error(
+                        errors,
+                        f"{relative}: page_reference_index entry missing fields {missing_page_reference_fields}",
+                    )
+                    continue
+                page_id = page_reference["page_id"]
+                book_pages = page_reference["book_pages"]
+                basis = page_reference["basis"]
+                if not isinstance(page_id, str) or not page_id:
+                    add_error(errors, f"{relative}: page_reference_index has invalid page_id")
+                    continue
+                if page_id in seen_page_reference_ids:
+                    add_error(errors, f"{relative}: duplicate page_reference_index page_id {page_id}")
+                seen_page_reference_ids.add(page_id)
+                page_reference_ids.append(page_id)
+                if not isinstance(book_pages, str) or not book_pages.strip():
+                    add_error(errors, f"{relative}: {page_id} book_pages must be a non-empty string")
+                else:
+                    numbers = parse_book_page_value(book_pages)
+                    if numbers is None:
+                        add_error(errors, f"{relative}: {page_id} has invalid book_pages value {book_pages}")
+                    else:
+                        page_reference_numbers.extend(numbers)
+                if not isinstance(basis, str) or basis not in ALLOWED_PAGE_REFERENCE_BASES:
+                    add_error(errors, f"{relative}: {page_id} has invalid basis {basis}")
+                page_path = page_path_for_id(page_id)
+                if not page_path.exists():
+                    add_error(errors, f"{relative}: {page_id} references missing source page")
+                else:
+                    page_text = read_text(page_path)
+                    page_book_pages, page_basis = canonical_page_reference(page_text)
+                    if page_book_pages != book_pages:
+                        add_error(errors, f"{relative}: {page_id} book_pages do not match page transcript")
+                    if page_basis != basis:
+                        add_error(errors, f"{relative}: {page_id} basis does not match page transcript")
         if not isinstance(concepts, list) or not concepts:
             add_error(errors, f"{relative}: concepts must be a non-empty list")
             continue
@@ -891,6 +1021,8 @@ def load_coach_manifests(
             "path": relative,
             "concept_ids": concept_ids,
             "source_pages": source_pages,
+            "page_reference_ids": page_reference_ids,
+            "printed_page_ranges": summarize_book_pages(page_reference_numbers),
         }
     for chapter_id, entry in catalog_entries.items():
         summary = manifest_summaries.get(chapter_id)
@@ -907,9 +1039,18 @@ def load_coach_manifests(
                 add_error(errors, f"processed-docs/04-coach/catalog.json: {chapter_id} concept_ids do not match coach manifest")
         source_page_ids = entry.get("source_page_ids")
         if isinstance(source_page_ids, list):
+            if source_page_ids != summary["page_reference_ids"]:
+                add_error(errors, f"processed-docs/04-coach/catalog.json: {chapter_id} source_page_ids do not match page_reference_index")
             catalog_pages = set(source_page_ids)
             if not summary["source_pages"].issubset(catalog_pages):
                 add_error(errors, f"processed-docs/04-coach/catalog.json: {chapter_id} source_page_ids do not cover all coach refs")
+        printed_page_ranges = entry.get("printed_page_ranges")
+        if isinstance(printed_page_ranges, list):
+            if printed_page_ranges != summary["printed_page_ranges"]:
+                add_error(
+                    errors,
+                    f"processed-docs/04-coach/catalog.json: {chapter_id} printed_page_ranges do not match page_reference_index",
+                )
     for chapter_id in manifest_summaries:
         if chapter_id not in catalog_entries:
             add_error(errors, f"processed-docs/04-coach/{chapter_id}: coach manifest missing catalog entry")

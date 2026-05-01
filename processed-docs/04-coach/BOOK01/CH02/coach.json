@@ -6,7 +6,160 @@
   "coverage_notes_fi": [
     "Tämä coach-manifesti kattaa CH02-batchin näkyvät monikulmio-, ympyrä- ja Pythagoras-aiheet yhdestä provisiorisesta lähde-erästä.",
     "CH02 sisältää monta näkyvää oppituntiyksikköä. Coach käyttää yhtä provisiorista chapter_id:tä, mutta käsitteet on eroteltu näkyvien jaksojen mukaan.",
-    "Joidenkin aukeamien sivunumerot tai myöhäisen kolmiojakson uusi otsikko ovat merkitty sivutranskripteissä EPÄSELVÄ, eikä coach saa keksiä puuttuvia painettuja tietoja."
+    "Osa aukeamien painetuista sivunumeroista päätellään vahvistetusta skannausjärjestyksestä ja kattavuusalueista 184-202, 208-220 ja 224-248. Coach käyttää näitä sivunumeroita, mutta ei keksi muuta puuttuvaa kirjatietoa.",
+    "Myöhäisen kolmiojakson uusi otsikko on osin EPÄSELVÄ, joten coach käyttää näkyvää tehtäväaihetta eikä keksi puuttuvaa otsikkoa."
+  ],
+  "page_reference_index": [
+    {
+      "page_id": "BOOK01-CH02-P001",
+      "book_pages": "184-185",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P002",
+      "book_pages": "186-187",
+      "basis": "inferred_from_order"
+    },
+    {
+      "page_id": "BOOK01-CH02-P003",
+      "book_pages": "188-189",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P004",
+      "book_pages": "190-191",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P005",
+      "book_pages": "192-193",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P006",
+      "book_pages": "194-195",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P007",
+      "book_pages": "196-197",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P008",
+      "book_pages": "198-199",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P009",
+      "book_pages": "200-201",
+      "basis": "inferred_from_order"
+    },
+    {
+      "page_id": "BOOK01-CH02-P010",
+      "book_pages": "202",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P011",
+      "book_pages": "208-209",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P012",
+      "book_pages": "210-211",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P013",
+      "book_pages": "212-213",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P014",
+      "book_pages": "214-215",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P015",
+      "book_pages": "216-217",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P016",
+      "book_pages": "218-219",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P017",
+      "book_pages": "220",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P018",
+      "book_pages": "224-225",
+      "basis": "mixed"
+    },
+    {
+      "page_id": "BOOK01-CH02-P019",
+      "book_pages": "226-227",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P020",
+      "book_pages": "228-229",
+      "basis": "mixed"
+    },
+    {
+      "page_id": "BOOK01-CH02-P021",
+      "book_pages": "230-231",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P022",
+      "book_pages": "232-233",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P023",
+      "book_pages": "234-235",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P024",
+      "book_pages": "236-237",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P025",
+      "book_pages": "238-239",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P026",
+      "book_pages": "240-241",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P027",
+      "book_pages": "242-243",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P028",
+      "book_pages": "244-245",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P029",
+      "book_pages": "246-247",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH02-P030",
+      "book_pages": "248",
+      "basis": "visible"
+    }
   ],
   "concepts": [
     {

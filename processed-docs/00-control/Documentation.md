@@ -11,12 +11,12 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Validation command: `python3 scripts/validate_kb.py`
 - Worktree check: `git status --short`
 - Current mode source of truth: `processed-docs/00-control/Mode.md`
-- Current committed mode: `tutor`
+- Current committed mode: `extraction`
 - Current provisional book ID: `BOOK01`
 - Current provisional chapter ID: `CH02`
 - Current CH01 visual asset manifest: `processed-docs/assets/pages/BOOK01/CH01/assets.json`
 - Current CH02 raw scan path: `unprocessed-docs/books/BOOK01/chapter-02/scans/`
-- Current coach data status: startup prompt, coach catalog, CH01 coach manifest, and CH02 coach manifest are built
+- Current coach data status: startup prompt, coach catalog with printed page ranges, and CH01/CH02 coach manifests with `page_reference_index` are built
 
 ## Control-doc roles
 - `Prompt.md`: binding run spec after `Plan.md` names a milestone
@@ -36,6 +36,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - `CH01-COACH` created the first coach catalog entry and the first usable chapter coach manifest for fresh Codex sessions.
 - `PREP3` added persisted `tutor` and `extraction` modes with `Mode.md` as the startup source of truth.
 - `PREP4` imported the second 30-image scan batch as provisional `BOOK01/CH02` and opened the `CH02` extraction window.
+- `PREP5` backfilled canonical printed book pages into the page and coach layers so tutor references can cite real textbook pages.
 - The next long run no longer requires a separate review subagent for every processed-content milestone. Self-review stays mandatory; independent review workers are optional.
 - Future chapter windows still require visual asset and coach data milestones.
 
@@ -190,6 +191,21 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - The extraction window in `Plan.md` stays closed.
 - Fresh sessions should now continue with `processed-docs/04-coach/Start-Coach-Session.md`.
 
+### 2026-05-01 - Mode switch: extraction
+- Switched `processed-docs/00-control/Mode.md` back to `extraction` before repo maintenance work resumed.
+- The closed CH02 extraction window stayed closed in `Plan.md`.
+- Fresh extraction sessions should continue from `processed-docs/00-control/Start-Long-Run.md`.
+
+### 2026-05-01 - PREP5 completed: backfill printed book pages for tutor references
+- Added canonical `Book pages` and `Book page basis` metadata to all current `BOOK01` page transcripts while keeping `Printed pages visible` as the raw observation note.
+- Corrected the first CH01 scan pair from the old wrong `170-173` transcript metadata to the confirmed printed range `176-179`.
+- Recorded the confirmed printed coverage ranges `176-202`, `208-220`, and `224-248` in `source-inventory.md`.
+- Extended the coach catalog with chapter-level `printed_page_ranges`.
+- Extended both current coach manifests with a full `page_reference_index` that maps every `source_page_id` to learner-facing printed book pages and basis values.
+- Updated the tutor startup contract so learner-facing book references prefer printed pages such as `kirjan s. 230-231` and keep internal `BOOK...` refs secondary.
+- Extended `scripts/validate_kb.py` so the page layer, coach layer, and catalog must agree on printed page metadata.
+- Ran `python3 scripts/validate_kb.py`; it passed.
+
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
 - Control docs may use simple English for clear long-run coordination.
@@ -212,6 +228,8 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Fresh learner-facing sessions should start from `processed-docs/04-coach/Start-Coach-Session.md` and then read `processed-docs/04-coach/catalog.json`.
 - Every reviewed visual asset must cite source page IDs and line IDs.
 - Derived concept and exercise notes must name relevant visual asset IDs when their source line citations overlap manifest-covered visual assets.
+- Canonical `Book pages` metadata is the tutor-facing source for original textbook page references.
+- When one page number in an aukeama is unclear, scan order and the confirmed coverage ranges are authoritative for inferring the missing mate page.
 - Keep `BOOK01-CH02` as the provisional source-batch ID for provenance, but split later durable notes and coach material by visible section boundaries instead of treating the whole 30-image batch as one teaching unit.
 - The first CH02 asset pass uses one page-level visual cluster crop per page. Later notes or coach work may tighten individual crops when a page needs a more focused visual target.
 - The durable CH02 study layer should follow visible lesson units, not the provisional `CH02` source-batch boundary.
@@ -225,9 +243,9 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Decide whether later large chapters should use one milestone per chapter or one milestone per page range.
 - Add missing source coverage for exercises 18-25 if later scans include those pages.
 - Add later extracted chapters to `processed-docs/04-coach/catalog.json` as they reach `CHxx-COACH`.
-- During `CH02-ASSETS` and `CH02-NOTES`, keep the current `CH02` provenance IDs but prepare the later note and coach structure to split by visible section boundaries.
+- Replace inferred printed page numbers with directly visible confirmation later if clearer scans or metadata pages are added.
+- If later scans fill the current gaps between `202-208` or `220-224`, extend the printed coverage ranges and page-reference indexes without renaming source IDs.
 - Tighten individual CH02 crop boundaries later if a concept note or coach prompt needs a smaller figure than the current page-level cluster crop.
-- In `CH02-COACH`, reuse the current CH02 page and asset provenance, but organize the coach layer so later fresh sessions can navigate the visible lesson-unit boundaries cleanly.
 
 ## Fresh-session handoff
 - Read `processed-docs/00-control/Mode.md` first.
@@ -239,10 +257,12 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Next milestone is `Closed`.
 - The committed mode is `extraction`.
 - The `PREP4` source-prep work is complete.
+- The `PREP5` printed-page backfill is complete.
 - The active `CH02` window uses the four-step pattern: pages, assets, notes, coach data.
 - The active `CH02` window is closed. Use `Plan.md` as the milestone proof and this file as the handoff.
 - `CH02-PAGES`, `CH02-ASSETS`, `CH02-NOTES`, and `CH02-COACH` are complete. The current durable CH02 layer now includes page transcripts, asset manifest, note files, coach catalog entry, and coach manifest.
 - `CH02` page line IDs and first-pass visual asset IDs now exist across the note and coach layers.
+- Use canonical `Book pages` metadata from page transcripts and `page_reference_index` for learner-facing references to the original book.
 - Cite page line IDs from `processed-docs/01-pages/BOOK01/CH01/` if later work extends the notes.
 - Cite visual asset IDs from `processed-docs/assets/pages/BOOK01/CH01/assets.json` when later work needs images.
 - Use `processed-docs/04-coach/catalog.json` to find ready coach chapters and known coverage gaps.

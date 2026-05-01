@@ -13,6 +13,9 @@
         "BOOK01-CH01-P003",
         "BOOK01-CH01-P004"
       ],
+      "printed_page_ranges": [
+        "176-183"
+      ],
       "concept_ids": [
         "yksikkomuunnokset",
         "piiri-pinta-ala",
@@ -60,6 +63,11 @@
         "BOOK01-CH02-P029",
         "BOOK01-CH02-P030"
       ],
+      "printed_page_ranges": [
+        "184-202",
+        "208-220",
+        "224-248"
+      ],
       "concept_ids": [
         "monikulmioiden-pinta-alat",
         "ympyran-keha-ja-kulmat",
@@ -68,7 +76,7 @@
         "kolmion-piiri-pinta-ala-ja-korkeus"
       ],
       "known_gaps_fi": [
-        "Sivuilla BOOK01-CH02-P002, P009, P010, P017, P018 ja P020 näkyy sivunumeroihin liittyvää EPÄSELVÄ-epävarmuutta, eikä coach saa keksiä puuttuvia painettuja numeroita.",
+        "Sivuilla BOOK01-CH02-P002, P009, P010, P017, P018 ja P020 osa painetuista sivunumeroista jää epäselväksi, joten coach käyttää vahvistettua skannausjärjestystä ja kattavuusalueita 184-202, 208-220 ja 224-248.",
         "Sivulla BOOK01-CH02-P029 uusi myöhäinen lukuotsikko ei näy kokonaan, joten coach käyttää näkyvää tehtäväaihetta eikä keksi otsikkoa.",
         "Nykyiset CH02 crop-assetit ovat ensimmäisen passin sivutason visuaalisia klustereita. Tarvittaessa myöhempi työ voi tehdä tarkempia rajauksia."
       ]

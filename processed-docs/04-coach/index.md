@@ -10,6 +10,7 @@ Start here:
 
 Rules:
 - Coach manifests should be structured JSON, not free-form lesson prose.
+- Chapter coach manifests must include a `page_reference_index` that maps each `source_page_id` to learner-facing printed book pages.
 - Coach data should connect concepts, assignment templates, answer expectations, LLM evaluation guides, hint steps, and visual explanation asset IDs back to repo-local source lines and visual assets.
 - The chapter catalog path is `processed-docs/04-coach/catalog.json` when coach coverage exists.
 

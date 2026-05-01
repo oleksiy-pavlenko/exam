@@ -4,9 +4,32 @@
   "chapter_id": "BOOK01-CH01",
   "language": "fi",
   "coverage_notes_fi": [
-    "Tämä coach-manifesti kattaa sivujen BOOK01-CH01-P001-P004 näkyvät käsitteet, ratkaistut esimerkit ja harjoitusmallit.",
+    "Tämä coach-manifesti kattaa kirjan sivut 176-183 ja niitä vastaavat source page -tunnukset BOOK01-CH01-P001-P004.",
+    "Sivujen 176-179 painetut numerot päätellään vahvistetusta skannausjärjestyksestä, koska vanha transcriptimerkintä oli virheellinen.",
     "Tehtävät 18-25 eivät kuulu nykyiseen lähdekatteeseen, koska niitä vastaavat sivut eivät ole repo:ssa kokonaan.",
     "Osittainen reunasisältö ei ole lähdekatetta eikä sitä käytetä coach-vastauksissa."
+  ],
+  "page_reference_index": [
+    {
+      "page_id": "BOOK01-CH01-P001",
+      "book_pages": "176-177",
+      "basis": "inferred_from_order"
+    },
+    {
+      "page_id": "BOOK01-CH01-P002",
+      "book_pages": "178-179",
+      "basis": "inferred_from_order"
+    },
+    {
+      "page_id": "BOOK01-CH01-P003",
+      "book_pages": "180-181",
+      "basis": "visible"
+    },
+    {
+      "page_id": "BOOK01-CH01-P004",
+      "book_pages": "182-183",
+      "basis": "visible"
+    }
   ],
   "concepts": [
     {

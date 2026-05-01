@@ -10,8 +10,13 @@
 
 | Chapter ID | Status | Path | Notes |
 | --- | --- | --- | --- |
-| `BOOK01-CH01` | Provisional | `unprocessed-docs/books/BOOK01/chapter-01/` | First uploaded scan batch. Chapter title is not confirmed yet. |
-| `BOOK01-CH02` | Provisional | `unprocessed-docs/books/BOOK01/chapter-02/` | Second uploaded scan batch. Visible pages continue the same book after `BOOK01/CH01`; exact section boundaries must be confirmed during page transcription. |
+| `BOOK01-CH01` | Provisional | `unprocessed-docs/books/BOOK01/chapter-01/` | First uploaded scan batch. Chapter title is not confirmed yet. Confirmed printed coverage in this batch is `176-183`. |
+| `BOOK01-CH02` | Provisional | `unprocessed-docs/books/BOOK01/chapter-02/` | Second uploaded scan batch. Visible pages continue the same book after `BOOK01/CH01`. Confirmed printed coverage in this batch is `184-202`, `208-220`, and `224-248`; lesson-unit boundaries still stay provisional. |
+
+## Printed book coverage
+
+- Current tracked scans cover printed book pages `176-202`, `208-220`, and `224-248`.
+- When one page number in an aukeama is unclear, scan order is authoritative for inferring the matching printed page inside these confirmed coverage ranges.
 
 ## BOOK01 CH01 scan inventory
 
@@ -59,6 +64,7 @@
 
 ## Source rules
 - These page IDs are scan-order IDs, not confirmed printed page numbers.
-- Add printed page numbers to page transcript files when they are visible.
+- Page transcript files must record canonical `Book pages` and `Book page basis` metadata.
+- When one page number in an aukeama is unclear, infer the matching printed page from the confirmed scan-order coverage ranges.
 - Do not rename existing source IDs after derived notes cite them. Add metadata corrections instead.
 - Tracked scan copies have phone metadata stripped before commit.

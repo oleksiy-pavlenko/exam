@@ -8,8 +8,8 @@ This file is the only milestone-status source of truth for the current long run.
 - Active window: `CH02` second scan batch
 - Current milestone: `Closed`
 - Next milestone: `Closed`
-- Hot-path milestone specs: `PREP1`, `PREP2`, `PREP3`, `PREP4`, `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, `CHxx-COACH`
-- Completed preparation milestones: `PREP1`, `PREP2`, `PREP3`, `PREP4`
+- Hot-path milestone specs: `PREP1`, `PREP2`, `PREP3`, `PREP4`, `PREP5`, `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, `CHxx-COACH`
+- Completed preparation milestones: `PREP1`, `PREP2`, `PREP3`, `PREP4`, `PREP5`
 - Completed content milestones: `CH01-PAGES`, `CH01-NOTES`, `CH01-COACH`, `CH02-PAGES`, `CH02-ASSETS`, `CH02-NOTES`, `CH02-COACH`
 - Remaining milestones in the active window: `Closed`
 
@@ -47,6 +47,7 @@ This file is the only milestone-status source of truth for the current long run.
 - Ordinary mode switches update `processed-docs/00-control/Mode.md` and use dedicated mode commits. They do not reopen chapter milestones by themselves.
 - Record newly discovered work in `Documentation.md`. Do not silently widen the current milestone.
 - The current `CH02` window was opened from a 30-image imported scan batch. Page transcription must confirm exact printed page numbers and section boundaries before derived notes are written.
+- Tutor-facing book references must prefer canonical printed `Book pages` metadata. Stable `BOOK...` page IDs stay as internal provenance or secondary trace links.
 
 ## Future milestone pattern
 - `CHxx-PAGES`: import scans, create page transcripts, stable line IDs, and one normalized page image per source page.
@@ -154,6 +155,30 @@ This file is the only milestone-status source of truth for the current long run.
   - Commit message pattern: `docs(chunk): PREP4 import-second-scan-batch`
 - Handoff:
   - `PREP4` is complete. Start content extraction at `CH02-PAGES`.
+
+### PREP5 - Backfill printed book pages for tutor references
+- Status: `Completed (2026-05-01)`
+- Goal:
+  - Make real printed book pages first-class metadata and route learner-facing tutor references through them.
+- Scope:
+  - Add canonical `Book pages` and `Book page basis` metadata to the current CH01 and CH02 page transcripts.
+  - Persist the confirmed printed coverage ranges `176-202`, `208-220`, and `224-248` in the durable control layer.
+  - Extend the coach catalog and coach manifests with printed-page lookup data.
+  - Update tutor startup guidance and validator coverage so printed-page references do not drift.
+- Acceptance:
+  - Every current `BOOK01` page transcript has canonical printed page metadata plus the raw visibility note.
+  - `processed-docs/04-coach/catalog.json` has `printed_page_ranges` for ready chapters.
+  - Each current coach manifest has a complete `page_reference_index` that matches the page transcript layer.
+  - Tutor startup guidance prefers learner-facing references such as `kirjan s. 230-231`.
+  - `python3 scripts/validate_kb.py` passes.
+- Validation:
+  - `git status --short`
+  - `python3 scripts/validate_kb.py`
+  - `rg -n "Book pages|Book page basis" processed-docs/01-pages/BOOK01/CH01 processed-docs/01-pages/BOOK01/CH02`
+- Commit:
+  - Commit message pattern: `docs(chunk): PREP5 backfill-printed-book-pages`
+- Handoff:
+  - `PREP5` is complete. Learner-facing tutor references should now prefer printed book pages over internal page IDs.
 
 ### CH01-PAGES - Transcribe first chapter scan batch
 - Status: `Completed (2026-05-01)`
