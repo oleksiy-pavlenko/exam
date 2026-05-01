@@ -20,6 +20,7 @@ Notes:
 - If `Plan.md` shows `Closed` for both `Current milestone` and `Next milestone`, do not restart this window.
 - Future chapter windows use `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.
 - If preflight fails, repair the control stack before milestone work.
+- `processed-docs/04-coach/Start-Coach-Session.md` is for learner-facing sessions. Do not use it as the extraction entrypoint.
 
 ## First Codex prompt
 
@@ -35,7 +36,7 @@ Act as the root orchestrator only. If `Plan.md` shows `Closed` for both `Current
 For each milestone, use one fresh clean-context `GPT-5.5` `xhigh` worker, require that worker to reread the mandatory docs, implement only the current milestone, run the exact milestone validation, run self-review, run one clean-context read-only `GPT-5.5` `xhigh` review worker before commit when processed content changed, do not use `fork_context`, fix blocking findings, update `Plan.md` and `Documentation.md`, commit exactly once, and continue until the active window is `Closed`.
 
 Follow `Prompt.md` for source boundaries and `Implement.md` for stop rules.
-For future chapter windows, do not skip the asset or coach milestones: the later app needs structured visual manifests and coach data, not Markdown-only notes.
+For future chapter windows, do not skip the asset or coach milestones: fresh Codex coach sessions need structured visual manifests and coach data, not Markdown-only notes.
 ```
 
 ## Required inputs

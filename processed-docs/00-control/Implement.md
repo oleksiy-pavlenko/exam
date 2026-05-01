@@ -4,7 +4,7 @@ Use this file as the execution runbook. `Prompt.md` is the binding run spec. `Pl
 
 ## Objective
 - Process scanned math book chapters into a reliable Finnish exam knowledgebase.
-- Produce app-ready visual assets and coach data for a later interactive exam coach.
+- Produce visual assets and structured coach data for fresh Codex coach sessions.
 - Keep the run resumable across Codex sessions.
 - Continue until the active window is closed or a real stop rule fires.
 
@@ -91,7 +91,7 @@ Use this file as the execution runbook. `Prompt.md` is the binding run spec. `Pl
 - Run `git status --short` before starting and after commit.
 - For page milestones, run the page-specific `rg` command from `Plan.md`.
 - For asset milestones, confirm every page transcript has a normalized image and every listed figure has manifest-covered asset coverage or a clear no-crop reason.
-- For coach milestones, confirm coach data references source line IDs and visual asset IDs where relevant.
+- For coach milestones, confirm the coach startup prompt, chapter catalog, and coach manifests reference source line IDs and visual asset IDs where relevant.
 - Before closing a notes milestone, run `rg -n "EPÄSELVÄ|TODO|BLOCKED" processed-docs/01-pages processed-docs/02-concepts processed-docs/03-exercises` and decide whether each hit is acceptable or blocking.
 - Before closing the last milestone in the active window, confirm that `Plan.md` sets both `Current milestone` and `Next milestone` to `Closed`.
 

@@ -5,15 +5,15 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 ## Current state snapshot
 - Last updated: 2026-05-01
 - Progress source of truth: `processed-docs/00-control/Plan.md`
-- Active window: `CH01-PAGES` through `CH01-NOTES` (closed)
-- Current milestone from Plan.md: `Closed`
+- Active window: `CH01-COACH` backfill (open)
+- Current milestone from Plan.md: `CH01-COACH`
 - Next milestone from Plan.md: `Closed`
 - Validation command: `python3 scripts/validate_kb.py`
 - Worktree check: `git status --short`
 - Current provisional book ID: `BOOK01`
 - Current provisional chapter ID: `CH01`
 - Current CH01 visual asset manifest: `processed-docs/assets/pages/BOOK01/CH01/assets.json`
-- Current coach data status: not built yet
+- Current coach data status: startup prompt ready, chapter coach manifest not built yet
 
 ## Control-doc roles
 - `Prompt.md`: binding run spec after `Plan.md` names a milestone
@@ -28,7 +28,8 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - The first scan batch was imported as provisional `BOOK01/CH01`.
 - `CH01-PAGES` created reviewed page transcripts for the first four `BOOK01/CH01` scans.
 - `CH01-NOTES` created Finnish concept and exercise notes for the current transcript layer and closed the active window.
-- The process now requires app-ready visual asset and coach data milestones for future chapter windows.
+- `PREP2` pivoted the repo from future-app wording to Codex-only coach sessions and opened a `CH01-COACH` backfill.
+- Future chapter windows still require visual asset and coach data milestones.
 
 ## Audit log
 
@@ -76,8 +77,8 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Ran self-review against `Review.md`; no `P0` or `P1` self-review findings remained.
 - Active window was closed in `Plan.md`.
 
-### 2026-05-01 - Process correction: make extraction app-ready
-- Added reviewed CH01 visual crop assets and an app-facing `assets.json` manifest.
+### 2026-05-01 - Process correction: make extraction coach-ready
+- Added reviewed CH01 visual crop assets and a coach-facing `assets.json` manifest.
 - Added `CHxx-ASSETS` and `CHxx-COACH` as required future milestone types.
 - Updated the control docs so future chapters produce normalized page images, figure crops, visual exercise assets, and coach data instead of Markdown-only notes.
 - Added validator coverage for chapter asset manifests, normalized image links, figure asset coverage, and derived-note source citations.
@@ -86,6 +87,13 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Added `## Visuaaliset aineistot` sections to current CH01 concept and exercise notes.
 - Linked current derived notes to the CH01 visual asset IDs that match their cited source lines.
 - Tightened `scripts/validate_kb.py` so a derived note fails validation when it cites source lines with manifest-covered visual assets but does not name the relevant asset IDs.
+
+### 2026-05-01 - PREP2 completed: align the repo for Codex-only coach sessions
+- Replaced future-app framing in the repo with Codex-only coach wording.
+- Added `processed-docs/04-coach/Start-Coach-Session.md` for fresh learner-facing sessions.
+- Expanded the coach data template so future `CHxx-COACH` milestones have a stable runtime contract.
+- Kept `processed-docs/00-control/Start-Long-Run.md` as the extraction entrypoint.
+- Opened a one-milestone `CH01-COACH` backfill window for the current first chapter.
 
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
@@ -97,9 +105,11 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Edge-only neighboring page content in a scan is not complete source coverage. Use only the fully transcribed page lines as evidence for derived notes.
 - Exercises 18-25 are not treated as covered by the current transcript layer.
 - Future chapter windows use `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.
-- The app-facing layer is structured manifests. Do not make a future app scrape free-form Markdown as its main data source.
+- The coach runtime is fresh Codex sessions, not a separate standalone app.
+- The coach-facing layer is structured manifests. Do not make future coach sessions scrape free-form Markdown as their main data source.
 - Every reviewed visual asset must cite source page IDs and line IDs.
 - Derived concept and exercise notes must name relevant visual asset IDs when their source line citations overlap manifest-covered visual assets.
+- Fresh learner-facing sessions should start from `processed-docs/04-coach/Start-Coach-Session.md`.
 
 ## Blockers
 - No current blocker.
@@ -108,15 +118,15 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Add book title, publisher, ISBN, edition, and exact chapter name after metadata pages are uploaded.
 - Decide whether later large chapters should use one milestone per chapter or one milestone per page range.
 - Add missing source coverage for exercises 18-25 if later scans include those pages.
-- Build a `BOOK01/CH01` coach manifest in a future `CH01-COACH` backfill if the first chapter is used by the app before more pages are imported.
+- Build the `BOOK01/CH01` coach catalog entry and coach manifest in `CH01-COACH`.
 
 ## Fresh-session handoff
 - Start from `processed-docs/00-control/Plan.md`.
-- Current milestone is `Closed`.
+- Current milestone is `CH01-COACH`.
 - Next milestone is `Closed`.
-- The active window `CH01-PAGES` through `CH01-NOTES` is closed.
-- Future work should open a new prep or chapter milestone instead of restarting this window.
+- The active window is the one-milestone `CH01-COACH` backfill.
 - Future chapter windows should use the four-step pattern: pages, assets, notes, coach data.
 - Cite page line IDs from `processed-docs/01-pages/BOOK01/CH01/` if later work extends the notes.
 - Cite visual asset IDs from `processed-docs/assets/pages/BOOK01/CH01/assets.json` when later work needs images.
+- Use `processed-docs/04-coach/Start-Coach-Session.md` for later learner-facing sessions after the chapter coach manifest exists.
 - Do not treat edge-only neighboring page content as complete source coverage.

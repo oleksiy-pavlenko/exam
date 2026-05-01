@@ -24,8 +24,9 @@ Repository rules:
 - Derived exam notes live under `processed-docs/02-concepts/`.
 - Exercise and solved-pattern notes live under `processed-docs/03-exercises/`.
 - Page images, crops, and reviewed visual assets live under `processed-docs/assets/pages/`.
-- App-facing coach data lives under `processed-docs/04-coach/`.
-- Every processed chapter must have an app-facing visual asset manifest at `processed-docs/assets/pages/BOOKxx/CHxx/assets.json`.
+- Codex coach data lives under `processed-docs/04-coach/`.
+- Every processed chapter must have a reviewed visual asset manifest at `processed-docs/assets/pages/BOOKxx/CHxx/assets.json`.
+- Fresh tutoring sessions should start from `processed-docs/04-coach/Start-Coach-Session.md` when coach data exists for the chapter.
 - Processed notes and transcripts must be in Finnish.
 - Use stable source IDs and line IDs. Derived notes must cite source page IDs and line IDs.
 - Visual assets must cite source page IDs and line IDs.

@@ -4,7 +4,7 @@ Use this file as the review contract for every milestone.
 
 ## Purpose
 - Keep long-running chapter extraction reliable.
-- Catch bad citations, broken links, formula mistakes, unclear OCR, missing asset coverage, and milestone drift before commit.
+- Catch bad citations, broken links, formula mistakes, unclear OCR, missing asset coverage, weak coach contracts, and milestone drift before commit.
 - Make the last active-window milestone close the window cleanly.
 
 ## Review order
@@ -28,7 +28,7 @@ Use this file as the review contract for every milestone.
 - Finnish wording is simple and clear.
 - Formulas, exponents, decimal commas, units, and exercise numbers match the scan.
 - Diagrams and visual exercises have manifest-covered crops or a clear no-crop reason.
-- Coach data references source lines and visual asset IDs where relevant.
+- Coach startup prompts, chapter catalogs, and coach data reference source lines and visual asset IDs where relevant.
 - Unclear text is marked as `EPÄSELVÄ`.
 - `Plan.md` and `Documentation.md` tell the next session what to do.
 - If this was the last active-window milestone, `Plan.md` closes the window cleanly.
@@ -39,7 +39,7 @@ Use this file as the review contract for every milestone.
 - They must read repo files directly.
 - They must not rely on chat history.
 - They return findings first, ordered by severity.
-- They focus on correctness, citations, broken links, milestone acceptance, and source fidelity.
+- They focus on correctness, citations, broken links, milestone acceptance, source fidelity, and coach-session runtime clarity.
 - For the last active-window milestone, they also check the close-window state in `Plan.md` and `Documentation.md`.
 - They ignore style-only nits unless the wording harms learning or correctness.
 

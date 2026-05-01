@@ -1,6 +1,6 @@
 # Exam Knowledgebase
 
-This folder is the AI-oriented math exam knowledgebase.
+This folder is the AI-oriented math exam knowledgebase for Codex-driven coaching.
 
 Start here:
 - [Documentation](00-control/Documentation.md)
@@ -9,6 +9,8 @@ Start here:
 - [Implement](00-control/Implement.md)
 - [Review](00-control/Review.md)
 - [Source inventory](00-control/source-inventory.md)
+- [Start long run](00-control/Start-Long-Run.md)
+- [Start coach session](04-coach/Start-Coach-Session.md)
 
 Operating contract:
 - `Plan.md` is the only milestone-status source of truth.
@@ -34,3 +36,4 @@ Conventions:
 - Visual asset manifests cite source page IDs and line IDs.
 - Processed math content is written in Finnish.
 - `EPÄSELVÄ` marks text or formulas that need a later visual check.
+- Fresh coach sessions should use structured coach data first and fall back to cited notes only when coach data is missing.

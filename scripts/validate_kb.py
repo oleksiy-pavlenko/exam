@@ -26,6 +26,7 @@ REQUIRED_FILES = [
     "processed-docs/02-concepts/index.md",
     "processed-docs/03-exercises/index.md",
     "processed-docs/04-coach/index.md",
+    "processed-docs/04-coach/Start-Coach-Session.md",
     "processed-docs/assets/pages/BOOK01/CH01/index.md",
     "processed-docs/assets/pages/BOOK01/CH01/assets.json",
 ]
@@ -42,7 +43,7 @@ SECTION_REQUIREMENTS = {
         "Writing rules",
         "Citation rules",
         "Diagram rules",
-        "App-ready data rules",
+        "Coach data rules",
     ],
     "processed-docs/00-control/Plan.md": [
         "Execution State",
@@ -86,6 +87,12 @@ SECTION_REQUIREMENTS = {
         "Backlog",
         "Fresh-session handoff",
     ],
+    "processed-docs/04-coach/Start-Coach-Session.md": [
+        "Purpose",
+        "Coach runtime rules",
+        "First Codex prompt",
+        "Required inputs",
+    ],
 }
 
 SUBAGENT_SPEC_FILES = [
@@ -113,6 +120,11 @@ REQUIRED_CONTRACT_PHRASES = {
     "processed-docs/00-control/Implement.md": [
         "root orchestrator",
         "active-window milestone as `Current`, `Pending`, or `Blocked`",
+    ],
+    "processed-docs/04-coach/Start-Coach-Session.md": [
+        "Start from `processed-docs/04-coach/catalog.json` when it exists.",
+        "Use repo-local coach data first.",
+        "If a question is outside current repo coverage, say that clearly and do not invent book coverage.",
     ],
 }
 
