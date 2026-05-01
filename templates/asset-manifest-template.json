@@ -1,0 +1,21 @@
+{
+  "manifest_version": 1,
+  "book_id": "BOOKXX",
+  "chapter_id": "BOOKXX-CHXX",
+  "language": "fi",
+  "source_policy": "All paths point to repo-local evidence or generated assets. Raw scans stay unchanged.",
+  "assets": [
+    {
+      "asset_id": "BOOKXX-CHXX-P000-F001",
+      "asset_type": "figure_crop",
+      "path": "processed-docs/assets/pages/BOOKXX/CHXX/crops/BOOKXX-CHXX-P000-F001-short-name.jpg",
+      "source_page_id": "BOOKXX-CHXX-P000",
+      "source_line_ids": ["L001-L002"],
+      "description_fi": "Lyhyt kuvaus.",
+      "related_concepts": [],
+      "related_exercises": [],
+      "uses": ["explanation", "assignment", "verification", "visual_animation"]
+    }
+  ]
+}
+

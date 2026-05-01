@@ -15,6 +15,8 @@
 ## Lähteet
 - Lisää sivu- ja riviviitteet.
 
+## Visuaaliset aineistot
+- Lisää asset-ID:t, jos tehtävä perustuu kuvaan, taulukkoon, mittaamiseen tai dynaamiseen selitykseen.
+
 ## Avoimet kysymykset
 - Ei avoimia kysymyksiä.
-

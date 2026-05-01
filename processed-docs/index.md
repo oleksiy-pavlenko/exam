@@ -24,11 +24,13 @@ Current content:
 - [Page transcripts](01-pages/index.md)
 - [Concept notes](02-concepts/index.md)
 - [Exercise notes](03-exercises/index.md)
+- [Coach data](04-coach/index.md)
+- [Current visual assets](assets/pages/BOOK01/CH01/index.md)
 
 Conventions:
 - Raw scans are source evidence.
 - Page transcripts use stable line IDs such as `L001`.
 - Derived notes cite source page IDs and line IDs.
+- Visual asset manifests cite source page IDs and line IDs.
 - Processed math content is written in Finnish.
 - `EPÄSELVÄ` marks text or formulas that need a later visual check.
-

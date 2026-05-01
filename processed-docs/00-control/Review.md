@@ -4,7 +4,7 @@ Use this file as the review contract for every milestone.
 
 ## Purpose
 - Keep long-running chapter extraction reliable.
-- Catch bad citations, broken links, formula mistakes, unclear OCR, and milestone drift before commit.
+- Catch bad citations, broken links, formula mistakes, unclear OCR, missing asset coverage, and milestone drift before commit.
 - Make the last active-window milestone close the window cleanly.
 
 ## Review order
@@ -21,11 +21,14 @@ Use this file as the review contract for every milestone.
 ## Self-review checklist
 - Scope stayed inside the current milestone.
 - Source image paths resolve.
+- Normalized page image paths and visual asset paths resolve.
 - Page IDs and line IDs are stable.
 - Derived notes cite page IDs and line IDs.
+- Visual assets cite page IDs and line IDs.
 - Finnish wording is simple and clear.
 - Formulas, exponents, decimal commas, units, and exercise numbers match the scan.
-- Diagrams have a text equivalent or a clear asset link.
+- Diagrams and visual exercises have manifest-covered crops or a clear no-crop reason.
+- Coach data references source lines and visual asset IDs where relevant.
 - Unclear text is marked as `EPÄSELVÄ`.
 - `Plan.md` and `Documentation.md` tell the next session what to do.
 - If this was the last active-window milestone, `Plan.md` closes the window cleanly.
@@ -42,7 +45,7 @@ Use this file as the review contract for every milestone.
 
 ## Severity rules
 - `P0`: stop the run. Examples: fabricated source, wrong milestone state, validation cannot pass.
-- `P1`: block the commit. Examples: missing line citations, broken source image link, incorrect formula, unmarked unclear OCR.
+- `P1`: block the commit. Examples: missing line citations, broken source image link, missing required figure crop, incorrect formula, unmarked unclear OCR.
 - `P2`: useful but non-blocking. Record it in `Documentation.md` if it is out of scope.
 
 ## Review prompt shape

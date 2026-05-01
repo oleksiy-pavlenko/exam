@@ -1,0 +1,27 @@
+{
+  "manifest_version": 1,
+  "book_id": "BOOKXX",
+  "chapter_id": "BOOKXX-CHXX",
+  "language": "fi",
+  "concepts": [
+    {
+      "concept_id": "short-concept-id",
+      "source_refs": ["BOOKXX-CHXX-P000:L001-L002"],
+      "visual_asset_ids": ["BOOKXX-CHXX-P000-F001"],
+      "coach_goal_fi": "Mitä oppijan pitää osata.",
+      "explanation_steps_fi": [],
+      "common_mistakes_fi": []
+    }
+  ],
+  "assignment_templates": [
+    {
+      "template_id": "short-template-id",
+      "source_refs": ["BOOKXX-CHXX-P000:L003-L004"],
+      "visual_asset_ids": ["BOOKXX-CHXX-P000-F001"],
+      "prompt_shape_fi": "Mitä tehtävä kysyy.",
+      "expected_answer_form": "number_with_unit",
+      "verification_rule_fi": "Miten vastaus tarkistetaan."
+    }
+  ]
+}
+

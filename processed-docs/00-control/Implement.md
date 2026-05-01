@@ -4,6 +4,7 @@ Use this file as the execution runbook. `Prompt.md` is the binding run spec. `Pl
 
 ## Objective
 - Process scanned math book chapters into a reliable Finnish exam knowledgebase.
+- Produce app-ready visual assets and coach data for a later interactive exam coach.
 - Keep the run resumable across Codex sessions.
 - Continue until the active window is closed or a real stop rule fires.
 
@@ -16,6 +17,7 @@ Use this file as the execution runbook. `Prompt.md` is the binding run spec. `Pl
 - Keep raw scans unchanged after import.
 - Use Finnish for processed page, concept, and exercise content.
 - Cite derived notes with page IDs and line IDs.
+- Cite visual assets with page IDs and line IDs.
 - Mark uncertainty with `EPÄSELVÄ`; do not guess.
 - Do not use outside sources unless they are added to `unprocessed-docs/` and recorded in `source-inventory.md`.
 
@@ -62,7 +64,7 @@ Use this file as the execution runbook. `Prompt.md` is the binding run spec. `Pl
 3. Create only the files needed for the assigned milestone.
 4. Use stable source IDs and line IDs.
 5. Keep page notes close to the source; keep study notes concise.
-6. Update the note indexes and control docs required by the milestone.
+6. Update the asset manifests, note indexes, coach indexes, and control docs required by the milestone.
 7. Run validation and milestone-specific checks.
 8. Run self-review from `Review.md`.
 9. Run one independent read-only clean-context `GPT-5.5` `xhigh` review when processed content changed.
@@ -75,6 +77,7 @@ Use this file as the execution runbook. `Prompt.md` is the binding run spec. `Pl
 - Scope stayed inside the current milestone.
 - Required files and links exist.
 - Source image, page ID, and line ID citations are present.
+- Normalized page images, visual crops, and asset manifests are present when required by the milestone.
 - Finnish wording is clear.
 - Formulas, units, decimal commas, and exercise numbers were checked.
 - `Documentation.md` records the result and handoff.
@@ -87,6 +90,8 @@ Use this file as the execution runbook. `Prompt.md` is the binding run spec. `Pl
 - Always run `python3 scripts/validate_kb.py`.
 - Run `git status --short` before starting and after commit.
 - For page milestones, run the page-specific `rg` command from `Plan.md`.
+- For asset milestones, confirm every page transcript has a normalized image and every listed figure has manifest-covered asset coverage or a clear no-crop reason.
+- For coach milestones, confirm coach data references source line IDs and visual asset IDs where relevant.
 - Before closing a notes milestone, run `rg -n "EPÄSELVÄ|TODO|BLOCKED" processed-docs/01-pages processed-docs/02-concepts processed-docs/03-exercises` and decide whether each hit is acceptable or blocking.
 - Before closing the last milestone in the active window, confirm that `Plan.md` sets both `Current milestone` and `Next milestone` to `Closed`.
 

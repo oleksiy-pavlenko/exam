@@ -5,6 +5,7 @@ Use this file as the binding run spec. `Plan.md` owns milestone status. `Impleme
 ## Mission
 - Build a Finnish math exam knowledgebase from scanned textbook pages.
 - Keep raw scans, page transcripts, derived concept notes, exercise patterns, and visual assets in stable repo paths.
+- Prepare the material for a later interactive coach app that can explain, assign practice, verify answers, and show dynamic visual explanations.
 - Process the current first scan batch as `BOOK01` chapter `CH01`.
 - Keep the repo ready for long-running chapter-by-chapter AI processing.
 
@@ -15,7 +16,8 @@ Use this file as the binding run spec. `Plan.md` owns milestone status. `Impleme
 - Do not rewrite raw scans after import. Put rotated or cropped derivatives under `processed-docs/assets/pages/`.
 
 ## Autonomous window
-- Active window: `CH01-PAGES` through `CH01-NOTES`
+- Active window: `CH01-PAGES` through `CH01-NOTES` (closed)
+- Future chapter windows use `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.
 - Current milestone is controlled only by `Plan.md`.
 - Continue until every milestone in the active window is completed or a stop rule fires.
 - If `Plan.md` shows `Closed`, do not restart this window unless a later prep milestone opens a new one.
@@ -27,18 +29,21 @@ Use this file as the binding run spec. `Plan.md` owns milestone status. `Impleme
 - Do not stop at a milestone boundary only to report progress while another active-window milestone remains.
 - Use Finnish for page transcripts, concept notes, and exercise notes.
 - Cite every derived concept or method with a page ID and line ID.
+- Cite every visual asset with a page ID and line ID.
 - Keep source evidence inside the repo.
 
 ## Source and scope boundaries
 - The first source is provisional `BOOK01` until the book title page, ISBN, or cover is uploaded.
 - The first chapter is provisional `CH01` until chapter metadata is confirmed.
 - Current raw scan paths are recorded in `source-inventory.md`.
-- Later uploaded chapters must get their own chapter directory and milestone pair.
+- Later uploaded chapters must get their own chapter directory and four-milestone window.
 
 ## Run deliverables
 - Page transcript files under `processed-docs/01-pages/BOOK01/CH01/`.
+- Reviewed normalized page images, figure crops, and asset manifests under `processed-docs/assets/pages/BOOK01/CH01/`.
 - Derived study notes under `processed-docs/02-concepts/`.
 - Exercise and solved-pattern notes under `processed-docs/03-exercises/`.
+- Coach data manifests under `processed-docs/04-coach/` when the `CHxx-COACH` milestone runs.
 - Updated source inventory, indexes, plan state, and audit log.
 - A passed validation command and one clean commit per milestone.
 
@@ -64,5 +69,13 @@ Use this file as the binding run spec. `Plan.md` owns milestone status. `Impleme
 ## Diagram rules
 - Treat diagrams and figures as first-class learning artifacts.
 - Keep raw scans as evidence.
-- Put rotated page images, crops, or figure crops under `processed-docs/assets/pages/`.
-- Every important figure needs either a short Finnish text equivalent or a derived concept note.
+- Put every normalized page image, crop, or figure crop under `processed-docs/assets/pages/`.
+- Every page transcript must link to an existing normalized page image.
+- Every important figure needs a manifest-covered crop unless the page note gives a short no-crop reason.
+- Every visual exercise needs a crop that can be used later for assignment and answer verification.
+
+## App-ready data rules
+- The later app should read structured manifests, not scrape free-form Markdown as its main data source.
+- Chapter visual asset manifests live at `processed-docs/assets/pages/BOOKxx/CHxx/assets.json`.
+- Each visual asset entry must include a stable asset ID, source page ID, source line IDs, image path, short Finnish description, related concepts or exercises, and intended uses.
+- Coach data belongs in `processed-docs/04-coach/` and must cite source line IDs plus visual asset IDs where relevant.

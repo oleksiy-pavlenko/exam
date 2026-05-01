@@ -8,7 +8,7 @@ This file is the only milestone-status source of truth for the current long run.
 - Active window: `CH01-PAGES` through `CH01-NOTES` (closed)
 - Current milestone: `Closed`
 - Next milestone: `Closed`
-- Hot-path milestone specs: `PREP1`, `CH01-PAGES`, `CH01-NOTES`
+- Hot-path milestone specs: `PREP1`, `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, `CHxx-COACH`
 - Completed preparation milestones: `PREP1`
 - Completed content milestones: `CH01-PAGES`, `CH01-NOTES`
 - Remaining milestones in the active window: none
@@ -17,6 +17,7 @@ This file is the only milestone-status source of truth for the current long run.
 - `WORKTREE-CLEAN`: `git status --short`
 - `KB-VALIDATE`: `python3 scripts/validate_kb.py`
 - `UNCLEAR-CHECK`: `rg -n "EPÄSELVÄ|TODO|BLOCKED" processed-docs/01-pages processed-docs/02-concepts processed-docs/03-exercises`
+- `ASSET-MANIFEST-CHECK`: `python3 scripts/validate_kb.py`
 - `CH01-SCAN-CHECK`: `find unprocessed-docs/books/BOOK01/chapter-01/scans -maxdepth 1 -type f`
 - `CH01-PAGE-CHECK`: `rg -n "BOOK01-CH01-P00[1-4]|L001|Source image|Status" processed-docs/01-pages/BOOK01/CH01`
 
@@ -30,16 +31,23 @@ This file is the only milestone-status source of truth for the current long run.
 ## Decision rules
 - Work one milestone at a time.
 - Do not stop at a milestone boundary only to report progress while another active-window milestone remains.
-- Page extraction and derived study notes are separate milestones.
+- Page extraction, visual asset extraction, derived study notes, and coach data are separate milestones.
 - Use chapter-sized milestones by default. Split a chapter into smaller page ranges if the scan batch is large.
 - Keep raw scans unchanged after import.
 - Use `EPÄSELVÄ` instead of guessing unclear text, formulas, or diagrams.
-- After `CH01-NOTES` is completed, set both `Current milestone` and `Next milestone` to `Closed` unless a later prep milestone opens a new window.
+- Future chapter windows close only after `CHxx-COACH` is completed or a real blocker is recorded.
 - Record newly discovered work in `Documentation.md`. Do not silently widen the current milestone.
+
+## Future milestone pattern
+- `CHxx-PAGES`: import scans, create page transcripts, stable line IDs, and one normalized page image per source page.
+- `CHxx-ASSETS`: create reviewed figure, table, photo, and visual exercise crops plus `assets.json`.
+- `CHxx-NOTES`: create concept and exercise notes that cite page line IDs and relevant asset IDs.
+- `CHxx-COACH`: create structured coach data for explanations, assignments, expected answer forms, verification rules, and visual explanation hooks.
 
 ## Risk register
 - OCR can silently damage formulas, decimal commas, exponents, and unit conversions.
 - Phone photos can be rotated, cropped, shadowed, or split across two pages.
+- Future app quality will suffer if figures are only described in prose and not linked to stable asset IDs.
 - Book metadata is still provisional until title or cover pages are uploaded.
 - Long runs can drift unless `Plan.md` and `Documentation.md` are updated after every milestone.
 
@@ -73,13 +81,14 @@ This file is the only milestone-status source of truth for the current long run.
   - Create reviewed Finnish page transcript files for the four current `BOOK01/CH01` scans.
 - Scope:
   - Create one page transcript per scan under `processed-docs/01-pages/BOOK01/CH01/`.
-  - Add normalized page images or crops under `processed-docs/assets/pages/BOOK01/CH01/` when needed for readability.
+  - Add normalized page images under `processed-docs/assets/pages/BOOK01/CH01/` for every page.
   - Preserve formulas, example numbers, exercise numbers, decimal commas, units, and figure labels.
   - Mark uncertain text as `EPÄSELVÄ`.
-  - Do not create broad concept notes yet except tiny cross-links needed by indexes.
+  - Do not create broad concept notes or reviewed figure crops yet except tiny cross-links needed by indexes.
 - Acceptance:
   - Page IDs `BOOK01-CH01-P001` through `BOOK01-CH01-P004` exist.
   - Each page file has stable line IDs and cites its source image.
+  - Each page file links to an existing normalized page image.
   - Important formulas and diagrams are represented in the page file.
 - Validation:
   - `git status --short`
@@ -88,7 +97,7 @@ This file is the only milestone-status source of truth for the current long run.
 - Commit:
   - Commit message pattern: `docs(chunk): CH01-PAGES transcribe-first-scan-batch`
 - Handoff:
-  - `CH01-PAGES` is complete. Build concept and exercise notes from the page transcript layer in `CH01-NOTES`.
+  - `CH01-PAGES` is complete. Future runs should build visual assets in `CHxx-ASSETS` before notes.
 
 ### CH01-NOTES - Build first chapter exam notes
 - Status: `Completed (2026-05-01)`
@@ -112,4 +121,4 @@ This file is the only milestone-status source of truth for the current long run.
 - Commit:
   - Commit message pattern: `docs(chunk): CH01-NOTES build-first-chapter-exam-notes`
 - Handoff:
-  - `CH01-NOTES` is complete. The active window is closed. The root orchestrator should run the independent review and create the single milestone commit.
+  - `CH01-NOTES` is complete. The active window is closed. Future work should open a new prep or chapter window.

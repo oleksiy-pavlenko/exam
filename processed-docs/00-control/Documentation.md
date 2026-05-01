@@ -12,6 +12,8 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Worktree check: `git status --short`
 - Current provisional book ID: `BOOK01`
 - Current provisional chapter ID: `CH01`
+- Current CH01 visual asset manifest: `processed-docs/assets/pages/BOOK01/CH01/assets.json`
+- Current coach data status: not built yet
 
 ## Control-doc roles
 - `Prompt.md`: binding run spec after `Plan.md` names a milestone
@@ -26,6 +28,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - The first scan batch was imported as provisional `BOOK01/CH01`.
 - `CH01-PAGES` created reviewed page transcripts for the first four `BOOK01/CH01` scans.
 - `CH01-NOTES` created Finnish concept and exercise notes for the current transcript layer and closed the active window.
+- The process now requires app-ready visual asset and coach data milestones for future chapter windows.
 
 ## Audit log
 
@@ -71,7 +74,13 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Ran `python3 scripts/validate_kb.py`; it passed.
 - Ran the unclear-text check from `Plan.md`; it returned no hits.
 - Ran self-review against `Review.md`; no `P0` or `P1` self-review findings remained.
-- Active window is closed in `Plan.md`. The root orchestrator should run independent review and make the single milestone commit.
+- Active window was closed in `Plan.md`.
+
+### 2026-05-01 - Process correction: make extraction app-ready
+- Added reviewed CH01 visual crop assets and an app-facing `assets.json` manifest.
+- Added `CHxx-ASSETS` and `CHxx-COACH` as required future milestone types.
+- Updated the control docs so future chapters produce normalized page images, figure crops, visual exercise assets, and coach data instead of Markdown-only notes.
+- Added validator coverage for chapter asset manifests, normalized image links, figure asset coverage, and derived-note source citations.
 
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
@@ -82,6 +91,9 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - All subagents use clean-context `GPT-5.5` `xhigh`; `fork_context` is not used for milestone workers or review workers.
 - Edge-only neighboring page content in a scan is not complete source coverage. Use only the fully transcribed page lines as evidence for derived notes.
 - Exercises 18-25 are not treated as covered by the current transcript layer.
+- Future chapter windows use `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.
+- The app-facing layer is structured manifests. Do not make a future app scrape free-form Markdown as its main data source.
+- Every reviewed visual asset must cite source page IDs and line IDs.
 
 ## Blockers
 - No current blocker.
@@ -90,13 +102,15 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Add book title, publisher, ISBN, edition, and exact chapter name after metadata pages are uploaded.
 - Decide whether later large chapters should use one milestone per chapter or one milestone per page range.
 - Add missing source coverage for exercises 18-25 if later scans include those pages.
+- Build a `BOOK01/CH01` coach manifest in a future `CH01-COACH` backfill if the first chapter is used by the app before more pages are imported.
 
 ## Fresh-session handoff
 - Start from `processed-docs/00-control/Plan.md`.
 - Current milestone is `Closed`.
 - Next milestone is `Closed`.
 - The active window `CH01-PAGES` through `CH01-NOTES` is closed.
-- The root orchestrator should run independent review for `CH01-NOTES` and create the single milestone commit if review passes.
 - Future work should open a new prep or chapter milestone instead of restarting this window.
+- Future chapter windows should use the four-step pattern: pages, assets, notes, coach data.
 - Cite page line IDs from `processed-docs/01-pages/BOOK01/CH01/` if later work extends the notes.
+- Cite visual asset IDs from `processed-docs/assets/pages/BOOK01/CH01/assets.json` when later work needs images.
 - Do not treat edge-only neighboring page content as complete source coverage.

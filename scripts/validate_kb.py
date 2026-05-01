@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import json
 import re
 import subprocess
 import sys
@@ -24,6 +25,9 @@ REQUIRED_FILES = [
     "processed-docs/01-pages/BOOK01/CH01/index.md",
     "processed-docs/02-concepts/index.md",
     "processed-docs/03-exercises/index.md",
+    "processed-docs/04-coach/index.md",
+    "processed-docs/assets/pages/BOOK01/CH01/index.md",
+    "processed-docs/assets/pages/BOOK01/CH01/assets.json",
 ]
 
 SECTION_REQUIREMENTS = {
@@ -38,12 +42,14 @@ SECTION_REQUIREMENTS = {
         "Writing rules",
         "Citation rules",
         "Diagram rules",
+        "App-ready data rules",
     ],
     "processed-docs/00-control/Plan.md": [
         "Execution State",
         "Validation command catalog",
         "Review topology",
         "Decision rules",
+        "Future milestone pattern",
         "Risk register",
         "Milestones",
     ],
@@ -129,6 +135,23 @@ SECTION_RE = re.compile(r"^##\s+(.+?)\s*$", re.MULTILINE)
 PAGE_ID_RE = re.compile(r"`(BOOK\d+-CH\d+-P\d{3})`")
 SOURCE_IMAGE_RE = re.compile(r"`(unprocessed-docs/books/[^`]+\.jpg)`")
 LINE_ID_RE = re.compile(r"`L\d{3}`")
+READABILITY_ASSET_RE = re.compile(r"Readability asset:\s+(?:!?\[[^\]]*\]\(([^)]+)\)|`([^`]+)`)")
+SOURCE_LINE_REF_RE = re.compile(r"BOOK\d+-CH\d+-P\d{3}:L\d{3}(?:-L\d{3})?")
+ASSET_LINE_REF_RE = re.compile(r"^L\d{3}(?:-L\d{3})?$")
+ALLOWED_ASSET_TYPES = {
+    "page_normalized",
+    "figure_crop",
+    "exercise_crop",
+    "table_crop",
+    "photo_crop",
+}
+ALLOWED_ASSET_USES = {
+    "source_review",
+    "explanation",
+    "assignment",
+    "verification",
+    "visual_animation",
+}
 
 
 def read_text(path: Path) -> str:
@@ -195,6 +218,19 @@ def check_page_files(errors: list[str]) -> None:
             add_error(errors, f"{relative}: missing source image path")
         if not LINE_ID_RE.search(text):
             add_error(errors, f"{relative}: missing line IDs")
+        readability_match = READABILITY_ASSET_RE.search(text)
+        if not readability_match:
+            add_error(errors, f"{relative}: missing readability asset")
+        else:
+            target = readability_match.group(1) or readability_match.group(2)
+            resolved = (path.parent / target).resolve()
+            try:
+                resolved.relative_to(ROOT)
+            except ValueError:
+                add_error(errors, f"{relative}: readability asset leaves repo: {target}")
+            else:
+                if not resolved.exists():
+                    add_error(errors, f"{relative}: missing readability asset file: {target}")
 
 
 def check_markdown_links(errors: list[str]) -> None:
@@ -233,6 +269,204 @@ def check_plan_state(errors: list[str]) -> None:
         for status in statuses:
             if not status.startswith(allowed_prefixes):
                 add_error(errors, f"Plan.md: invalid milestone status `{status}`")
+
+
+def page_path_for_id(page_id: str) -> Path:
+    match = re.fullmatch(r"(BOOK\d+)-CH(\d+)-P\d{3}", page_id)
+    if not match:
+        return ROOT / "missing"
+    book_id = match.group(1)
+    chapter_id = f"CH{match.group(2)}"
+    return ROOT / "processed-docs" / "01-pages" / book_id / chapter_id / f"{page_id}.md"
+
+
+def section_body(text: str, section: str) -> str:
+    matches = list(SECTION_RE.finditer(text))
+    body = ""
+    for index, match in enumerate(matches):
+        if match.group(1) == section:
+            start = match.end()
+            end = matches[index + 1].start() if index + 1 < len(matches) else len(text)
+            body = text[start:end].strip()
+    return body
+
+
+def line_span(line_ref: str) -> tuple[int, int] | None:
+    if not ASSET_LINE_REF_RE.fullmatch(line_ref):
+        return None
+    numbers = [int(item) for item in re.findall(r"L(\d{3})", line_ref)]
+    if len(numbers) == 1:
+        span = (numbers[0], numbers[0])
+    else:
+        span = (numbers[0], numbers[1])
+    if span[0] > span[1]:
+        span = None
+    return span
+
+
+def spans_overlap(left: tuple[int, int], right: tuple[int, int]) -> bool:
+    return left[0] <= right[1] and right[0] <= left[1]
+
+
+def manifest_paths() -> list[Path]:
+    assets_root = ROOT / "processed-docs" / "assets" / "pages"
+    return sorted(assets_root.rglob("assets.json")) if assets_root.exists() else []
+
+
+def load_asset_manifests(errors: list[str]) -> dict[str, list[dict[str, object]]]:
+    assets_by_page: dict[str, list[dict[str, object]]] = {}
+    seen_asset_ids: set[str] = set()
+    required_fields = {
+        "asset_id",
+        "asset_type",
+        "path",
+        "source_page_id",
+        "source_line_ids",
+        "description_fi",
+        "related_concepts",
+        "related_exercises",
+        "uses",
+    }
+    for path in manifest_paths():
+        relative = path.relative_to(ROOT).as_posix()
+        try:
+            manifest = json.loads(read_text(path))
+        except json.JSONDecodeError as exc:
+            add_error(errors, f"{relative}: invalid JSON: {exc}")
+            continue
+        assets = manifest.get("assets")
+        if not isinstance(assets, list) or not assets:
+            add_error(errors, f"{relative}: assets must be a non-empty list")
+            continue
+        for asset in assets:
+            if not isinstance(asset, dict):
+                add_error(errors, f"{relative}: asset entry must be an object")
+                continue
+            missing = sorted(required_fields - set(asset))
+            if missing:
+                add_error(errors, f"{relative}: asset missing fields {missing}")
+                continue
+            asset_id = asset["asset_id"]
+            asset_type = asset["asset_type"]
+            asset_path = asset["path"]
+            source_page_id = asset["source_page_id"]
+            source_line_ids = asset["source_line_ids"]
+            uses = asset["uses"]
+            if not isinstance(asset_id, str) or not asset_id:
+                add_error(errors, f"{relative}: asset has invalid asset_id")
+                continue
+            if asset_id in seen_asset_ids:
+                add_error(errors, f"{relative}: duplicate asset_id {asset_id}")
+            seen_asset_ids.add(asset_id)
+            if asset_type not in ALLOWED_ASSET_TYPES:
+                add_error(errors, f"{relative}: {asset_id} has invalid asset_type {asset_type}")
+            if not isinstance(asset_path, str):
+                add_error(errors, f"{relative}: {asset_id} path must be a string")
+            else:
+                resolved = (ROOT / asset_path).resolve()
+                try:
+                    resolved.relative_to(ROOT)
+                except ValueError:
+                    add_error(errors, f"{relative}: {asset_id} path leaves repo: {asset_path}")
+                else:
+                    if not resolved.exists():
+                        add_error(errors, f"{relative}: {asset_id} missing asset file {asset_path}")
+            if not isinstance(source_page_id, str):
+                add_error(errors, f"{relative}: {asset_id} source_page_id must be a string")
+                continue
+            page_path = page_path_for_id(source_page_id)
+            if not page_path.exists():
+                add_error(errors, f"{relative}: {asset_id} missing source page {source_page_id}")
+                continue
+            page_text = read_text(page_path)
+            page_line_ids = set(LINE_ID_RE.findall(page_text))
+            if not isinstance(source_line_ids, list) or not source_line_ids:
+                add_error(errors, f"{relative}: {asset_id} source_line_ids must be a non-empty list")
+                continue
+            for line_ref in source_line_ids:
+                if not isinstance(line_ref, str):
+                    add_error(errors, f"{relative}: {asset_id} has non-string source line")
+                    continue
+                span = line_span(line_ref)
+                if span is None:
+                    add_error(errors, f"{relative}: {asset_id} invalid line ref {line_ref}")
+                    continue
+                endpoints = [f"`L{span[0]:03d}`", f"`L{span[1]:03d}`"]
+                for endpoint in endpoints:
+                    if endpoint not in page_line_ids:
+                        add_error(errors, f"{relative}: {asset_id} missing source line {endpoint} in {source_page_id}")
+            if not isinstance(uses, list) or not uses:
+                add_error(errors, f"{relative}: {asset_id} uses must be a non-empty list")
+            else:
+                for use in uses:
+                    if use not in ALLOWED_ASSET_USES:
+                        add_error(errors, f"{relative}: {asset_id} has invalid use {use}")
+            assets_by_page.setdefault(source_page_id, []).append(asset)
+    return assets_by_page
+
+
+def check_chapter_asset_manifests(errors: list[str]) -> None:
+    pages_root = ROOT / "processed-docs" / "01-pages"
+    for chapter_index in sorted(pages_root.glob("BOOK*/CH*/index.md")):
+        relative = chapter_index.relative_to(ROOT).as_posix()
+        parts = chapter_index.relative_to(pages_root).parts
+        if len(parts) < 3:
+            continue
+        book_id, chapter_id = parts[0], parts[1]
+        manifest = ROOT / "processed-docs" / "assets" / "pages" / book_id / chapter_id / "assets.json"
+        if not manifest.exists():
+            add_error(errors, f"{relative}: missing chapter asset manifest {manifest.relative_to(ROOT).as_posix()}")
+
+
+def check_page_figure_asset_coverage(errors: list[str], assets_by_page: dict[str, list[dict[str, object]]]) -> None:
+    pages_root = ROOT / "processed-docs" / "01-pages"
+    for path in markdown_files(pages_root):
+        relative = path.relative_to(ROOT).as_posix()
+        if relative.endswith("/index.md") or relative == "processed-docs/01-pages/index.md":
+            continue
+        text = read_text(path)
+        page_match = PAGE_ID_RE.search(text)
+        if not page_match:
+            continue
+        page_id = page_match.group(1)
+        figure_body = section_body(text, "Figures")
+        if not figure_body or "None yet." in figure_body:
+            continue
+        figure_assets = [
+            asset for asset in assets_by_page.get(page_id, [])
+            if asset.get("asset_type") != "page_normalized"
+        ]
+        asset_spans: list[tuple[int, int]] = []
+        for asset in figure_assets:
+            for line_ref in asset.get("source_line_ids", []):
+                if isinstance(line_ref, str):
+                    span = line_span(line_ref)
+                    if span is not None:
+                        asset_spans.append(span)
+        for line in figure_body.splitlines():
+            stripped = line.strip()
+            if not stripped.startswith("-"):
+                continue
+            if "no-crop" in stripped.lower() or "ei erillistä assettia" in stripped.lower():
+                continue
+            numbers = [int(number) for number in re.findall(r"L(\d{3})", stripped)]
+            if not numbers:
+                add_error(errors, f"{relative}: figure bullet has no line IDs: {stripped}")
+                continue
+            figure_span = (min(numbers), max(numbers))
+            if not any(spans_overlap(figure_span, asset_span) for asset_span in asset_spans):
+                add_error(errors, f"{relative}: figure lines L{figure_span[0]:03d}-L{figure_span[1]:03d} have no manifest-covered crop")
+
+
+def check_derived_note_citations(errors: list[str]) -> None:
+    for root in [ROOT / "processed-docs" / "02-concepts", ROOT / "processed-docs" / "03-exercises"]:
+        for path in markdown_files(root):
+            relative = path.relative_to(ROOT).as_posix()
+            if path.name == "index.md":
+                continue
+            text = read_text(path)
+            if not SOURCE_LINE_REF_RE.search(text):
+                add_error(errors, f"{relative}: missing source page line citations")
 
 
 def check_subagent_specs(errors: list[str]) -> None:
@@ -287,6 +521,10 @@ def main() -> int:
     check_page_files(errors)
     check_markdown_links(errors)
     check_plan_state(errors)
+    check_chapter_asset_manifests(errors)
+    assets_by_page = load_asset_manifests(errors)
+    check_page_figure_asset_coverage(errors, assets_by_page)
+    check_derived_note_citations(errors)
     check_subagent_specs(errors)
     check_required_contract_phrases(errors)
     check_readme_handoff(errors)

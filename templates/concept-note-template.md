@@ -15,9 +15,11 @@
 ## Lähteet
 - Lisää sivu- ja riviviitteet.
 
+## Visuaaliset aineistot
+- Lisää asset-ID:t, jos käsite tarvitsee kuvan, taulukon tai dynaamisen selityksen.
+
 ## Avoimet kysymykset
 - Ei avoimia kysymyksiä.
 
 ## Liittyvät harjoitukset
 - Ei vielä.
-

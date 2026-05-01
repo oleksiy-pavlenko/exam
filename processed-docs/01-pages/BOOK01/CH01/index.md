@@ -14,5 +14,6 @@ Generated readability assets:
 - [BOOK01-CH01-P003-normalized.jpg](../../../assets/pages/BOOK01/CH01/BOOK01-CH01-P003-normalized.jpg)
 - [BOOK01-CH01-P004-normalized.jpg](../../../assets/pages/BOOK01/CH01/BOOK01-CH01-P004-normalized.jpg)
 
-Next milestone:
-- Build concept and exercise notes from these transcript files in `CH01-NOTES`.
+App-ready visual assets:
+- [BOOK01 CH01 visual asset index](../../../assets/pages/BOOK01/CH01/index.md)
+- [BOOK01 CH01 asset manifest](../../../assets/pages/BOOK01/CH01/assets.json)

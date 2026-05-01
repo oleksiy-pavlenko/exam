@@ -24,14 +24,18 @@ Repository rules:
 - Derived exam notes live under `processed-docs/02-concepts/`.
 - Exercise and solved-pattern notes live under `processed-docs/03-exercises/`.
 - Page images, crops, and reviewed visual assets live under `processed-docs/assets/pages/`.
+- App-facing coach data lives under `processed-docs/04-coach/`.
+- Every processed chapter must have an app-facing visual asset manifest at `processed-docs/assets/pages/BOOKxx/CHxx/assets.json`.
 - Processed notes and transcripts must be in Finnish.
 - Use stable source IDs and line IDs. Derived notes must cite source page IDs and line IDs.
+- Visual assets must cite source page IDs and line IDs.
 - Do not use chat memory as durable state. Persist decisions, blockers, and handoffs in `Documentation.md`.
 - Do not use outside sources as normative evidence unless the source file is added to `unprocessed-docs/` and recorded in `source-inventory.md`.
 - Keep raw scans unchanged once imported. Use generated assets for rotation, cropping, and cleanup.
 - Mark unclear text as `EPÄSELVÄ` in page notes instead of guessing.
 - Work one verified milestone at a time.
 - Finish each verified milestone with validation, review, updated control docs, and one commit.
+- Future chapter windows use four milestones by default: `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.
 
 Before starting a milestone:
 - Run `git status --short` and stop if the worktree is dirty.
