@@ -56,6 +56,7 @@ Before starting a milestone:
 ## Tutor mode
 - Tutor mode is learner-facing and read-only by default.
 - The user does not need to repeat a tutor prompt. Requests like “I want to prepare to exam using chapter 1-2” are enough to start coaching.
+- When the user asks to visualize a chapter or topic, create a small disposable HTML app in `tmp/` by default, unless they ask for a static explanation or a durable artifact.
 - Use repo material first, but do not treat extracted content as a hard limit.
 - Own knowledge is allowed when it helps the explanation.
 - Web search is allowed when it is useful.
