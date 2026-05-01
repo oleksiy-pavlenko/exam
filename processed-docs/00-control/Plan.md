@@ -21,18 +21,20 @@ This file is the only milestone-status source of truth for the current long run.
 - `CH01-PAGE-CHECK`: `rg -n "BOOK01-CH01-P00[1-4]|L001|Source image|Status" processed-docs/01-pages/BOOK01/CH01`
 
 ## Review topology
-- The root thread owns milestone selection, validation, and final integration.
-- Use one clean-context `GPT-5.5` `xhigh` milestone worker per chapter slice when delegation is useful.
+- The root thread is the root orchestrator only. It owns milestone selection, worker coordination, and final integration across the active window.
+- Use one fresh clean-context `GPT-5.5` `xhigh` milestone worker per milestone when delegation is useful.
 - Use one clean-context `GPT-5.5` `xhigh` independent read-only review before committing a milestone when the milestone created or changed processed content.
 - Do not use `fork_context` for milestone workers or review workers.
 - The review must focus on source citations, line IDs, Finnish wording, formulas, diagrams, broken links, and scope drift.
 
 ## Decision rules
 - Work one milestone at a time.
+- Do not stop at a milestone boundary only to report progress while another active-window milestone remains.
 - Page extraction and derived study notes are separate milestones.
 - Use chapter-sized milestones by default. Split a chapter into smaller page ranges if the scan batch is large.
 - Keep raw scans unchanged after import.
 - Use `EPÄSELVÄ` instead of guessing unclear text, formulas, or diagrams.
+- After `CH01-NOTES` is completed, set both `Current milestone` and `Next milestone` to `Closed` unless a later prep milestone opens a new window.
 - Record newly discovered work in `Documentation.md`. Do not silently widen the current milestone.
 
 ## Risk register
@@ -96,11 +98,13 @@ This file is the only milestone-status source of truth for the current long run.
   - Add concise concept notes for formulas, methods, examples, and common mistakes.
   - Add exercise-pattern notes for visible exercises and solved examples.
   - Link every derived fact back to page line IDs.
+  - Update note indexes and control docs needed to close the active window cleanly.
   - Keep unresolved scan or OCR questions in the page notes and `Documentation.md`.
 - Acceptance:
   - The first chapter has useful exam-prep notes in Finnish.
   - Formula and exercise notes cite page line IDs.
   - Index links make the chapter navigable.
+  - After the milestone commit, `Plan.md` sets both `Current milestone` and `Next milestone` to `Closed`.
 - Validation:
   - `git status --short`
   - `python3 scripts/validate_kb.py`
@@ -108,4 +112,4 @@ This file is the only milestone-status source of truth for the current long run.
 - Commit:
   - Commit message pattern: `docs(chunk): CH01-NOTES build-first-chapter-exam-notes`
 - Handoff:
-  - Close the current window or open the next chapter window after new scans are imported.
+  - This is the last milestone in the active window. After validation and review pass, update the note indexes and control docs, commit once, and set both `Current milestone` and `Next milestone` to `Closed`.

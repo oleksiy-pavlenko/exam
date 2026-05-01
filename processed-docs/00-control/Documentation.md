@@ -53,6 +53,13 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Independent review noted one `P2`: edge-only neighboring page content must not be treated as full source coverage in later notes. The page wording was clarified.
 - Next milestone: `CH01-NOTES`.
 
+### 2026-05-01 - Process correction: strengthen the CH01-NOTES startup contract
+- Rewrote `Start-Long-Run.md` so a fresh session continues until every milestone in the active window is completed.
+- Tightened `Prompt.md`, `Implement.md`, `Review.md`, and `Plan.md` so the active window closes only when `Plan.md` is updated to `Closed` or a real blocker is recorded.
+- Replaced the stale milestone claim in `README.md` with stable pointers to `Plan.md` and `Documentation.md`.
+- Extended `scripts/validate_kb.py` with startup-contract checks so the stronger prompt and hard-stop rules do not drift silently.
+- The next fresh session should start at `CH01-NOTES`, complete that milestone, and close the current active window.
+
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
 - Control docs may use simple English for clear long-run coordination.
@@ -73,6 +80,9 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Start from `processed-docs/00-control/Plan.md`.
 - Current milestone is `CH01-NOTES`.
 - First run `git status --short` and `python3 scripts/validate_kb.py`.
+- Continue until the active window is closed. Do not stop at the end of `CH01-NOTES` only to report progress.
 - Then create concept and exercise notes from `BOOK01-CH01-P001` through `BOOK01-CH01-P004`.
+- Update `processed-docs/02-concepts/index.md`, `processed-docs/03-exercises/index.md`, `Plan.md`, and `Documentation.md` as part of the milestone.
+- Run the unclear-text check from `Plan.md`, commit once, and set both `Current milestone` and `Next milestone` to `Closed`.
 - Cite page line IDs from `processed-docs/01-pages/BOOK01/CH01/`.
 - Do not treat edge-only neighboring page content as complete source coverage.

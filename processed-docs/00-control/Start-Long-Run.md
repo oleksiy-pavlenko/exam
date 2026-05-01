@@ -1,16 +1,40 @@
-# Start Long Run
+# Start Long Run Prompt
 
-Use this prompt when starting a fresh Codex session for this repo.
+Use this file only in a fresh Codex session for this repo.
+
+This file owns startup checks only. `Prompt.md` is the binding run spec. `Plan.md` is the only milestone-status source of truth. `Implement.md` is the execution runbook. `Review.md` is the review contract. `Documentation.md` is the audit log and durable handoff.
 
 ## Verify the workspace first
-- Run `git status --short`.
-- Run `python3 scripts/validate_kb.py`.
-- Read `processed-docs/00-control/Plan.md`.
-- Read `processed-docs/00-control/Documentation.md`.
-- If subagents are used, use clean-context `GPT-5.5` `xhigh` for every milestone worker and review worker. Do not use `fork_context`.
+
+```bash
+git status --short --branch
+python3 scripts/validate_kb.py
+```
+
+Notes:
+- The worktree must be clean before the run starts.
+- `Plan.md` is the milestone-state gate. Older milestone text elsewhere does not override it.
+- `Documentation.md` is the durable handoff and audit log.
+- Milestone workers and review workers must use clean-context `GPT-5.5` `xhigh`.
+- Do not use `fork_context` for milestone workers or review workers.
+- If `Plan.md` shows `Closed` for both `Current milestone` and `Next milestone`, do not restart this window.
+- If preflight fails, repair the control stack before milestone work.
 
 ## First Codex prompt
-CONTINUE THIS SESSION UNTIL THE CURRENT MILESTONE IN `processed-docs/00-control/Plan.md` IS COMPLETED. DO NOT RELY ON CHAT MEMORY. READ THE CONTROL DOCS, PROCESS ONLY THE CURRENT MILESTONE, RUN VALIDATION, UPDATE THE CONTROL DOCS, AND COMMIT ONCE WHEN THE MILESTONE IS VERIFIED.
+
+```text
+CONTINUE THIS SESSION UNTIL EVERY MILESTONE IN THE ACTIVE WINDOW IS COMPLETED. DO NOT STOP AT THE END OF A MILESTONE ONLY TO REPORT PROGRESS.
+
+First read `processed-docs/00-control/Plan.md` and `processed-docs/00-control/Documentation.md`.
+
+Treat `processed-docs/00-control/Plan.md` as the milestone-state gate and only milestone-status source of truth. Treat `processed-docs/00-control/Documentation.md` as the audit log and durable handoff.
+
+Act as the root orchestrator only. If `Plan.md` shows `Closed` for both `Current milestone` and `Next milestone`, do not restart the window. Review `Documentation.md` and stop until a later prep milestone reopens work. If one active-window milestone is `Blocked`, review `Documentation.md`, keep the blocker handoff, then read `AGENTS.md`, `processed-docs/00-control/Prompt.md`, `processed-docs/00-control/Implement.md`, `processed-docs/00-control/Review.md`, and `processed-docs/00-control/source-inventory.md` before you continue. If `Plan.md` names a milestone instead, read those same files and start there.
+
+For each milestone, use one fresh clean-context `GPT-5.5` `xhigh` worker, require that worker to reread the mandatory docs, implement only the current milestone, run the exact milestone validation, run self-review, run one clean-context read-only `GPT-5.5` `xhigh` review worker before commit when processed content changed, do not use `fork_context`, fix blocking findings, update `Plan.md` and `Documentation.md`, commit exactly once, and continue until the active window is `Closed`.
+
+Follow `Prompt.md` for source boundaries and `Implement.md` for stop rules.
+```
 
 ## Required inputs
 - `AGENTS.md`

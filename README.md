@@ -15,6 +15,6 @@ python3 scripts/validate_kb.py
 ```
 
 Current handoff:
+- `processed-docs/00-control/Plan.md` is the live milestone-state gate.
+- `processed-docs/00-control/Documentation.md` is the durable handoff and audit log.
 - First scan batch is imported as provisional `BOOK01/CH01`.
-- Next milestone is `CH01-PAGES`.
-

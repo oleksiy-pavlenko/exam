@@ -98,6 +98,22 @@ SUBAGENT_SPEC_TERMS = [
     "fork_context",
 ]
 
+REQUIRED_CONTRACT_PHRASES = {
+    "processed-docs/00-control/Start-Long-Run.md": [
+        "EVERY MILESTONE IN THE ACTIVE WINDOW IS COMPLETED",
+        "DO NOT STOP AT THE END OF A MILESTONE ONLY TO REPORT PROGRESS",
+        "root orchestrator",
+    ],
+    "processed-docs/00-control/Implement.md": [
+        "root orchestrator",
+        "active-window milestone as `Current`, `Pending`, or `Blocked`",
+    ],
+}
+
+README_FORBIDDEN_PATTERNS = [
+    re.compile(r"Next milestone is `[^`]+`"),
+]
+
 PAGE_REQUIRED_SECTIONS = [
     "Source",
     "Lines",
@@ -230,6 +246,26 @@ def check_subagent_specs(errors: list[str]) -> None:
                 add_error(errors, f"{relative}: missing subagent spec term `{term}`")
 
 
+def check_required_contract_phrases(errors: list[str]) -> None:
+    for relative, phrases in REQUIRED_CONTRACT_PHRASES.items():
+        path = ROOT / relative
+        if not path.exists():
+            continue
+        text = read_text(path)
+        for phrase in phrases:
+            if phrase not in text:
+                add_error(errors, f"{relative}: missing contract phrase `{phrase}`")
+
+
+def check_readme_handoff(errors: list[str]) -> None:
+    path = ROOT / "README.md"
+    if path.exists():
+        text = read_text(path)
+        for pattern in README_FORBIDDEN_PATTERNS:
+            if pattern.search(text):
+                add_error(errors, "README.md: should not claim a specific next milestone")
+
+
 def check_git_ignored_noise(errors: list[str]) -> None:
     completed = subprocess.run(
         ["git", "status", "--short"],
@@ -252,6 +288,8 @@ def main() -> int:
     check_markdown_links(errors)
     check_plan_state(errors)
     check_subagent_specs(errors)
+    check_required_contract_phrases(errors)
+    check_readme_handoff(errors)
     check_git_ignored_noise(errors)
     if errors:
         for error in errors:

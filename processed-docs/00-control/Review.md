@@ -5,6 +5,7 @@ Use this file as the review contract for every milestone.
 ## Purpose
 - Keep long-running chapter extraction reliable.
 - Catch bad citations, broken links, formula mistakes, unclear OCR, and milestone drift before commit.
+- Make the last active-window milestone close the window cleanly.
 
 ## Review order
 1. Finish the scoped milestone edits.
@@ -14,7 +15,7 @@ Use this file as the review contract for every milestone.
 5. Run independent read-only review when processed content changed.
 6. Fix every `P0` and `P1` finding.
 7. Rerun validation.
-8. Update `Plan.md` and `Documentation.md`.
+8. Update `Plan.md` and `Documentation.md`. If this was the last active-window milestone, set both `Current milestone` and `Next milestone` to `Closed`.
 9. Commit once.
 
 ## Self-review checklist
@@ -27,6 +28,7 @@ Use this file as the review contract for every milestone.
 - Diagrams have a text equivalent or a clear asset link.
 - Unclear text is marked as `EPÄSELVÄ`.
 - `Plan.md` and `Documentation.md` tell the next session what to do.
+- If this was the last active-window milestone, `Plan.md` closes the window cleanly.
 
 ## Review worker contract
 - Review workers are read-only clean-context `GPT-5.5` `xhigh` workers.
@@ -35,6 +37,7 @@ Use this file as the review contract for every milestone.
 - They must not rely on chat history.
 - They return findings first, ordered by severity.
 - They focus on correctness, citations, broken links, milestone acceptance, and source fidelity.
+- For the last active-window milestone, they also check the close-window state in `Plan.md` and `Documentation.md`.
 - They ignore style-only nits unless the wording harms learning or correctness.
 
 ## Severity rules
@@ -47,4 +50,5 @@ Use this file as the review contract for every milestone.
 - List touched files.
 - State the acceptance focus.
 - Point to `Plan.md`, `Review.md`, and `Documentation.md`.
+- For the last active-window milestone, ask for issues in the close-window state too.
 - Ask for only real issues that matter for correctness, citations, links, scope, or milestone acceptance.

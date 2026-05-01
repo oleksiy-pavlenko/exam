@@ -17,12 +17,14 @@ Use this file as the binding run spec. `Plan.md` owns milestone status. `Impleme
 ## Autonomous window
 - Active window: `CH01-PAGES` through `CH01-NOTES`
 - Current milestone is controlled only by `Plan.md`.
+- Continue until every milestone in the active window is completed or a stop rule fires.
 - If `Plan.md` shows `Closed`, do not restart this window unless a later prep milestone opens a new one.
 
 ## Hard constraints
 - Confirm a clean worktree with `git status --short` before starting a milestone.
 - Run `python3 scripts/validate_kb.py` before starting a milestone and after milestone edits.
 - One verified milestone equals one commit.
+- Do not stop at a milestone boundary only to report progress while another active-window milestone remains.
 - Use Finnish for page transcripts, concept notes, and exercise notes.
 - Cite every derived concept or method with a page ID and line ID.
 - Keep source evidence inside the repo.
@@ -41,8 +43,8 @@ Use this file as the binding run spec. `Plan.md` owns milestone status. `Impleme
 - A passed validation command and one clean commit per milestone.
 
 ## Done when this run stops
-- `Plan.md` clearly shows the current milestone and next milestone, or `Closed`.
-- `Documentation.md` tells the next session what changed, what is next, and what remains unclear.
+- `Plan.md` shows `Closed` for both `Current milestone` and `Next milestone`, or `Documentation.md` records a real blocker that stops the active window.
+- `Documentation.md` tells the next session what changed, what is next, what remains unclear, and whether the active window is closed.
 - `python3 scripts/validate_kb.py` passes.
 - `git status --short` is empty after the milestone commit.
 
@@ -64,4 +66,3 @@ Use this file as the binding run spec. `Plan.md` owns milestone status. `Impleme
 - Keep raw scans as evidence.
 - Put rotated page images, crops, or figure crops under `processed-docs/assets/pages/`.
 - Every important figure needs either a short Finnish text equivalent or a derived concept note.
-
