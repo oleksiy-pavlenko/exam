@@ -14,6 +14,7 @@ REQUIRED_FILES = [
     "README.md",
     "AGENTS.md",
     "processed-docs/index.md",
+    "processed-docs/00-control/Mode.md",
     "processed-docs/00-control/Prompt.md",
     "processed-docs/00-control/Plan.md",
     "processed-docs/00-control/Implement.md",
@@ -34,6 +35,11 @@ REQUIRED_FILES = [
 ]
 
 SECTION_REQUIREMENTS = {
+    "processed-docs/00-control/Mode.md": [
+        "Current mode",
+        "Startup rules",
+        "Switching rules",
+    ],
     "processed-docs/00-control/Prompt.md": [
         "Mission",
         "Non-goals",
@@ -118,6 +124,8 @@ REQUIRED_CONTRACT_PHRASES = {
         "EVERY MILESTONE IN THE ACTIVE WINDOW IS COMPLETED",
         "DO NOT STOP AT THE END OF A MILESTONE ONLY TO REPORT PROGRESS",
         "root orchestrator",
+        "processed-docs/00-control/Mode.md",
+        "Tutor sessions are not milestone work.",
     ],
     "processed-docs/00-control/Implement.md": [
         "root orchestrator",
@@ -126,7 +134,10 @@ REQUIRED_CONTRACT_PHRASES = {
     "processed-docs/04-coach/Start-Coach-Session.md": [
         "Start from `processed-docs/04-coach/catalog.json` when it exists.",
         "Use repo-local coach data first.",
-        "If a question is outside current repo coverage, say that clearly and do not invent book coverage.",
+        "The user does not need to repeat a tutor prompt.",
+        "Web search is allowed when it is useful.",
+        "Generated images are allowed when they help the explanation.",
+        "do not solve the exercises immediately by default",
     ],
 }
 
@@ -154,6 +165,7 @@ SOURCE_LINE_REF_DETAIL_RE = re.compile(r"(BOOK\d+-CH\d+-P\d{3}):L(\d{3})(?:-L(\d
 ASSET_ID_RE = re.compile(r"BOOK\d+-CH\d+-P\d{3}-(?:PAGE|F\d{3})")
 ASSET_LINE_REF_RE = re.compile(r"^L\d{3}(?:-L\d{3})?$")
 SOURCE_REF_FULL_RE = re.compile(r"(BOOK\d+-CH\d+-P\d{3}):L(\d{3})(?:-L(\d{3}))?$")
+MODE_RE = re.compile(r"^- Current mode: `([^`]+)`", re.MULTILINE)
 ALLOWED_ASSET_TYPES = {
     "page_normalized",
     "figure_crop",
@@ -172,6 +184,10 @@ COACH_CATALOG_STATUSES = {
     "draft",
     "ready",
     "ready_with_gaps",
+}
+ALLOWED_MODES = {
+    "tutor",
+    "extraction",
 }
 
 
@@ -273,6 +289,19 @@ def check_markdown_links(errors: list[str]) -> None:
                 continue
             if not resolved.exists():
                 add_error(errors, f"{relative}: broken link: {target}")
+
+
+def check_mode_state(errors: list[str]) -> None:
+    path = ROOT / "processed-docs/00-control/Mode.md"
+    if path.exists():
+        text = read_text(path)
+        modes = MODE_RE.findall(text)
+        if len(modes) != 1:
+            add_error(errors, "Mode.md: expected exactly one Current mode field")
+        else:
+            current_mode = modes[0]
+            if current_mode not in ALLOWED_MODES:
+                add_error(errors, f"Mode.md: invalid current mode `{current_mode}`")
 
 
 def check_plan_state(errors: list[str]) -> None:
@@ -937,6 +966,7 @@ def main() -> int:
     check_source_inventory(errors)
     check_page_files(errors)
     check_markdown_links(errors)
+    check_mode_state(errors)
     check_plan_state(errors)
     check_chapter_asset_manifests(errors)
     assets_by_page = load_asset_manifests(errors)

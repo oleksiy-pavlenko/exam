@@ -3,6 +3,7 @@
 This folder is the AI-oriented math exam knowledgebase for Codex-driven coaching.
 
 Start here:
+- [Mode](00-control/Mode.md)
 - [Documentation](00-control/Documentation.md)
 - [Plan](00-control/Plan.md)
 - [Prompt](00-control/Prompt.md)
@@ -13,6 +14,9 @@ Start here:
 - [Start coach session](04-coach/Start-Coach-Session.md)
 
 Operating contract:
+- `Mode.md` is the only current-mode source of truth for fresh sessions.
+- If `Mode.md` says `tutor`, start from `04-coach/Start-Coach-Session.md`.
+- If `Mode.md` says `extraction`, start from `00-control/Start-Long-Run.md`.
 - `Plan.md` is the only milestone-status source of truth.
 - `Prompt.md` is the binding run spec after `Plan.md` names an active milestone.
 - `Implement.md` is the long-run procedure.
@@ -37,3 +41,4 @@ Conventions:
 - Processed math content is written in Finnish.
 - `EPÄSELVÄ` marks text or formulas that need a later visual check.
 - Fresh coach sessions should use structured coach data first and fall back to cited notes only when coach data is missing.
+- Tutor mode may use own knowledge, web search, and generated images when repo coverage is missing or a clearer explanation is needed.

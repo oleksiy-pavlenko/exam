@@ -5,11 +5,13 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 ## Current state snapshot
 - Last updated: 2026-05-01
 - Progress source of truth: `processed-docs/00-control/Plan.md`
-- Active window: `CH01-COACH` backfill (closed)
+- Active window: `PREP3` mode system (closed)
 - Current milestone from Plan.md: `Closed`
 - Next milestone from Plan.md: `Closed`
 - Validation command: `python3 scripts/validate_kb.py`
 - Worktree check: `git status --short`
+- Current mode source of truth: `processed-docs/00-control/Mode.md`
+- Current committed mode: `tutor`
 - Current provisional book ID: `BOOK01`
 - Current provisional chapter ID: `CH01`
 - Current CH01 visual asset manifest: `processed-docs/assets/pages/BOOK01/CH01/assets.json`
@@ -18,6 +20,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 ## Control-doc roles
 - `Prompt.md`: binding run spec after `Plan.md` names a milestone
 - `Plan.md`: only milestone-status source of truth
+- `Mode.md`: only current-mode source of truth
 - `Implement.md`: execution runbook
 - `Review.md`: review contract
 - `Documentation.md`: audit log, decisions, blockers, and backlog
@@ -30,6 +33,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - `CH01-NOTES` created Finnish concept and exercise notes for the current transcript layer and closed the active window.
 - `PREP2` pivoted the repo from future-app wording to Codex-only coach sessions and opened a `CH01-COACH` backfill.
 - `CH01-COACH` created the first coach catalog entry and the first usable chapter coach manifest for fresh Codex sessions.
+- `PREP3` added persisted `tutor` and `extraction` modes with `Mode.md` as the startup source of truth.
 - Future chapter windows still require visual asset and coach data milestones.
 
 ## Audit log
@@ -104,6 +108,15 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Extended `scripts/validate_kb.py` so the coach catalog and coach manifests are checked structurally.
 - Closed the one-milestone `CH01-COACH` backfill window in `Plan.md`.
 
+### 2026-05-01 - PREP3 completed: add persisted tutor and extraction modes
+- Added `processed-docs/00-control/Mode.md` as the only current-mode source of truth for fresh sessions.
+- Set the committed default mode to `tutor`.
+- Reworked `AGENTS.md` so startup, tutor defaults, and extraction rules depend on the committed mode.
+- Updated the tutor startup contract so the user does not need to repeat a setup prompt and practice stays unsolved by default.
+- Updated the extraction startup contract so tutor sessions are kept separate from milestone work.
+- Extended `scripts/validate_kb.py` so mode state and tutor-mode contract phrases are checked structurally.
+- Future ordinary mode switches should use dedicated `docs(mode): ...` commits instead of reopening `Plan.md` milestones.
+
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
 - Control docs may use simple English for clear long-run coordination.
@@ -115,6 +128,11 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Exercises 18-25 are not treated as covered by the current transcript layer.
 - Future chapter windows use `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.
 - The coach runtime is fresh Codex sessions, not a separate standalone app.
+- `processed-docs/00-control/Mode.md` is the only current-mode source of truth for fresh sessions.
+- The committed default mode is `tutor`.
+- Tutor mode uses repo material first, but it is not hard-limited by extracted coverage.
+- Tutor mode may use own knowledge, web search, and generated images when they help.
+- Tutor mode keeps exercises unsolved by default until the user asks for a full solution.
 - The coach-facing layer is structured manifests. Do not make future coach sessions scrape free-form Markdown as their main data source.
 - Fresh learner-facing sessions should start from `processed-docs/04-coach/Start-Coach-Session.md` and then read `processed-docs/04-coach/catalog.json`.
 - Every reviewed visual asset must cite source page IDs and line IDs.
@@ -130,11 +148,15 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Add later extracted chapters to `processed-docs/04-coach/catalog.json` as they reach `CHxx-COACH`.
 
 ## Fresh-session handoff
+- Read `processed-docs/00-control/Mode.md` first.
+- If the current mode is `tutor`, start from `processed-docs/04-coach/Start-Coach-Session.md`.
+- If the current mode is `extraction`, start from `processed-docs/00-control/Start-Long-Run.md`.
 - Start extraction runs from `processed-docs/00-control/Plan.md` and `processed-docs/00-control/Start-Long-Run.md`.
 - Start learner-facing coach sessions from `processed-docs/04-coach/Start-Coach-Session.md`.
 - Current milestone is `Closed`.
 - Next milestone is `Closed`.
-- The one-milestone `CH01-COACH` backfill is closed.
+- The committed default mode is `tutor`.
+- The `PREP3` mode-system window is closed.
 - Future chapter windows should use the four-step pattern: pages, assets, notes, coach data.
 - Cite page line IDs from `processed-docs/01-pages/BOOK01/CH01/` if later work extends the notes.
 - Cite visual asset IDs from `processed-docs/assets/pages/BOOK01/CH01/assets.json` when later work needs images.

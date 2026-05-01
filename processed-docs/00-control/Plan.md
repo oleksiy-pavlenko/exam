@@ -5,17 +5,18 @@ This file is the only milestone-status source of truth for the current long run.
 ## Execution State
 - Progress source of truth: this file
 - Status vocabulary: `Completed`, `Current`, `Pending`, `Blocked`
-- Active window: `CH01-COACH` backfill (closed)
+- Active window: `PREP3` mode system (closed)
 - Current milestone: `Closed`
 - Next milestone: `Closed`
-- Hot-path milestone specs: `PREP1`, `PREP2`, `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, `CHxx-COACH`
-- Completed preparation milestones: `PREP1`, `PREP2`
+- Hot-path milestone specs: `PREP1`, `PREP2`, `PREP3`, `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, `CHxx-COACH`
+- Completed preparation milestones: `PREP1`, `PREP2`, `PREP3`
 - Completed content milestones: `CH01-PAGES`, `CH01-NOTES`, `CH01-COACH`
 - Remaining milestones in the active window: none
 
 ## Validation command catalog
 - `WORKTREE-CLEAN`: `git status --short`
 - `KB-VALIDATE`: `python3 scripts/validate_kb.py`
+- `MODE-STATE-CHECK`: `python3 scripts/validate_kb.py`
 - `UNCLEAR-CHECK`: `rg -n "EPÄSELVÄ|TODO|BLOCKED" processed-docs/01-pages processed-docs/02-concepts processed-docs/03-exercises`
 - `ASSET-MANIFEST-CHECK`: `python3 scripts/validate_kb.py`
 - `COACH-START-CHECK`: `python3 scripts/validate_kb.py`
@@ -40,6 +41,7 @@ This file is the only milestone-status source of truth for the current long run.
 - Future chapter windows close only after `CHxx-COACH` is completed or a real blocker is recorded.
 - The runtime target is fresh Codex sessions, not a separate standalone app.
 - Fresh learner-facing coach sessions start from `processed-docs/04-coach/Start-Coach-Session.md`.
+- Ordinary mode switches update `processed-docs/00-control/Mode.md` and use dedicated mode commits. They do not reopen chapter milestones by themselves.
 - Record newly discovered work in `Documentation.md`. Do not silently widen the current milestone.
 
 ## Future milestone pattern
@@ -101,6 +103,29 @@ This file is the only milestone-status source of truth for the current long run.
   - Commit message pattern: `docs(chunk): PREP2 align-codex-coach-process`
 - Handoff:
   - `PREP2` is complete. Start the `CH01-COACH` backfill next.
+
+### PREP3 - Add persisted tutor and extraction modes
+- Status: `Completed (2026-05-01)`
+- Goal:
+  - Add a committed mode system so fresh sessions know whether they should start in learner-facing tutor mode or milestone-driven extraction mode.
+- Scope:
+  - Add `processed-docs/00-control/Mode.md` as the only current-mode source of truth.
+  - Update startup docs, `AGENTS.md`, and repo indexes to read the current mode first.
+  - Make tutor mode use repo material first without treating extracted content as a hard limit.
+  - Keep extraction mode as the only path for milestone work and repo content changes.
+  - Extend validator coverage so the mode contract does not drift silently.
+- Acceptance:
+  - Fresh sessions can discover the committed mode from `Mode.md`.
+  - Tutor mode has built-in startup behavior, hybrid coverage rules, and unsolved-by-default practice behavior.
+  - Extraction mode remains the milestone workflow entrypoint.
+  - `python3 scripts/validate_kb.py` passes with the new mode checks.
+- Validation:
+  - `git status --short`
+  - `python3 scripts/validate_kb.py`
+- Commit:
+  - Commit message pattern: `docs(chunk): PREP3 add-persisted-session-modes`
+- Handoff:
+  - `PREP3` is complete. Future ordinary mode switches should use dedicated mode commits without reopening `Plan.md` milestones.
 
 ### CH01-PAGES - Transcribe first chapter scan batch
 - Status: `Completed (2026-05-01)`

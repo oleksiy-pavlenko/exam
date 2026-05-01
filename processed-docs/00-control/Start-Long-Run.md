@@ -1,6 +1,6 @@
 # Start Long Run Prompt
 
-Use this file only in a fresh Codex session for this repo.
+Use this file only in a fresh Codex session after `processed-docs/00-control/Mode.md` sets the current mode to `extraction`.
 
 This file owns startup checks only. `Prompt.md` is the binding run spec. `Plan.md` is the only milestone-status source of truth. `Implement.md` is the execution runbook. `Review.md` is the review contract. `Documentation.md` is the audit log and durable handoff.
 
@@ -12,6 +12,7 @@ python3 scripts/validate_kb.py
 ```
 
 Notes:
+- `processed-docs/00-control/Mode.md` is the current-mode gate. This file applies only when the mode is `extraction`.
 - The worktree must be clean before the run starts.
 - `Plan.md` is the milestone-state gate. Older milestone text elsewhere does not override it.
 - `Documentation.md` is the durable handoff and audit log.
@@ -21,13 +22,16 @@ Notes:
 - Future chapter windows use `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.
 - If preflight fails, repair the control stack before milestone work.
 - `processed-docs/04-coach/Start-Coach-Session.md` is for learner-facing sessions. Do not use it as the extraction entrypoint.
+- Tutor sessions are not milestone work.
 
 ## First Codex prompt
 
 ```text
 CONTINUE THIS SESSION UNTIL EVERY MILESTONE IN THE ACTIVE WINDOW IS COMPLETED. DO NOT STOP AT THE END OF A MILESTONE ONLY TO REPORT PROGRESS.
 
-First read `processed-docs/00-control/Plan.md` and `processed-docs/00-control/Documentation.md`.
+First read `processed-docs/00-control/Mode.md`, `processed-docs/00-control/Plan.md`, and `processed-docs/00-control/Documentation.md`.
+
+Use this file only when `processed-docs/00-control/Mode.md` sets the current mode to `extraction`. Tutor sessions are not milestone work.
 
 Treat `processed-docs/00-control/Plan.md` as the milestone-state gate and only milestone-status source of truth. Treat `processed-docs/00-control/Documentation.md` as the audit log and durable handoff.
 
@@ -41,6 +45,7 @@ For future chapter windows, do not skip the asset or coach milestones: fresh Cod
 
 ## Required inputs
 - `AGENTS.md`
+- `processed-docs/00-control/Mode.md`
 - `processed-docs/00-control/Prompt.md`
 - `processed-docs/00-control/Plan.md`
 - `processed-docs/00-control/Implement.md`
