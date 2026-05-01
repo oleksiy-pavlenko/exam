@@ -11,7 +11,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Validation command: `python3 scripts/validate_kb.py`
 - Worktree check: `git status --short`
 - Current mode source of truth: `processed-docs/00-control/Mode.md`
-- Current committed mode: `tutor`
+- Current committed mode: `extraction`
 - Current provisional book ID: `BOOK01`
 - Current provisional chapter ID: `CH01`
 - Current CH01 visual asset manifest: `processed-docs/assets/pages/BOOK01/CH01/assets.json`
@@ -117,6 +117,10 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Extended `scripts/validate_kb.py` so mode state and tutor-mode contract phrases are checked structurally.
 - Future ordinary mode switches should use dedicated `docs(mode): ...` commits instead of reopening `Plan.md` milestones.
 
+### 2026-05-01 - Mode switch: extraction
+- Switched `processed-docs/00-control/Mode.md` from `tutor` to `extraction` after the user requested extraction work.
+- The image drop in `copy-from-here-and-delete/` is the next source-prep input and must be imported before milestone work starts.
+
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
 - Control docs may use simple English for clear long-run coordination.
@@ -129,7 +133,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Future chapter windows use `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.
 - The coach runtime is fresh Codex sessions, not a separate standalone app.
 - `processed-docs/00-control/Mode.md` is the only current-mode source of truth for fresh sessions.
-- The committed default mode is `tutor`.
+- The committed mode is `extraction`.
 - Tutor mode uses repo material first, but it is not hard-limited by extracted coverage.
 - Tutor mode may use own knowledge, web search, and generated images when they help.
 - Tutor mode keeps exercises unsolved by default until the user asks for a full solution.
