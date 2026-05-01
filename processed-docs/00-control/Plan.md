@@ -5,13 +5,13 @@ This file is the only milestone-status source of truth for the current long run.
 ## Execution State
 - Progress source of truth: this file
 - Status vocabulary: `Completed`, `Current`, `Pending`, `Blocked`
-- Active window: `CH01-COACH` backfill (open)
-- Current milestone: `CH01-COACH`
+- Active window: `CH01-COACH` backfill (closed)
+- Current milestone: `Closed`
 - Next milestone: `Closed`
 - Hot-path milestone specs: `PREP1`, `PREP2`, `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, `CHxx-COACH`
 - Completed preparation milestones: `PREP1`, `PREP2`
-- Completed content milestones: `CH01-PAGES`, `CH01-NOTES`
-- Remaining milestones in the active window: `CH01-COACH`
+- Completed content milestones: `CH01-PAGES`, `CH01-NOTES`, `CH01-COACH`
+- Remaining milestones in the active window: none
 
 ## Validation command catalog
 - `WORKTREE-CLEAN`: `git status --short`
@@ -151,7 +151,7 @@ This file is the only milestone-status source of truth for the current long run.
   - `CH01-NOTES` is complete. The active window is closed. Future work should open a new prep or chapter window.
 
 ### CH01-COACH - Backfill first chapter coach data
-- Status: `Current`
+- Status: `Completed (2026-05-01)`
 - Goal:
   - Create the first structured coach layer for `BOOK01/CH01`.
 - Scope:
@@ -171,4 +171,4 @@ This file is the only milestone-status source of truth for the current long run.
 - Commit:
   - Commit message pattern: `docs(chunk): CH01-COACH backfill-first-coach-manifest`
 - Handoff:
-  - `CH01-COACH` closes the current backfill window.
+  - `CH01-COACH` is complete. The current backfill window is closed.

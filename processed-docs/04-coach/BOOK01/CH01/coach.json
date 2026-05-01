@@ -1,0 +1,398 @@
+{
+  "manifest_version": 1,
+  "book_id": "BOOK01",
+  "chapter_id": "BOOK01-CH01",
+  "language": "fi",
+  "coverage_notes_fi": [
+    "Tämä coach-manifesti kattaa sivujen BOOK01-CH01-P001-P004 näkyvät käsitteet, ratkaistut esimerkit ja harjoitusmallit.",
+    "Tehtävät 18-25 eivät kuulu nykyiseen lähdekatteeseen, koska niitä vastaavat sivut eivät ole repo:ssa kokonaan.",
+    "Osittainen reunasisältö ei ole lähdekatetta eikä sitä käytetä coach-vastauksissa."
+  ],
+  "concepts": [
+    {
+      "concept_id": "yksikkomuunnokset",
+      "title_fi": "Pituuden ja pinta-alan yksikkömuunnokset",
+      "source_refs": [
+        "BOOK01-CH01-P001:L003-L020",
+        "BOOK01-CH01-P003:L026-L027",
+        "BOOK01-CH01-P003:L037-L038"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH01-P001-F001",
+        "BOOK01-CH01-P001-F002",
+        "BOOK01-CH01-P003-F005"
+      ],
+      "coach_goal_fi": "Oppija osaa vaihtaa pituuden ja pinta-alan yksikön oikein ja tunnistaa, milloin käytetään kerrointa 10 ja milloin 100.",
+      "explanation_steps_fi": [
+        "Nimeä ensin lähtöyksikkö ja kohdeyksikkö.",
+        "Laske, montako askelta yksikköjärjestyksessä siirrytään.",
+        "Käytä pituuksissa joka askeleella kerrointa tai jakajaa 10.",
+        "Käytä pinta-aloissa joka askeleella kerrointa tai jakajaa 100.",
+        "Tarkista lopuksi, että yksikkö ja lukuarvon suunta muuttuvat yhdessä."
+      ],
+      "common_mistakes_fi": [
+        "Pinta-alassa käytetään vahingossa pituuden kerrointa 10.",
+        "Vertailtavat suureet jätetään eri yksiköihin ennen merkin <, = tai > valintaa.",
+        "Vastaus annetaan ilman yksikköä tai väärällä yksiköllä."
+      ],
+      "visual_demo_steps_fi": [
+        "Näytä pituusyksikkötaulukosta, miten siirto oikealle kasvattaa lukuarvoa kymmenkertaiseksi joka askeleella.",
+        "Näytä pinta-alayksikkötaulukosta, miten sama siirto kasvattaa lukuarvoa satakertaiseksi joka askeleella.",
+        "Korosta yksi esimerkkimuunnos taulukossa askel askeleelta."
+      ],
+      "related_assignment_ids": [
+        "pituusmuunnos",
+        "pinta-alamuunnos",
+        "vertailu-samalla-yksikolla"
+      ]
+    },
+    {
+      "concept_id": "piiri-pinta-ala",
+      "title_fi": "Piiri ja pinta-ala suorakulmiossa, suunnikkaassa ja kolmiossa",
+      "source_refs": [
+        "BOOK01-CH01-P001:L021-L034",
+        "BOOK01-CH01-P002:L001-L024",
+        "BOOK01-CH01-P003:L010-L023",
+        "BOOK01-CH01-P004:L004-L012"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH01-P001-F003",
+        "BOOK01-CH01-P001-F004",
+        "BOOK01-CH01-P002-F001",
+        "BOOK01-CH01-P002-F002",
+        "BOOK01-CH01-P002-F003",
+        "BOOK01-CH01-P003-F004",
+        "BOOK01-CH01-P004-F002",
+        "BOOK01-CH01-P004-F009"
+      ],
+      "coach_goal_fi": "Oppija erottaa piirin ja pinta-alan, valitsee oikean kaavan ja käyttää oikeaa kantaa ja siihen kohtisuoraa korkeutta.",
+      "explanation_steps_fi": [
+        "Päätä ensin, kysytäänkö piiriä vai pinta-alaa.",
+        "Jos kysytään piiriä, etsi kaikki tarvittavat sivut ja laske ne yhteen.",
+        "Jos kysytään pinta-alaa, valitse oikea kaava kuviolle.",
+        "Varmista, että kanta ja korkeus ovat kohtisuorassa ja samassa yksikössä.",
+        "Pyöristä vastaus vain silloin, kun tehtävän esimerkki tai pyyntö siihen ohjaa."
+      ],
+      "common_mistakes_fi": [
+        "Piiri ja pinta-ala sekoitetaan keskenään.",
+        "Suunnikkaan vinoa sivua käytetään korkeutena.",
+        "Kolmion kaavasta unohdetaan jakaja 2."
+      ],
+      "visual_demo_steps_fi": [
+        "Korosta suorakulmion kuvasta, mitkä sivut menevät piiriin ja mitkä mitat menevät pinta-alakaavaan.",
+        "Näytä suunnikkaassa erikseen kanta, korkeus ja vino sivu.",
+        "Näytä kolmiossa, mihin kantaan korkeus kuuluu ja miksi tulo jaetaan kahdella."
+      ],
+      "related_assignment_ids": [
+        "suorakulmion-piiri-ja-pinta-ala",
+        "suunnikkaan-pinta-ala",
+        "kolmion-piiri-ja-pinta-ala",
+        "kuviosta-mittaaminen",
+        "tuntematon-sivu-piirista"
+      ]
+    },
+    {
+      "concept_id": "yhtalot",
+      "title_fi": "Tuntemattoman sivun ratkaiseminen yhtälöllä",
+      "source_refs": [
+        "BOOK01-CH01-P002:L026-L043",
+        "BOOK01-CH01-P003:L039-L041",
+        "BOOK01-CH01-P004:L001-L003",
+        "BOOK01-CH01-P004:L013-L016",
+        "BOOK01-CH01-P004:L036-L040"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH01-P002-F004",
+        "BOOK01-CH01-P002-F005",
+        "BOOK01-CH01-P003-F006",
+        "BOOK01-CH01-P004-F001",
+        "BOOK01-CH01-P004-F003",
+        "BOOK01-CH01-P004-F008"
+      ],
+      "coach_goal_fi": "Oppija osaa muodostaa pinta-alakaavasta yhtälön ja ratkaista kannan tai korkeuden oikeilla laskutoimituksilla.",
+      "explanation_steps_fi": [
+        "Kirjoita ensin oikea pinta-alakaava annetulle kuviolle.",
+        "Sijoita tunnetut luvut kaavaan ja muodosta yhtälö.",
+        "Poista ensin mahdollinen jakaja 2 kolmion kaavasta.",
+        "Eristä tuntematon tekemällä sama laskutoimitus yhtälön molemmille puolille.",
+        "Tarkista, että ratkaistu sivu sopii annettuun yksikköön ja tehtävän kysymykseen."
+      ],
+      "common_mistakes_fi": [
+        "Tuntematon ratkaistaan väärästä kaavasta.",
+        "Kolmion kaavan jakaja 2 unohdetaan ennen eristämistä.",
+        "Ratkaistu sivu annetaan ilman yksikköä tai väärässä yksikössä."
+      ],
+      "visual_demo_steps_fi": [
+        "Näytä suorakulmion kuvasta, mikä mitta tunnetaan ja mikä ratkaistaan.",
+        "Näytä kolmion kuvasta, miksi yhtälössä on jakaja 2 ennen tuntemattoman eristämistä.",
+        "Korosta välivaiheet kuvion vieressä niin, että sama mitta pysyy esillä koko ratkaisun ajan."
+      ],
+      "related_assignment_ids": [
+        "sivu-pinta-alasta-yhtalolla",
+        "tuntematon-sivu-piirista"
+      ]
+    }
+  ],
+  "assignment_templates": [
+    {
+      "template_id": "pituusmuunnos",
+      "title_fi": "Pituuden yksikkömuunnos",
+      "concept_ids": [
+        "yksikkomuunnokset"
+      ],
+      "source_refs": [
+        "BOOK01-CH01-P001:L013-L018"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH01-P001-F001"
+      ],
+      "prompt_shape_fi": "Anna yksi pituus ja kohdeyksikkö. Pyydetään muuttamaan suure kohdeyksikköön ja näyttämään tarvittaessa välivaiheet.",
+      "answer_expectation_fi": "Oikea lukuarvo ja yksikkö riittävät. Välivaiheet ovat hyödyllisiä mutta eivät pakollisia.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos lukuarvo, yksikkö ja muunnoksen suunta ovat oikein. Jos vastaus on väärin, kerro monenko askeleen muunnos oli kyseessä ja oliko kerroin tai jakaja valittu väärin.",
+      "hint_steps_fi": [
+        "Kirjoita pituusyksikköjen järjestys.",
+        "Laske askelten määrä lähtöyksiköstä kohdeyksikköön.",
+        "Päättele, kerrotaanko vai jaetaanko jokaisella askeleella luvulla 10."
+      ],
+      "variation_notes_fi": [
+        "Vaihda lähtöyksikkö ja kohdeyksikkö eri puolille taulukkoa.",
+        "Käytä desimaalilukuja ja kokonaislukuja sekaisin."
+      ]
+    },
+    {
+      "template_id": "pinta-alamuunnos",
+      "title_fi": "Pinta-alan yksikkömuunnos",
+      "concept_ids": [
+        "yksikkomuunnokset"
+      ],
+      "source_refs": [
+        "BOOK01-CH01-P001:L015-L020"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH01-P001-F002"
+      ],
+      "prompt_shape_fi": "Anna pinta-ala ja kohdeyksikkö. Pyydetään muuttamaan suure kohdeyksikköön ja tarkistamaan, että käytetään pinta-alan askelta.",
+      "answer_expectation_fi": "Vastauksessa pitäisi olla oikea lukuarvo ja oikea pinta-alan yksikkö.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos pinta-alan askel on käsitelty kertoimella tai jakajalla 100. Jos vastaus on väärin, osoita kohta, jossa oppija käsitteli pinta-alan kuin tavallisen pituuden.",
+      "hint_steps_fi": [
+        "Kirjoita pinta-alayksikköjen järjestys.",
+        "Laske siirtymät lähtöyksiköstä kohdeyksikköön.",
+        "Muista, että vierekkäinen pinta-alayksikkö muuttaa lukuarvoa sadalla."
+      ],
+      "variation_notes_fi": [
+        "Käytä sekä arvoja, jotka pienenevät, että arvoja, jotka kasvavat muunnoksessa.",
+        "Sekoita tehtäviin m^2, dm^2, cm^2, a ja ha."
+      ]
+    },
+    {
+      "template_id": "vertailu-samalla-yksikolla",
+      "title_fi": "Suureiden vertailu samassa yksikössä",
+      "concept_ids": [
+        "yksikkomuunnokset"
+      ],
+      "source_refs": [
+        "BOOK01-CH01-P003:L026-L027",
+        "BOOK01-CH01-P003:L037-L038"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH01-P001-F001",
+        "BOOK01-CH01-P001-F002"
+      ],
+      "prompt_shape_fi": "Anna kaksi pituutta tai kaksi pinta-alaa eri yksiköissä ja pyydetään valitsemaan niiden väliin merkki <, = tai >.",
+      "answer_expectation_fi": "Odotettu vastaus on oikea vertailumerkki ja lyhyt perustelu muunnoksen jälkeen.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos molemmat suureet on muutettu samaan yksikköön oikein ja vertailumerkki on oikein. Jos vastaus on väärin, pyydä muuntamaan molemmat suureet samaan yksikköön ennen vertailua.",
+      "hint_steps_fi": [
+        "Valitse yhteinen yksikkö.",
+        "Muunna molemmat suureet siihen yksikköön.",
+        "Vertaa vasta sitten lukuarvoja."
+      ],
+      "variation_notes_fi": [
+        "Voit käyttää joko pituuksia tai pinta-aloja.",
+        "Tee tehtävästä joskus tasatulos ja joskus selvästi suurempi tai pienempi."
+      ]
+    },
+    {
+      "template_id": "suorakulmion-piiri-ja-pinta-ala",
+      "title_fi": "Suorakulmion piiri ja pinta-ala",
+      "concept_ids": [
+        "piiri-pinta-ala"
+      ],
+      "source_refs": [
+        "BOOK01-CH01-P001:L029-L034",
+        "BOOK01-CH01-P003:L010-L012",
+        "BOOK01-CH01-P003:L019"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH01-P001-F004",
+        "BOOK01-CH01-P003-F001",
+        "BOOK01-CH01-P003-F002"
+      ],
+      "prompt_shape_fi": "Anna suorakulmion sivut tai suorakulmainen arkikohde, kuten kenttä, ja pyydetään laskemaan piiri, pinta-ala tai molemmat.",
+      "answer_expectation_fi": "Odotettu vastaus sisältää oikeat yksiköt ja pyydetyt suureet. Välivaiheet ovat suositeltavia.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos piiri on sivujen summa ja pinta-ala on kannan ja korkeuden tulo. Jos toinen suure on oikein ja toinen väärin, anna osittainen palaute ja osoita kumpi kaava sekoittui.",
+      "hint_steps_fi": [
+        "Kirjoita, kysytäänkö piiriä, pinta-alaa vai molempia.",
+        "Laske piiri laskemalla kaikki sivut yhteen.",
+        "Laske pinta-ala kertomalla kanta ja korkeus."
+      ],
+      "variation_notes_fi": [
+        "Vaihda tehtävässä kysyttävä suure piirin ja pinta-alan välillä.",
+        "Käytä sekä tavallisia suorakulmioita että arkisia suorakulmaisia kohteita."
+      ]
+    },
+    {
+      "template_id": "suunnikkaan-pinta-ala",
+      "title_fi": "Suunnikkaan pinta-ala",
+      "concept_ids": [
+        "piiri-pinta-ala",
+        "yksikkomuunnokset"
+      ],
+      "source_refs": [
+        "BOOK01-CH01-P002:L001-L010",
+        "BOOK01-CH01-P003:L021-L023",
+        "BOOK01-CH01-P004:L027-L028"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH01-P002-F001",
+        "BOOK01-CH01-P003-F003",
+        "BOOK01-CH01-P003-F004",
+        "BOOK01-CH01-P004-F006"
+      ],
+      "prompt_shape_fi": "Anna suunnikkaan kanta, korkeus ja mahdollinen vino sivu. Pyydetään laskemaan pinta-ala ja tarvittaessa huomioimaan yksikkömuunnos tai mitattava kuva.",
+      "answer_expectation_fi": "Odotettu vastaus on pinta-ala oikeassa yksikössä. Jos kuvaa pitäisi mitata, perustelun tulee kertoa, mitä mitattiin.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos pinta-alassa käytetään kantaa ja siihen kohtisuoraa korkeutta. Jos oppija käyttää vinoa sivua korkeutena, korjaa virhe suoraan ja näytä mistä oikea korkeus luetaan.",
+      "hint_steps_fi": [
+        "Etsi kanta ja siihen kohtisuora korkeus.",
+        "Muunna mitat samaan yksikköön ennen kertolaskua.",
+        "Laske pinta-ala kaavalla A = a * h."
+      ],
+      "variation_notes_fi": [
+        "Voit antaa osan mitoista eri yksiköissä.",
+        "Voit pyytää oppijaa mittaamaan tarvittavat pituudet kuvasta ennen laskua."
+      ]
+    },
+    {
+      "template_id": "kolmion-piiri-ja-pinta-ala",
+      "title_fi": "Kolmion piiri ja pinta-ala",
+      "concept_ids": [
+        "piiri-pinta-ala"
+      ],
+      "source_refs": [
+        "BOOK01-CH01-P002:L015-L024",
+        "BOOK01-CH01-P004:L004-L012",
+        "BOOK01-CH01-P004:L034-L035"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH01-P002-F002",
+        "BOOK01-CH01-P002-F003",
+        "BOOK01-CH01-P004-F002",
+        "BOOK01-CH01-P004-F007",
+        "BOOK01-CH01-P004-F009"
+      ],
+      "prompt_shape_fi": "Anna kolmion sivut ja korkeus tai kuvallinen kolmio, ja pyydetään laskemaan piiri, pinta-ala tai molemmat.",
+      "answer_expectation_fi": "Odotettu vastaus sisältää oikeat yksiköt. Jos tehtävässä on sekä piiri että pinta-ala, molemmat tulee erottaa selkeästi.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos piiri on kaikkien sivujen summa ja pinta-ala lasketaan kaavalla A = (a * h) / 2. Jos oppija unohtaa jakaa kahdella, osoita se tarkasti.",
+      "hint_steps_fi": [
+        "Päätä ensin, mikä sivu toimii kantana.",
+        "Etsi kantaan liittyvä korkeus.",
+        "Laske piiri sivujen summana ja pinta-ala erikseen kolmion kaavalla."
+      ],
+      "variation_notes_fi": [
+        "Voit käyttää tasasivuista, tasakylkistä tai yleistä kolmiota.",
+        "Voit pyytää valitsemaan vain toisen suureen tai molemmat suureet."
+      ]
+    },
+    {
+      "template_id": "kuviosta-mittaaminen",
+      "title_fi": "Kuvasta mitattava tehtävä",
+      "concept_ids": [
+        "piiri-pinta-ala"
+      ],
+      "source_refs": [
+        "BOOK01-CH01-P003:L023",
+        "BOOK01-CH01-P004:L021-L022",
+        "BOOK01-CH01-P004:L029"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH01-P003-F004",
+        "BOOK01-CH01-P004-F005",
+        "BOOK01-CH01-P004-F009"
+      ],
+      "prompt_shape_fi": "Anna kuvio, josta tarvittavat pituudet pitää lukea tai mitata ennen laskemista. Pyydetään kertomaan ensin mitä mitataan ja sitten ratkaisemaan tehtävä.",
+      "answer_expectation_fi": "Hyvä vastaus kertoo ensin tarvittavat mitat tai mittaustavan ja antaa vasta sen jälkeen laskun tuloksen.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos oppija tunnistaa oikeat mitattavat pituudet ja käyttää niitä johdonmukaisesti. Jos mitattu suure on väärä, korjaa jo mittausvaiheessa ennen laskun arviointia.",
+      "hint_steps_fi": [
+        "Päättele ensin, mikä suure tehtävässä lopulta kysytään.",
+        "Mieti, mitä mittoja siihen tarvitaan.",
+        "Mittaa tai lue vain ne mitat, jotka liittyvät valittuun kaavaan."
+      ],
+      "variation_notes_fi": [
+        "Voit käyttää suunnikasta, kolmiota tai arkista kuviota.",
+        "Pyydä joskus vain mittaussuunnitelma ja joskus koko ratkaisu."
+      ]
+    },
+    {
+      "template_id": "sivu-pinta-alasta-yhtalolla",
+      "title_fi": "Tuntematon sivu pinta-alasta yhtälöllä",
+      "concept_ids": [
+        "yhtalot",
+        "piiri-pinta-ala"
+      ],
+      "source_refs": [
+        "BOOK01-CH01-P002:L026-L043",
+        "BOOK01-CH01-P004:L001-L003",
+        "BOOK01-CH01-P004:L013-L016",
+        "BOOK01-CH01-P004:L036-L040"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH01-P002-F004",
+        "BOOK01-CH01-P002-F005",
+        "BOOK01-CH01-P004-F001",
+        "BOOK01-CH01-P004-F003",
+        "BOOK01-CH01-P004-F008"
+      ],
+      "prompt_shape_fi": "Anna pinta-ala ja yksi tunnettu sivu tai korkeus. Pyydetään ratkaisemaan puuttuva kanta tai korkeus yhtälön avulla.",
+      "answer_expectation_fi": "Odotettu vastaus sisältää yhtälön tai vastaavat välivaiheet sekä lopullisen sivun oikeassa yksikössä.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos oppija muodostaa oikean kaavan, eristää tuntemattoman loogisesti ja päätyy oikeaan sivuun. Jos virhe syntyy yhtälön muodostuksessa, korjaa se ennen kuin arvioit laskutoimituksia tarkemmin.",
+      "hint_steps_fi": [
+        "Kirjoita ensin oikea pinta-alakaava.",
+        "Sijoita tunnetut luvut kaavaan.",
+        "Eristä tuntematon tekemällä sama laskutoimitus yhtälön molemmille puolille."
+      ],
+      "variation_notes_fi": [
+        "Voit käyttää suorakulmiota, suunnikasta tai kolmiota.",
+        "Voit antaa vastauksen pyöristettäväksi tehtävän lopussa."
+      ]
+    },
+    {
+      "template_id": "tuntematon-sivu-piirista",
+      "title_fi": "Tuntematon sivu piiristä tai yhdistetystä tiedosta",
+      "concept_ids": [
+        "piiri-pinta-ala",
+        "yhtalot"
+      ],
+      "source_refs": [
+        "BOOK01-CH01-P003:L039-L041",
+        "BOOK01-CH01-P004:L033",
+        "BOOK01-CH01-P004:L039"
+      ],
+      "visual_asset_ids": [
+        "BOOK01-CH01-P003-F006",
+        "BOOK01-CH01-P004-F008",
+        "BOOK01-CH01-P004-PAGE"
+      ],
+      "prompt_shape_fi": "Anna piiri tai ympärysmitta sekä osa sivuista, ja pyydetään ratkaisemaan puuttuva sivu tai huoneen toinen mitta ennen lopullista vastausta.",
+      "answer_expectation_fi": "Odotettu vastaus kertoo, miten tuntematon sivu päätellään annetusta piiristä tai yhdistetystä tiedosta, ja antaa lopputuloksen oikeassa yksikössä.",
+      "llm_evaluation_guide_fi": "Hyväksy vastaus, jos oppija erottaa ensin piiriin kuuluvat sivut, muodostaa niiden summan tai muun päättelyn oikein ja ratkaisee puuttuvan sivun johdonmukaisesti. Jos oppija sekoittaa piirin ja pinta-alan, pysäytä arviointi siihen ja ohjaa takaisin kysyttyyn suureeseen.",
+      "hint_steps_fi": [
+        "Kirjoita, mitkä sivut kuuluvat piiriin tai ympärysmittaan.",
+        "Muodosta niistä summa tai päättely, joka sisältää tuntemattoman sivun.",
+        "Ratkaise tuntematon ja tarkista, mitä tehtävä pyysi lopuksi."
+      ],
+      "variation_notes_fi": [
+        "Voit yhdistää tehtävään piirin lisäksi pinta-alatiedon tai leveystiedon.",
+        "Voit pyytää lopuksi myös toisen suureen, kuten pinta-alan tai koko piirin tarkistuksen."
+      ]
+    }
+  ]
+}

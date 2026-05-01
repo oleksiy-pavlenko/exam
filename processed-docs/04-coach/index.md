@@ -4,6 +4,8 @@ This folder stores structured coach data for fresh Codex sessions.
 
 Start here:
 - [Start coach session](Start-Coach-Session.md)
+- [Coach catalog](catalog.json)
+- [BOOK01 CH01 coach manifest](BOOK01/CH01/coach.json)
 
 Rules:
 - Coach manifests should be structured JSON, not free-form lesson prose.
@@ -11,6 +13,7 @@ Rules:
 - The chapter catalog path is `processed-docs/04-coach/catalog.json` when coach coverage exists.
 
 Current status:
-- `BOOK01/CH01` coach manifest is not built yet.
-- The next backfill milestone is `CH01-COACH`.
+- `BOOK01/CH01` coach manifest is built and listed in the coach catalog.
+- The current coach layer covers pages `BOOK01-CH01-P001` through `BOOK01-CH01-P004`.
+- Known gap: exercises 18-25 are still outside current source coverage.
 - Future chapter windows must include a `CHxx-COACH` milestone after notes and visual assets are reviewed.

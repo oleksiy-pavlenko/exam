@@ -27,6 +27,8 @@ REQUIRED_FILES = [
     "processed-docs/03-exercises/index.md",
     "processed-docs/04-coach/index.md",
     "processed-docs/04-coach/Start-Coach-Session.md",
+    "processed-docs/04-coach/catalog.json",
+    "processed-docs/04-coach/BOOK01/CH01/coach.json",
     "processed-docs/assets/pages/BOOK01/CH01/index.md",
     "processed-docs/assets/pages/BOOK01/CH01/assets.json",
 ]
@@ -151,6 +153,7 @@ READABILITY_ASSET_RE = re.compile(r"Readability asset:\s+(?:!?\[[^\]]*\]\(([^)]+
 SOURCE_LINE_REF_DETAIL_RE = re.compile(r"(BOOK\d+-CH\d+-P\d{3}):L(\d{3})(?:-L(\d{3}))?")
 ASSET_ID_RE = re.compile(r"BOOK\d+-CH\d+-P\d{3}-(?:PAGE|F\d{3})")
 ASSET_LINE_REF_RE = re.compile(r"^L\d{3}(?:-L\d{3})?$")
+SOURCE_REF_FULL_RE = re.compile(r"(BOOK\d+-CH\d+-P\d{3}):L(\d{3})(?:-L(\d{3}))?$")
 ALLOWED_ASSET_TYPES = {
     "page_normalized",
     "figure_crop",
@@ -164,6 +167,11 @@ ALLOWED_ASSET_USES = {
     "assignment",
     "verification",
     "visual_animation",
+}
+COACH_CATALOG_STATUSES = {
+    "draft",
+    "ready",
+    "ready_with_gaps",
 }
 
 
@@ -342,9 +350,89 @@ def source_line_refs(text: str) -> list[tuple[str, tuple[int, int]]]:
     return refs
 
 
+def source_ref_parts(source_ref: str) -> tuple[str, tuple[int, int]] | None:
+    match = SOURCE_REF_FULL_RE.fullmatch(source_ref)
+    parts = None
+    if match is not None:
+        start = int(match.group(2))
+        end = int(match.group(3) or match.group(2))
+        if start <= end:
+            parts = (match.group(1), (start, end))
+    return parts
+
+
+def check_string_list(
+    errors: list[str],
+    relative: str,
+    label: str,
+    values: object,
+    allow_empty: bool,
+) -> None:
+    if not isinstance(values, list):
+        add_error(errors, f"{relative}: {label} must be a list")
+    else:
+        if not values and not allow_empty:
+            add_error(errors, f"{relative}: {label} must be a non-empty list")
+        for value in values:
+            if not isinstance(value, str) or not value.strip():
+                add_error(errors, f"{relative}: {label} has an invalid string value")
+
+
+def check_source_ref_list(errors: list[str], relative: str, label: str, source_refs: object) -> None:
+    check_string_list(errors, relative, label, source_refs, allow_empty=False)
+    if isinstance(source_refs, list):
+        for source_ref in source_refs:
+            if not isinstance(source_ref, str):
+                continue
+            parts = source_ref_parts(source_ref)
+            if parts is None:
+                add_error(errors, f"{relative}: {label} has invalid source ref {source_ref}")
+            else:
+                page_id, span = parts
+                page_path = page_path_for_id(page_id)
+                if not page_path.exists():
+                    add_error(errors, f"{relative}: {label} points to missing page {page_id}")
+                else:
+                    page_text = read_text(page_path)
+                    page_line_ids = set(LINE_ID_RE.findall(page_text))
+                    endpoints = [f"`L{span[0]:03d}`", f"`L{span[1]:03d}`"]
+                    for endpoint in endpoints:
+                        if endpoint not in page_line_ids:
+                            add_error(errors, f"{relative}: {label} missing source line {endpoint} in {page_id}")
+
+
+def all_asset_ids(assets_by_page: dict[str, list[dict[str, object]]]) -> set[str]:
+    asset_ids: set[str] = set()
+    for assets in assets_by_page.values():
+        for asset in assets:
+            asset_id = asset.get("asset_id")
+            if isinstance(asset_id, str):
+                asset_ids.add(asset_id)
+    return asset_ids
+
+
+def check_visual_asset_id_list(
+    errors: list[str],
+    relative: str,
+    label: str,
+    visual_asset_ids: object,
+    known_asset_ids: set[str],
+) -> None:
+    check_string_list(errors, relative, label, visual_asset_ids, allow_empty=False)
+    if isinstance(visual_asset_ids, list):
+        for asset_id in visual_asset_ids:
+            if isinstance(asset_id, str) and asset_id not in known_asset_ids:
+                add_error(errors, f"{relative}: {label} references unknown asset ID {asset_id}")
+
+
 def manifest_paths() -> list[Path]:
     assets_root = ROOT / "processed-docs" / "assets" / "pages"
     return sorted(assets_root.rglob("assets.json")) if assets_root.exists() else []
+
+
+def coach_manifest_paths() -> list[Path]:
+    coach_root = ROOT / "processed-docs" / "04-coach"
+    return sorted(coach_root.rglob("coach.json")) if coach_root.exists() else []
 
 
 def load_asset_manifests(errors: list[str]) -> dict[str, list[dict[str, object]]]:
@@ -535,6 +623,269 @@ def check_derived_note_citations(errors: list[str], assets_by_page: dict[str, li
                     add_error(errors, f"{relative}: missing relevant visual asset IDs {missing}")
 
 
+def load_coach_catalog(errors: list[str]) -> dict[str, dict[str, object]]:
+    entries_by_chapter: dict[str, dict[str, object]] = {}
+    path = ROOT / "processed-docs/04-coach/catalog.json"
+    if path.exists():
+        relative = path.relative_to(ROOT).as_posix()
+        try:
+            catalog = json.loads(read_text(path))
+        except json.JSONDecodeError as exc:
+            add_error(errors, f"{relative}: invalid JSON: {exc}")
+        else:
+            chapters = catalog.get("chapters")
+            if catalog.get("manifest_version") != 1:
+                add_error(errors, f"{relative}: manifest_version must be 1")
+            if catalog.get("language") != "fi":
+                add_error(errors, f"{relative}: language must be fi")
+            if not isinstance(chapters, list) or not chapters:
+                add_error(errors, f"{relative}: chapters must be a non-empty list")
+            else:
+                seen_chapters: set[str] = set()
+                required_fields = {
+                    "chapter_id",
+                    "status",
+                    "coach_manifest_path",
+                    "asset_manifest_path",
+                    "source_page_ids",
+                    "concept_ids",
+                    "known_gaps_fi",
+                }
+                for entry in chapters:
+                    if not isinstance(entry, dict):
+                        add_error(errors, f"{relative}: chapter entry must be an object")
+                        continue
+                    missing = sorted(required_fields - set(entry))
+                    if missing:
+                        add_error(errors, f"{relative}: chapter entry missing fields {missing}")
+                        continue
+                    chapter_id = entry["chapter_id"]
+                    status = entry["status"]
+                    coach_manifest_path = entry["coach_manifest_path"]
+                    asset_manifest_path = entry["asset_manifest_path"]
+                    source_page_ids = entry["source_page_ids"]
+                    concept_ids = entry["concept_ids"]
+                    known_gaps_fi = entry["known_gaps_fi"]
+                    if not isinstance(chapter_id, str) or not chapter_id:
+                        add_error(errors, f"{relative}: chapter entry has invalid chapter_id")
+                        continue
+                    if chapter_id in seen_chapters:
+                        add_error(errors, f"{relative}: duplicate chapter_id {chapter_id}")
+                    seen_chapters.add(chapter_id)
+                    if not isinstance(status, str) or status not in COACH_CATALOG_STATUSES:
+                        add_error(errors, f"{relative}: {chapter_id} has invalid status {status}")
+                    if not isinstance(coach_manifest_path, str):
+                        add_error(errors, f"{relative}: {chapter_id} coach_manifest_path must be a string")
+                    else:
+                        coach_path = (ROOT / coach_manifest_path).resolve()
+                        if not coach_path.exists():
+                            add_error(errors, f"{relative}: {chapter_id} missing coach manifest {coach_manifest_path}")
+                    if not isinstance(asset_manifest_path, str):
+                        add_error(errors, f"{relative}: {chapter_id} asset_manifest_path must be a string")
+                    else:
+                        asset_path = (ROOT / asset_manifest_path).resolve()
+                        if not asset_path.exists():
+                            add_error(errors, f"{relative}: {chapter_id} missing asset manifest {asset_manifest_path}")
+                    check_string_list(errors, relative, f"{chapter_id} source_page_ids", source_page_ids, allow_empty=False)
+                    if isinstance(source_page_ids, list):
+                        for page_id in source_page_ids:
+                            if isinstance(page_id, str) and not page_path_for_id(page_id).exists():
+                                add_error(errors, f"{relative}: {chapter_id} references missing source page {page_id}")
+                    check_string_list(errors, relative, f"{chapter_id} concept_ids", concept_ids, allow_empty=False)
+                    check_string_list(errors, relative, f"{chapter_id} known_gaps_fi", known_gaps_fi, allow_empty=True)
+                    entries_by_chapter.setdefault(chapter_id, entry)
+    return entries_by_chapter
+
+
+def load_coach_manifests(
+    errors: list[str],
+    assets_by_page: dict[str, list[dict[str, object]]],
+    catalog_entries: dict[str, dict[str, object]],
+) -> None:
+    manifest_summaries: dict[str, dict[str, object]] = {}
+    known_asset_ids = all_asset_ids(assets_by_page)
+    required_top_fields = {
+        "manifest_version",
+        "book_id",
+        "chapter_id",
+        "language",
+        "coverage_notes_fi",
+        "concepts",
+        "assignment_templates",
+    }
+    required_concept_fields = {
+        "concept_id",
+        "title_fi",
+        "source_refs",
+        "visual_asset_ids",
+        "coach_goal_fi",
+        "explanation_steps_fi",
+        "common_mistakes_fi",
+        "visual_demo_steps_fi",
+        "related_assignment_ids",
+    }
+    required_assignment_fields = {
+        "template_id",
+        "title_fi",
+        "concept_ids",
+        "source_refs",
+        "visual_asset_ids",
+        "prompt_shape_fi",
+        "answer_expectation_fi",
+        "llm_evaluation_guide_fi",
+        "hint_steps_fi",
+        "variation_notes_fi",
+    }
+    for path in coach_manifest_paths():
+        relative = path.relative_to(ROOT).as_posix()
+        try:
+            manifest = json.loads(read_text(path))
+        except json.JSONDecodeError as exc:
+            add_error(errors, f"{relative}: invalid JSON: {exc}")
+            continue
+        missing = sorted(required_top_fields - set(manifest))
+        if missing:
+            add_error(errors, f"{relative}: missing top-level fields {missing}")
+            continue
+        chapter_id = manifest["chapter_id"]
+        concepts = manifest["concepts"]
+        assignment_templates = manifest["assignment_templates"]
+        if manifest.get("manifest_version") != 1:
+            add_error(errors, f"{relative}: manifest_version must be 1")
+        if manifest.get("language") != "fi":
+            add_error(errors, f"{relative}: language must be fi")
+        if not isinstance(chapter_id, str) or not chapter_id:
+            add_error(errors, f"{relative}: chapter_id must be a non-empty string")
+            continue
+        if chapter_id in manifest_summaries:
+            add_error(errors, f"{relative}: duplicate coach manifest for {chapter_id}")
+            continue
+        check_string_list(errors, relative, "coverage_notes_fi", manifest["coverage_notes_fi"], allow_empty=False)
+        if not isinstance(concepts, list) or not concepts:
+            add_error(errors, f"{relative}: concepts must be a non-empty list")
+            continue
+        if not isinstance(assignment_templates, list) or not assignment_templates:
+            add_error(errors, f"{relative}: assignment_templates must be a non-empty list")
+            continue
+        concept_ids: set[str] = set()
+        assignment_ids: set[str] = set()
+        related_assignments_by_concept: dict[str, list[str]] = {}
+        source_pages: set[str] = set()
+        for concept in concepts:
+            if not isinstance(concept, dict):
+                add_error(errors, f"{relative}: concept entry must be an object")
+                continue
+            missing_concept_fields = sorted(required_concept_fields - set(concept))
+            if missing_concept_fields:
+                add_error(errors, f"{relative}: concept missing fields {missing_concept_fields}")
+                continue
+            concept_id = concept["concept_id"]
+            title_fi = concept["title_fi"]
+            coach_goal_fi = concept["coach_goal_fi"]
+            source_refs = concept["source_refs"]
+            visual_asset_ids = concept["visual_asset_ids"]
+            if not isinstance(concept_id, str) or not concept_id:
+                add_error(errors, f"{relative}: concept has invalid concept_id")
+                continue
+            if concept_id in concept_ids:
+                add_error(errors, f"{relative}: duplicate concept_id {concept_id}")
+            concept_ids.add(concept_id)
+            if not isinstance(title_fi, str) or not title_fi.strip():
+                add_error(errors, f"{relative}: {concept_id} title_fi must be a non-empty string")
+            if not isinstance(coach_goal_fi, str) or not coach_goal_fi.strip():
+                add_error(errors, f"{relative}: {concept_id} coach_goal_fi must be a non-empty string")
+            check_source_ref_list(errors, relative, f"{concept_id} source_refs", source_refs)
+            if isinstance(source_refs, list):
+                for source_ref in source_refs:
+                    if isinstance(source_ref, str):
+                        parts = source_ref_parts(source_ref)
+                        if parts is not None:
+                            source_pages.add(parts[0])
+            check_visual_asset_id_list(errors, relative, f"{concept_id} visual_asset_ids", visual_asset_ids, known_asset_ids)
+            check_string_list(errors, relative, f"{concept_id} explanation_steps_fi", concept["explanation_steps_fi"], allow_empty=False)
+            check_string_list(errors, relative, f"{concept_id} common_mistakes_fi", concept["common_mistakes_fi"], allow_empty=False)
+            check_string_list(errors, relative, f"{concept_id} visual_demo_steps_fi", concept["visual_demo_steps_fi"], allow_empty=False)
+            check_string_list(errors, relative, f"{concept_id} related_assignment_ids", concept["related_assignment_ids"], allow_empty=False)
+            if isinstance(concept["related_assignment_ids"], list):
+                related_assignments_by_concept[concept_id] = list(concept["related_assignment_ids"])
+        for assignment in assignment_templates:
+            if not isinstance(assignment, dict):
+                add_error(errors, f"{relative}: assignment entry must be an object")
+                continue
+            missing_assignment_fields = sorted(required_assignment_fields - set(assignment))
+            if missing_assignment_fields:
+                add_error(errors, f"{relative}: assignment missing fields {missing_assignment_fields}")
+                continue
+            template_id = assignment["template_id"]
+            title_fi = assignment["title_fi"]
+            prompt_shape_fi = assignment["prompt_shape_fi"]
+            answer_expectation_fi = assignment["answer_expectation_fi"]
+            llm_evaluation_guide_fi = assignment["llm_evaluation_guide_fi"]
+            source_refs = assignment["source_refs"]
+            visual_asset_ids = assignment["visual_asset_ids"]
+            if not isinstance(template_id, str) or not template_id:
+                add_error(errors, f"{relative}: assignment has invalid template_id")
+                continue
+            if template_id in assignment_ids:
+                add_error(errors, f"{relative}: duplicate template_id {template_id}")
+            assignment_ids.add(template_id)
+            if not isinstance(title_fi, str) or not title_fi.strip():
+                add_error(errors, f"{relative}: {template_id} title_fi must be a non-empty string")
+            if not isinstance(prompt_shape_fi, str) or not prompt_shape_fi.strip():
+                add_error(errors, f"{relative}: {template_id} prompt_shape_fi must be a non-empty string")
+            if not isinstance(answer_expectation_fi, str) or not answer_expectation_fi.strip():
+                add_error(errors, f"{relative}: {template_id} answer_expectation_fi must be a non-empty string")
+            if not isinstance(llm_evaluation_guide_fi, str) or not llm_evaluation_guide_fi.strip():
+                add_error(errors, f"{relative}: {template_id} llm_evaluation_guide_fi must be a non-empty string")
+            check_string_list(errors, relative, f"{template_id} concept_ids", assignment["concept_ids"], allow_empty=False)
+            check_source_ref_list(errors, relative, f"{template_id} source_refs", source_refs)
+            if isinstance(source_refs, list):
+                for source_ref in source_refs:
+                    if isinstance(source_ref, str):
+                        parts = source_ref_parts(source_ref)
+                        if parts is not None:
+                            source_pages.add(parts[0])
+            check_visual_asset_id_list(errors, relative, f"{template_id} visual_asset_ids", visual_asset_ids, known_asset_ids)
+            check_string_list(errors, relative, f"{template_id} hint_steps_fi", assignment["hint_steps_fi"], allow_empty=False)
+            check_string_list(errors, relative, f"{template_id} variation_notes_fi", assignment["variation_notes_fi"], allow_empty=False)
+        for concept_id, related_assignment_ids in related_assignments_by_concept.items():
+            for template_id in related_assignment_ids:
+                if isinstance(template_id, str) and template_id not in assignment_ids:
+                    add_error(errors, f"{relative}: {concept_id} references missing assignment template {template_id}")
+        for assignment in assignment_templates:
+            if isinstance(assignment, dict) and isinstance(assignment.get("concept_ids"), list):
+                template_id = assignment.get("template_id")
+                for concept_id in assignment["concept_ids"]:
+                    if isinstance(concept_id, str) and concept_id not in concept_ids:
+                        add_error(errors, f"{relative}: {template_id} references missing concept_id {concept_id}")
+        manifest_summaries[chapter_id] = {
+            "path": relative,
+            "concept_ids": concept_ids,
+            "source_pages": source_pages,
+        }
+    for chapter_id, entry in catalog_entries.items():
+        summary = manifest_summaries.get(chapter_id)
+        if summary is None:
+            add_error(errors, f"processed-docs/04-coach/catalog.json: {chapter_id} has no matching coach manifest")
+            continue
+        coach_manifest_path = entry.get("coach_manifest_path")
+        if coach_manifest_path != summary["path"]:
+            add_error(errors, f"processed-docs/04-coach/catalog.json: {chapter_id} coach_manifest_path does not match loaded manifest")
+        concept_ids = entry.get("concept_ids")
+        if isinstance(concept_ids, list):
+            catalog_concepts = set(concept_ids)
+            if catalog_concepts != summary["concept_ids"]:
+                add_error(errors, f"processed-docs/04-coach/catalog.json: {chapter_id} concept_ids do not match coach manifest")
+        source_page_ids = entry.get("source_page_ids")
+        if isinstance(source_page_ids, list):
+            catalog_pages = set(source_page_ids)
+            if not summary["source_pages"].issubset(catalog_pages):
+                add_error(errors, f"processed-docs/04-coach/catalog.json: {chapter_id} source_page_ids do not cover all coach refs")
+    for chapter_id in manifest_summaries:
+        if chapter_id not in catalog_entries:
+            add_error(errors, f"processed-docs/04-coach/{chapter_id}: coach manifest missing catalog entry")
+
+
 def check_subagent_specs(errors: list[str]) -> None:
     for relative in SUBAGENT_SPEC_FILES:
         path = ROOT / relative
@@ -591,6 +942,8 @@ def main() -> int:
     assets_by_page = load_asset_manifests(errors)
     check_page_figure_asset_coverage(errors, assets_by_page)
     check_derived_note_citations(errors, assets_by_page)
+    catalog_entries = load_coach_catalog(errors)
+    load_coach_manifests(errors, assets_by_page, catalog_entries)
     check_subagent_specs(errors)
     check_required_contract_phrases(errors)
     check_readme_handoff(errors)

@@ -17,7 +17,7 @@ Use this file as the binding run spec. `Plan.md` owns milestone status. `Impleme
 - Do not design for a separate standalone app in this repo.
 
 ## Autonomous window
-- Active window: `CH01-COACH` backfill (open)
+- Active window: `CH01-COACH` backfill (closed)
 - Future chapter windows use `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.
 - Current milestone is controlled only by `Plan.md`.
 - Continue until every milestone in the active window is completed or a stop rule fires.

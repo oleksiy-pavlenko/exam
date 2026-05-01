@@ -5,15 +5,15 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 ## Current state snapshot
 - Last updated: 2026-05-01
 - Progress source of truth: `processed-docs/00-control/Plan.md`
-- Active window: `CH01-COACH` backfill (open)
-- Current milestone from Plan.md: `CH01-COACH`
+- Active window: `CH01-COACH` backfill (closed)
+- Current milestone from Plan.md: `Closed`
 - Next milestone from Plan.md: `Closed`
 - Validation command: `python3 scripts/validate_kb.py`
 - Worktree check: `git status --short`
 - Current provisional book ID: `BOOK01`
 - Current provisional chapter ID: `CH01`
 - Current CH01 visual asset manifest: `processed-docs/assets/pages/BOOK01/CH01/assets.json`
-- Current coach data status: startup prompt ready, chapter coach manifest not built yet
+- Current coach data status: startup prompt, coach catalog, and CH01 coach manifest are built
 
 ## Control-doc roles
 - `Prompt.md`: binding run spec after `Plan.md` names a milestone
@@ -29,6 +29,7 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - `CH01-PAGES` created reviewed page transcripts for the first four `BOOK01/CH01` scans.
 - `CH01-NOTES` created Finnish concept and exercise notes for the current transcript layer and closed the active window.
 - `PREP2` pivoted the repo from future-app wording to Codex-only coach sessions and opened a `CH01-COACH` backfill.
+- `CH01-COACH` created the first coach catalog entry and the first usable chapter coach manifest for fresh Codex sessions.
 - Future chapter windows still require visual asset and coach data milestones.
 
 ## Audit log
@@ -95,6 +96,14 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Kept `processed-docs/00-control/Start-Long-Run.md` as the extraction entrypoint.
 - Opened a one-milestone `CH01-COACH` backfill window for the current first chapter.
 
+### 2026-05-01 - CH01-COACH completed: backfill first chapter coach data
+- Added `processed-docs/04-coach/catalog.json` as the first lookup file for fresh coach sessions.
+- Added `processed-docs/04-coach/BOOK01/CH01/coach.json` with concept explanations, assignment templates, LLM evaluation guides, hints, and visual demo hooks.
+- Linked the new coach layer to `BOOK01/CH01` page line IDs and visual asset IDs only.
+- Recorded the known source gap for exercises 18-25 in both the catalog and the chapter coach manifest.
+- Extended `scripts/validate_kb.py` so the coach catalog and coach manifests are checked structurally.
+- Closed the one-milestone `CH01-COACH` backfill window in `Plan.md`.
+
 ## Decisions
 - Processed page transcripts, concept notes, and exercise notes are Finnish only.
 - Control docs may use simple English for clear long-run coordination.
@@ -107,9 +116,9 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Future chapter windows use `CHxx-PAGES`, `CHxx-ASSETS`, `CHxx-NOTES`, and `CHxx-COACH`.
 - The coach runtime is fresh Codex sessions, not a separate standalone app.
 - The coach-facing layer is structured manifests. Do not make future coach sessions scrape free-form Markdown as their main data source.
+- Fresh learner-facing sessions should start from `processed-docs/04-coach/Start-Coach-Session.md` and then read `processed-docs/04-coach/catalog.json`.
 - Every reviewed visual asset must cite source page IDs and line IDs.
 - Derived concept and exercise notes must name relevant visual asset IDs when their source line citations overlap manifest-covered visual assets.
-- Fresh learner-facing sessions should start from `processed-docs/04-coach/Start-Coach-Session.md`.
 
 ## Blockers
 - No current blocker.
@@ -118,15 +127,16 @@ This file is the audit log and durable run memory. `Plan.md` is the milestone co
 - Add book title, publisher, ISBN, edition, and exact chapter name after metadata pages are uploaded.
 - Decide whether later large chapters should use one milestone per chapter or one milestone per page range.
 - Add missing source coverage for exercises 18-25 if later scans include those pages.
-- Build the `BOOK01/CH01` coach catalog entry and coach manifest in `CH01-COACH`.
+- Add later extracted chapters to `processed-docs/04-coach/catalog.json` as they reach `CHxx-COACH`.
 
 ## Fresh-session handoff
-- Start from `processed-docs/00-control/Plan.md`.
-- Current milestone is `CH01-COACH`.
+- Start extraction runs from `processed-docs/00-control/Plan.md` and `processed-docs/00-control/Start-Long-Run.md`.
+- Start learner-facing coach sessions from `processed-docs/04-coach/Start-Coach-Session.md`.
+- Current milestone is `Closed`.
 - Next milestone is `Closed`.
-- The active window is the one-milestone `CH01-COACH` backfill.
+- The one-milestone `CH01-COACH` backfill is closed.
 - Future chapter windows should use the four-step pattern: pages, assets, notes, coach data.
 - Cite page line IDs from `processed-docs/01-pages/BOOK01/CH01/` if later work extends the notes.
 - Cite visual asset IDs from `processed-docs/assets/pages/BOOK01/CH01/assets.json` when later work needs images.
-- Use `processed-docs/04-coach/Start-Coach-Session.md` for later learner-facing sessions after the chapter coach manifest exists.
+- Use `processed-docs/04-coach/catalog.json` to find ready coach chapters and known coverage gaps.
 - Do not treat edge-only neighboring page content as complete source coverage.

@@ -1,0 +1,27 @@
+{
+  "manifest_version": 1,
+  "language": "fi",
+  "chapters": [
+    {
+      "chapter_id": "BOOK01-CH01",
+      "status": "ready_with_gaps",
+      "coach_manifest_path": "processed-docs/04-coach/BOOK01/CH01/coach.json",
+      "asset_manifest_path": "processed-docs/assets/pages/BOOK01/CH01/assets.json",
+      "source_page_ids": [
+        "BOOK01-CH01-P001",
+        "BOOK01-CH01-P002",
+        "BOOK01-CH01-P003",
+        "BOOK01-CH01-P004"
+      ],
+      "concept_ids": [
+        "yksikkomuunnokset",
+        "piiri-pinta-ala",
+        "yhtalot"
+      ],
+      "known_gaps_fi": [
+        "Tehtävät 18-25 eivät kuulu nykyiseen lähdekattavuuteen, koska niitä vastaavat sivut eivät ole vielä repo:ssa kokonaan.",
+        "Sivun reunan osittainen naapurisisältö ei ole täyttä lähdekatetta eikä sitä saa käyttää coach-vastauksen lähteenä."
+      ]
+    }
+  ]
+}
