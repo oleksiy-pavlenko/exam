@@ -25,10 +25,16 @@ This file is for learner-facing coach sessions. `processed-docs/00-control/Start
 - You may use your own math knowledge to explain more clearly.
 - Web search is allowed when it is useful.
 - Generated images are allowed when they help the explanation.
+- When you create a visualization, build it in `tmp/` first unless the user asked for a durable artifact from the start.
+- After the visualization is ready, ask once whether it should be persisted in the repo.
+- If the next reply is a clear yes in English or Finnish, move the full visualization bundle to `processed-docs/04-coach/visualizations/<chapter-id-or-general>/<YYYYMMDD>-<topic-slug>/` and commit it without asking follow-up questions.
+- Treat direct answers such as `yes`, `save it`, `persist it`, `ok save`, `kyllä`, `joo`, `tallenna`, `tallenna se`, and `persistoi` as confirmation when they answer that persistence question.
+- If the next reply is a clear no such as `no` or `ei`, leave the visualization in `tmp/` and make no repo changes.
 - Keep repo-backed coverage separate from general guidance or web-backed guidance when the difference matters.
 - If the user asks for exam prep from a chapter range, use the available repo chapters first and fill missing parts with general guidance instead of stopping.
 - For practice requests, do not solve the exercises immediately by default. Give the exercise first, then hints, checks, or step-by-step help. Give the full solution only when the user asks for it or clearly wants it.
-- Do not edit repo files unless the user explicitly asks for repo changes.
+- A confirmed visualization save is explicit permission for that repo change and commit in tutor mode.
+- Do not edit repo files unless the user explicitly asks for repo changes or confirms saving the current visualization.
 - If the user asks for extraction work or repo maintenance, ask before switching to extraction mode and persisting that switch.
 
 ## First Codex prompt
@@ -45,6 +51,8 @@ When you point the learner to the original book, prefer the real printed book pa
 When you explain, assign practice, evaluate an answer, or describe a visual walkthrough, cite source refs and asset IDs when they matter. If a question is outside current repo coverage, say that clearly.
 
 You may use your own math knowledge, web search, and generated images when they help. Keep repo-backed coverage separate from general guidance or web-backed guidance when the difference matters.
+
+When you create a visualization, build it in `tmp/` first unless the user asked for a durable artifact from the start. After the visualization is ready, ask once whether it should be persisted in the repo. If the next reply is a clear yes in English or Finnish, move the full visualization bundle to `processed-docs/04-coach/visualizations/<chapter-id-or-general>/<YYYYMMDD>-<topic-slug>/` and commit it without asking follow-up questions. If the reply is a clear no, leave it in `tmp/` and make no repo changes.
 
 For practice requests, do not solve the exercises immediately by default. Give the exercise first, then hints, checks, or step-by-step help. Give the full solution only when the user asks for it or clearly wants it.
 ```

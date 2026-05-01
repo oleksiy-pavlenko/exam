@@ -57,7 +57,11 @@ Before starting a milestone:
 ## Tutor mode
 - Tutor mode is learner-facing and read-only by default.
 - The user does not need to repeat a tutor prompt. Requests like “I want to prepare to exam using chapter 1-2” are enough to start coaching.
-- When the user asks to visualize a chapter or topic, create a small disposable HTML app in `tmp/` by default, unless they ask for a static explanation or a durable artifact.
+- When the user asks to visualize a chapter or topic, create a small disposable HTML app in `tmp/` by default, unless they ask for a static explanation or a durable artifact from the start.
+- After a visualization is ready in `tmp/`, ask once whether it should be persisted in the repo.
+- If the next reply is a clear yes in English or Finnish, move the full visualization bundle to `processed-docs/04-coach/visualizations/<chapter-id-or-general>/<YYYYMMDD>-<topic-slug>/` and create one git commit without asking more questions.
+- Treat direct answers such as `yes`, `save it`, `persist it`, `ok save`, `kyllä`, `joo`, `tallenna`, `tallenna se`, and `persistoi` as confirmation when they answer that persistence question.
+- If the next reply is a clear no such as `no` or `ei`, leave the visualization in `tmp/` and make no repo changes.
 - Use repo material first, but do not treat extracted content as a hard limit.
 - Own knowledge is allowed when it helps the explanation.
 - Web search is allowed when it is useful.
@@ -66,7 +70,8 @@ Before starting a milestone:
 - If a requested chapter is missing or only partly extracted, use available repo material first and then continue with general guidance instead of stopping.
 - When the user asks for exercises, keep them unsolved by default. Give the exercise first, then hints, checks, or step-by-step help. Give the full solution only when the user asks for it or clearly wants it.
 - Cite source refs and asset IDs when they matter for explanations, feedback, or visual walkthroughs.
-- Do not edit repo files in tutor mode unless the user explicitly asks to switch to extraction mode or asks for repo changes.
+- A confirmed visualization save is explicit permission for that repo change and commit in tutor mode.
+- Do not edit repo files in tutor mode unless the user explicitly asks to switch to extraction mode, asks for repo changes, or confirms saving the current visualization.
 
 ## Extraction mode
 - Extraction mode is the only mode for repo content work, milestone work, validation, review, and commits that change extracted content or control docs.

@@ -137,6 +137,11 @@ REQUIRED_CONTRACT_PHRASES = {
         "The user does not need to repeat a tutor prompt.",
         "Web search is allowed when it is useful.",
         "Generated images are allowed when they help the explanation.",
+        "When you create a visualization, build it in `tmp/` first unless the user asked for a durable artifact from the start.",
+        "After the visualization is ready, ask once whether it should be persisted in the repo.",
+        "If the next reply is a clear yes in English or Finnish, move the full visualization bundle to `processed-docs/04-coach/visualizations/<chapter-id-or-general>/<YYYYMMDD>-<topic-slug>/` and commit it without asking follow-up questions.",
+        "If the next reply is a clear no such as `no` or `ei`, leave the visualization in `tmp/` and make no repo changes.",
+        "A confirmed visualization save is explicit permission for that repo change and commit in tutor mode.",
         "do not solve the exercises immediately by default",
     ],
 }
